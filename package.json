@@ -1,0 +1,14 @@
+{
+  "name": "i2d-frame",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "devDependencies": {
+    "nx": "16.2.2",
+    "nx-cloud": "latest"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
