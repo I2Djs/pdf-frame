@@ -32,8 +32,9 @@ To use i2d-frame in your project, you can install it via npm:
     </i-page>
 </i2dClient>
 ```
-In the i2d-frame context, the <i2dClient> tag you provided is used to create a client instance for rendering graphical content in the specified format.
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are Canvas/pdf/svg/webgl.
+In the i2d-frame context, the <i2dClient> tag is used to create a client instance for rendering graphical content in the specified format.
+  
+  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `canvas/pdf/svg/webgl`
 
   * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
 
