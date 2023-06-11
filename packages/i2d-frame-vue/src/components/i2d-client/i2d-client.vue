@@ -57,8 +57,6 @@ onMounted(() => {
         }
     }
 
-    console.log(layerInstance);
-
     setTimeout(() => {
         if (props.type === "pdf") {
             preparePdf(props.id, layerInstance, {
@@ -71,38 +69,6 @@ onMounted(() => {
         }
     }, 500);
 });
-
-// onUpdated(() => {
-//     console.log("on Update called");
-//     if (layerInstance) {
-//         layerInstance.flush();
-//     }
-//     if (!layerInstance) {
-//         if (props.type === "pdf") {
-//             layerInstance = createPdfInstance(props);
-//         } else if (props.type === "canvas") {
-//             layerInstance = createCanvasInstance("#" + props.id, {}, {});
-//         } else if (props.type === "svg") {
-//             // layerInstance = svgLayer("#" + props.id, {}, {});
-//         } else if (props.type === "webgl") {
-//             // layerInstance = webGlLayer("#" + props.id, {}, {});
-//         } else {
-//             // console.log("unknown type");
-//         }
-//     }
-
-//     setTimeout(() => {
-//         console.log(i2del.value);
-
-//         if (props.type === "pdf") {
-//             preparePdf(props.id, layerInstance, i2del.value);
-//         } else if (props.type === "canvas") {
-//             prepareCanvas(layerInstance, i2del.value);
-//         } else if (props.type === "svg") {
-//             prepareSvg(layerInstance, i2del.value);
-//         }
-//     }, 500);
-// });
 
 function render() {
     let vNode;
@@ -141,10 +107,6 @@ function render() {
     return vNode;
 }
 
-// function createSvgInstance(id, ctxCfg, layerCfg) {
-//     return svgLayer(id, layerCfg);
-// }
-
 function createCanvasInstance(id, ctxCfg, layerCfg) {
     return canvasLayer(id, ctxCfg, layerCfg);
 }
@@ -181,6 +143,8 @@ async function preparePdf(id, pdfInstance, template) {
 
     pdfInstance.exportPdf(function (url) {
         document.getElementById(id).setAttribute("src", url);
+    }, {
+        ...(password && {userPassword: password})
     });
 
     return pdfInstance;
@@ -394,9 +358,7 @@ function buildRadialGradient(n, ctx) {
 
 function parseTransformStr(a) {
     const b = {};
-    // eslint-disable-next-line no-useless-escape
     for (const i in (a = a.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g))) {
-        // eslint-disable-next-line no-useless-escape
         const c = a[i].match(/[\w\.\-]+/g);
         b[c.shift()] = c.map((v) => parseFloat(v));
     }
