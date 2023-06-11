@@ -1,5 +1,9 @@
 # i2d-frame
 
+<p align="center">
+  <img src="https://github.com/I2Djs/i2d-frame/blob/main/assets/i2d-frame.svg?raw=true" width=500>
+</p>
+
 ## Introduction
 
 i2d-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, and SVG, allowing you to generate various types of graphical content efficiently. Additionally, i2d-frame enables the creation of multi-page PDF documents with ease.
