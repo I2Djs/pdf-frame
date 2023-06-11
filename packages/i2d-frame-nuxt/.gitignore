@@ -14,7 +14,6 @@ node_modules
 **/.yarn/*state*
 
 # Generated dirs
-dist
 
 # Nuxt
 .nuxt
