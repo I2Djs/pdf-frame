@@ -8,8 +8,8 @@ i2d-frame is a 2D graphical framework written on top of the i2djs framework. It 
 
 * Declarative HTML syntax for defining graphical content.
 * Adoption of SVG tag syntax for creating geometrical shapes.
-* Rendering options: Canvas, PDF, and SVG.
-* Simple creation of multi-page PDF documents.
+* Rendering options: PDF, Canvas and SVG.
+* Easy creation of multi-page PDF documents.
 
 ## Installation
 
@@ -32,9 +32,9 @@ To use i2d-frame in your project, you can install it via npm:
     </i-page>
 </i2dClient>
 ```
-In the i2d-frame context, the <i2dClient> tag is used to create a client instance for rendering graphical content in the specified format.
+In the i2d-frame context, the `<i2dClient>` tag is used to create a client instance for rendering graphical content in the specified format.
   
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `canvas/pdf/svg/webgl`
+  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas/svg/webgl`
 
   * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
 
