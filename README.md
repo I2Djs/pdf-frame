@@ -6,7 +6,7 @@
 
 ## Introduction
 
-i2d-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, and SVG, allowing you to generate various types of graphical content efficiently. Additionally, i2d-frame enables the creation of multi-page PDF documents with ease.
+i2d-pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, and SVG, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
 
 ## Features
 
@@ -17,16 +17,16 @@ i2d-frame is a 2D graphical framework written on top of the i2djs framework. It 
 
 ## Installation
 
-To use i2d-frame in your project, you can install it via npm:
+To use i2d-pdf-frame in your project, you can install it via npm:
 
   ### nuxt
   ``` bash
-    npm install i2d-frame-nuxt
+    npm install i2d-pdf-frame-nuxt
   ```
   
   ### vue
   ``` bash
-    npm install i2d-frame-vue
+    npm install i2d-pdf-frame-vue
   ```
 
 ## Usage
