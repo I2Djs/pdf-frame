@@ -1,26 +1,22 @@
 {
-  "name": "i2d-frame-vue",
+  "name": "i2d-pdf-frame-vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/i2d-client.cjs.js",
-  "module": "dist/i2d-client.es.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --force",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "i2djs": "github:I2Djs/I2Djs#pdf-feature"
+    "vue": "^3.2.47",
+    "i2djs": "github:I2Djs/I2Djs#pdf-feature",
+    "d3-array": "^3.2.3",
+    "d3-scale": "^4.0.2",
+    "d3-time-format": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
     "vite": "^4.3.2"
-  },
-  "peerDependencies": {
-    "vue": "^3.2.47"
   }
 }

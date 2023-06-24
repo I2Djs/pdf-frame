@@ -6,7 +6,8 @@
   "private": true,
   "devDependencies": {
     "nx": "16.2.2",
-    "nx-cloud": "latest"
+    "nx-cloud": "latest",
+    "i2djs": "github:I2Djs/I2Djs#pdf-feature"
   },
   "workspaces": [
     "packages/*"
