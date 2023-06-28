@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/i2d-client.cjs.js",
+  "module": "dist/i2d-client.es.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite --force",
     "build": "vite build",
