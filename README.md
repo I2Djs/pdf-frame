@@ -6,7 +6,7 @@
 
 ## Introduction
 
-i2d-pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, and SVG, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
+i2d-pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
 
 ## Features
 
@@ -33,6 +33,8 @@ To use i2d-pdf-frame in your project, you can install it via npm:
 ```html
 <i2dClient type="pdf" width="595" height="841">
     <i-page>
+      <i-circle :cx=100 :cy=200 :r=50 :style="{ fillStyle: '#ff0000', strokeStyle= '#ff00ff' }">
+      <i-circle>
     </i-page>
 </i2dClient>
 ```
@@ -45,6 +47,7 @@ In the i2d-frame context, the `<i2dClient>` tag is used to create a client insta
   * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
   
   Inside the <i2dClient> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
+  Inside the <i-page> tag, we have defined circle element with properties 'r', 'cx', 'cy' and 'styles'.
   
 
 ## Contributing
