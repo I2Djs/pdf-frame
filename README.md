@@ -51,7 +51,7 @@ In the i2d-frame context, the `<i2dClient>` tag is used to create a client insta
 Contributions are welcome! If you would like to contribute to i2d-frame, please follow the guidelines in CONTRIBUTING.md.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/i2d-frame/main/LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/i2d-pdf-frame/main/LICENSE) file for more details.
 
 ## Contact
-For any inquiries or support, please contact `narayaswamy14@gmail.com`.
+For any inquiries or support, please contact `narayanaswamy14@gmail.com`.

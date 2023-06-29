@@ -1,94 +1,54 @@
-<!--
-Get your module up and running quickly.
+# i2d-pdf-frame-nuxt
 
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
+<p align="center">
+  <img src="https://github.com/I2Djs/i2d-frame/blob/main/assets/i2d-frame.svg?raw=true" width=500>
+</p>
 
-# My Module
+## Introduction
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+i2d-pdf-frame-nuxt is a nuxt component designed for rendering PDF/Canvas graphics, and it's built upon the i2djs framework. It employs an intuitive HTML-based syntax to define graphics, making it simple for users to create and manage 2D graphical elements using SVG-like tags. In addition, i2d-pdf-frame-vue facilitates the rendering of graphics in both PDF and Canvas formats, offering efficiency and versatility in generating diverse graphical content.
 
-My new Nuxt module for doing amazing things.
-
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 ## Features
 
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
+* Declarative HTML syntax for defining graphical content.
+* Renders PDF, Canvas output
+* Adoption of SVG tag syntax for creating geometrical shapes.
+* Easy creation of multi-page PDF documents.
 
-## Quick Setup
+## Installation
 
-1. Add `my-module` dependency to your project
+To use i2d-pdf-frame-nuxt in your project, you can install it via npm:
 
-```bash
-# Using pnpm
-pnpm add -D my-module
+  
+  ### vue
+  ``` bash
+    npm install i2d-pdf-frame-nuxt
+  ```
 
-# Using yarn
-yarn add --dev my-module
-
-# Using npm
-npm install --save-dev my-module
+## Usage
+```html
+<i2dClient type="pdf" width="595" height="841">
+    <i-page>
+    </i-page>
+</i2dClient>
 ```
+The `<i2dClient>` tag is used to create a client instance for rendering graphical content in the specified format.
+  
+  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas/svg/webgl`
 
-2. Add `my-module` to the `modules` section of `nuxt.config.ts`
+  * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
 
-```js
-export default defineNuxtConfig({
-  modules: [
-    'my-module'
-  ]
-})
-```
+  * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
+  
+  Inside the <i2dClient> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
+  
 
-That's it! You can now use My Module in your Nuxt app ✨
+## Contributing
+Contributions are welcome! If you would like to contribute to i2d-frame, please follow the guidelines in CONTRIBUTING.md.
 
-## Development
+## License
+This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/i2d-pdf-frame/main/LICENSE) file for more details.
 
-```bash
-# Install dependencies
-npm install
-
-# Generate type stubs
-npm run dev:prepare
-
-# Develop with the playground
-npm run dev
-
-# Build the playground
-npm run dev:build
-
-# Run ESLint
-npm run lint
-
-# Run Vitest
-npm run test
-npm run test:watch
-
-# Release new version
-npm run release
-```
-
-<!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/my-module
-
-[npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/my-module
-
-[license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/my-module
-
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+## Contact
+For any inquiries or support, please contact `narayanaswamy14@gmail.com`.
