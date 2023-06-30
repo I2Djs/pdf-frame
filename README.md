@@ -6,7 +6,7 @@
 
 ## Introduction
 
-i2d-pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
+pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
 
 ## Features
 
@@ -17,28 +17,28 @@ i2d-pdf-frame is a 2D graphical framework written on top of the i2djs framework.
 
 ## Installation
 
-To use i2d-pdf-frame in your project, you can install it via npm:
+To use pdf-frame in your project, you can install it via npm:
 
   ### nuxt
   ``` bash
-    npm install i2d-pdf-frame-nuxt
+    npm install pdf-frame-nuxt
   ```
   
   ### vue
   ``` bash
-    npm install i2d-pdf-frame-vue
+    npm install pdf-frame-vue
   ```
 
 ## Usage
 ```html
-<i2dClient type="pdf" width="595" height="841">
+<pdfFrame type="pdf" width="595" height="841">
     <i-page>
       <i-circle :cx=100 :cy=200 :r=50 :style="{ fillStyle: '#ff0000', strokeStyle= '#ff00ff' }">
       <i-circle>
     </i-page>
-</i2dClient>
+</pdfFrame>
 ```
-In the i2d-frame context, the `<i2dClient>` tag is used to create a client instance for rendering graphical content in the specified format.
+In the i2d-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
   
   * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas/svg/webgl`
 
@@ -46,7 +46,7 @@ In the i2d-frame context, the `<i2dClient>` tag is used to create a client insta
 
   * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
   
-  Inside the <i2dClient> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
+  Inside the <pdfFrame> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
   Inside the <i-page> tag, we have defined circle element with properties 'r', 'cx', 'cy' and 'styles'.
   
 
@@ -54,7 +54,7 @@ In the i2d-frame context, the `<i2dClient>` tag is used to create a client insta
 Contributions are welcome! If you would like to contribute to i2d-frame, please follow the guidelines in CONTRIBUTING.md.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/i2d-pdf-frame/main/LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
 
 ## Contact
 For any inquiries or support, please contact `narayanaswamy14@gmail.com`.

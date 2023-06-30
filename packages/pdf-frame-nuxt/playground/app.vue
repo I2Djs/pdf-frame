@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <i2dClient type="pdf" id="nswamyid" :width="595" :height="841">
+    <pdfFrame type="pdf" id="nswamyid" :width="595" :height="841">
         <i-page-template id="temp-1">
             <i-group>
               <i-linearGradient id="grad3" :x1=0 :y1=0 :x2=100 :y2=100 :colorStops="[{
@@ -36,7 +36,7 @@
             <i-text :x=30 :y=10 text="Acalvio is the leader in Cyber Deception technology, built on over 25 issued patents in Autonomous Deception and advanced AI. The Acalvio Active Defense Platform provides robust Identity Protection, Advanced Threat Defense, and Threat Hunting products. Acalvio is the leader in Cyber Deception technology, built on over 25 issued patents in Autonomous Deception and advanced AI. The Acalvio Active Defense Platform provides robust Identity Protection, Advanced Threat Defense, and Threat Hunting products. The Acalvio Active Defense Platform provides robust Identity Protection, Advanced Threat Defense, and Threat Hunting products. Acalvio is the leader in Cyber Deception technology, built on over 25 issued patents in Autonomous Deception and advanced AI. The Acalvio Active Defense Platform provides robust Identity Protection, Advanced Threat Defense, and Threat Hunting products." :width=500 :style="{ fillStyle: '#ffffff',font: '9px',align: 'justify'}" class="text_123"></i-text>
           </i-group>
         </i-page>
-    </i2dClient>
+    </pdfFrame>
   </div>
 </template>
 

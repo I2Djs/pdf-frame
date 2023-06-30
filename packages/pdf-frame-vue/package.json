@@ -1,10 +1,10 @@
 {
-  "name": "i2d-pdf-frame-vue",
+  "name": "@i2d/pdf-frame-vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/i2d-client.cjs.js",
-  "module": "dist/i2d-client.es.js",
+  "main": "dist/pdf-frame.cjs.js",
+  "module": "dist/pdf-frame.es.js",
   "files": [
     "dist"
   ],

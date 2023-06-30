@@ -1,5 +1,5 @@
 {
-  "name": "i2d-pdf-frame-nuxt",
+  "name": "@i2d/pdf-frame-nuxt",
   "version": "1.0.0",
   "description": "My new Nuxt module",
   "repository": "your-org/my-module",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.5.2",
     "i2djs": "github:I2Djs/I2Djs#pdf-feature",
-    "i2dClient": "./../i2d-pdf-frame-vue"
+    "@i2d/pdf-frame-vue": "*"
   },
   "devDependencies": {
     "@types/node": "^18",
