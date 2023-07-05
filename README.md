@@ -20,14 +20,14 @@ pdf-frame is a web framework designed specifically for handling PDF graphics req
 
 To use pdf-frame in your project, you can install it via npm:
 
-  ### nuxt
-  ``` bash
-    npm install pdf-frame-nuxt
-  ```
-  
   ### vue
   ``` bash
     npm install pdf-frame-vue
+  ```
+
+  ### nuxt
+  ``` bash
+    npm install pdf-frame-nuxt
   ```
 
 ## Usage
