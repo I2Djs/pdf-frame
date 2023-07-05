@@ -6,7 +6,7 @@
 
 ## Introduction
 
-pdf-frame is a 2D graphical framework written on top of the i2djs framework. It provides a declarative HTML syntax and semantics for defining graphical content. With i2d-pdf-frame, you can easily create and manipulate 2D graphics using familiar SVG tag syntax. The framework supports rendering output as Canvas, PDF, allowing you to generate various types of graphical content efficiently. Additionally, i2d-pdf-frame enables the creation of multi-page PDF documents with ease.
+pdf-frame is a web framework designed specifically for handling PDF graphics requirements. It provides component support for popular frameworks like Vue and React. With its declarative HTML syntax and semantics, it offers a straightforward way to define PDF graphical content efficiently. As of today the framework supports rendering output as PDF, Canvas.
 
 ## Features
 
@@ -38,9 +38,9 @@ To use pdf-frame in your project, you can install it via npm:
     </i-page>
 </pdfFrame>
 ```
-In the i2d-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
+In the pdf-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
   
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas/svg/webgl`
+  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas`
 
   * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
 
