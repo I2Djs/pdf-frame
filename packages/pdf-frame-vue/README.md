@@ -1,4 +1,4 @@
-# i2d-pdf-frame-vue
+# pdf-frame-vue
 
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>

@@ -1,4 +1,4 @@
-# i2d-frame
+# pdf-frame
 
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
@@ -51,7 +51,7 @@ In the pdf-frame context, the `<pdfFrame>` tag is used to create a client instan
   
 
 ## Contributing
-Contributions are welcome! If you would like to contribute to i2d-frame, please follow the guidelines in CONTRIBUTING.md.
+Contributions are welcome! If you would like to contribute to pdf-frame, please follow the guidelines in CONTRIBUTING.md.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
