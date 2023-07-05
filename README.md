@@ -1,12 +1,13 @@
 # pdf-frame
 
+
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
 
 ## Introduction
 
-pdf-frame is a web framework designed specifically for handling PDF graphics requirements. It provides component support for popular frameworks like Vue and React. With its declarative HTML syntax and semantics, it offers a straightforward way to define PDF graphical content efficiently. As of today the framework supports rendering output as PDF, Canvas.
+pdf-frame is a web framework designed specifically for handling PDF graphics requirements. With its declarative HTML syntax and semantics, it offers a straightforward way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats.
 
 ## Features
 
