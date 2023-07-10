@@ -1,6 +1,6 @@
 {
   "name": "@i2d/pdf-frame-nuxt",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "My new Nuxt module",
   "repository": "your-org/my-module",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish --dry-run",
     "r2elease": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish --dry-run && git push --follow-tags",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
