@@ -23,7 +23,7 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish --dry-run",
-    "r2elease": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish --dry-run && git push --follow-tags",
+    "r2elease": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest watch"
@@ -31,7 +31,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.5.2",
     "i2djs": "github:I2Djs/I2Djs#pdf-feature",
-    "@i2d/pdf-frame-vue": "*"
+    "@i2d/pdf-frame-vue": "latest"
   },
   "devDependencies": {
     "@types/node": "^18",
