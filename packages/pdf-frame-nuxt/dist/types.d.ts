@@ -2,13 +2,13 @@
 import { ModuleOptions } from './module'
 
 declare module '@nuxt/schema' {
-  interface NuxtConfig { ['i2dClient']?: Partial<ModuleOptions> }
-  interface NuxtOptions { ['i2dClient']?: ModuleOptions }
+  interface NuxtConfig { ['pdfFrame']?: Partial<ModuleOptions> }
+  interface NuxtOptions { ['pdfFrame']?: ModuleOptions }
 }
 
 declare module 'nuxt/schema' {
-  interface NuxtConfig { ['i2dClient']?: Partial<ModuleOptions> }
-  interface NuxtOptions { ['i2dClient']?: ModuleOptions }
+  interface NuxtConfig { ['pdfFrame']?: Partial<ModuleOptions> }
+  interface NuxtOptions { ['pdfFrame']?: ModuleOptions }
 }
 
 

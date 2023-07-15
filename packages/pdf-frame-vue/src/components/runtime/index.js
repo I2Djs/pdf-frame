@@ -1,4 +1,4 @@
-import { createRenderer } from "@vue/runtime-core";
+import { createRenderer } from "vue";
 import { CanvasNodeExe, CanvasGradient, createRadialGradient, createLinearGradient } from "i2djs";
 
 

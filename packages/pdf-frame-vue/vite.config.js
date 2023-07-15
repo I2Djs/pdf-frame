@@ -14,7 +14,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, './src/components/index.js'),
       formats: ["es", "cjs"],
-      fileName: (format) => `pdf-frame.${format}.js`
+      fileName: (format) => ` .${format}.js`
     },
     rollupOptions: {
       external: ['vue','i2djs', '@vue/runtime-core'],

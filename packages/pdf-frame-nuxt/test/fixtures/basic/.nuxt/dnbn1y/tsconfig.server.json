@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "#imports": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/.nuxt/dnbn1y/types/nitro-imports"
+      ],
+      "#paths": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/node_modules/nuxt/dist/core/runtime/nitro/paths"
+      ],
+      "~": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic"
+      ],
+      "~/*": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/*"
+      ],
+      "@": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic"
+      ],
+      "@/*": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/*"
+      ],
+      "~~": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic"
+      ],
+      "~~/*": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/*"
+      ],
+      "@@": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic"
+      ],
+      "@@/*": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/*"
+      ],
+      "assets": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/assets"
+      ],
+      "public": [
+        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/public"
+      ]
+    }
+  },
+  "include": [
+    "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/test/fixtures/basic/.nuxt/dnbn1y/types/nitro-nuxt.d.ts",
+    "./types/nitro.d.ts",
+    "../../**/*",
+    "../../server/**/*"
+  ]
+}

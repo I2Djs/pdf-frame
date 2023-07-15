@@ -1,6 +1,5 @@
 import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as I, CanvasNodeExe as x, pdfLayer as T, canvasLayer as N } from "i2djs";
-import { createRenderer as q, defineComponent as C, getCurrentInstance as b, onMounted as G, h as m, Fragment as A } from "@vue/runtime-core";
-import { nextTick as E } from "vue";
+import { createRenderer as q, defineComponent as C, getCurrentInstance as b, onMounted as G, nextTick as A, h as m, Fragment as E } from "vue";
 const O = [
   "i-group",
   "i-circle",
@@ -99,7 +98,7 @@ function j(r) {
   return h;
 }
 let u = null;
-const M = C({
+const L = C({
   props: {
     type: {
       type: String,
@@ -140,7 +139,7 @@ const M = C({
       const a = c.slots.default;
       u && u.flush(), u || (r.type === "pdf" ? u = h(r) : r.type === "canvas" ? u = y("#" + r.id, r.ctxConfig, r.layerSetting) : console.warn(`Unknown render context: ${r.type}`));
       const o = j(u);
-      E().then(() => {
+      A().then(() => {
         const e = m(p, a);
         o(e, u);
       });
@@ -150,7 +149,7 @@ const M = C({
         const e = b();
         e.parent = l, e.appContext = l.appContext, e.root = l.root, e.provides = l.provides;
         const t = o.slots.default;
-        return () => m(A, t());
+        return () => m(E, t());
       }
     });
     function h(a) {
@@ -202,5 +201,5 @@ const M = C({
   }
 });
 export {
-  M as default
+  L as default
 };

@@ -9,7 +9,7 @@ import {
     onUpdated,
     ref,
     getCurrentInstance,
-} from "@vue/runtime-core";
+} from "vue";
 
 import { nextTick } from "vue";
 

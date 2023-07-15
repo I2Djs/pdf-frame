@@ -2,12 +2,19 @@
   "name": "pdf-frame",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
   "private": true,
   "devDependencies": {
     "nx": "16.2.2",
     "nx-cloud": "latest",
     "i2djs": "github:I2Djs/I2Djs#pdf-feature"
+  },
+  "scripts": {
+    "pdf-frame-vue:dev": "npx nx dev @i2d/pdf-frame-vue",
+    "pdf-frame-vue:build": "npx nx build @i2d/pdf-frame-vue",
+    "pdf-frame-vue:release": "npx nx release @i2d/pdf-frame-vue",
+    "pdf-frame-nuxt:dev": "npx nx dev @i2d/pdf-frame-nuxt",
+    "pdf-frame-nuxt:build": "npx nx build @i2d/pdf-frame-nuxt",
+    "pdf-frame-nuxt:release": "npx nx release @i2d/pdf-frame-nuxt"
   },
   "workspaces": [
     "packages/*"

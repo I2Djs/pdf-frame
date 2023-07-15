@@ -1,7 +1,7 @@
 {
   "name": "@i2d/pdf-frame-vue",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/pdf-frame.cjs.js",
   "module": "dist/pdf-frame.es.js",
@@ -11,14 +11,18 @@
   "scripts": {
     "dev": "vite --force",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "npm run lint && npm run build && npm publish --access=public && git push --follow-tags",
+    "lint": "eslint --ext .js,.vue . --fix"
   },
   "dependencies": {
-    "i2djs": "github:I2Djs/I2Djs#pdf-feature",
+    "i2djs": "^4.0.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^8.44.0",
+    "eslint-plugin-vue": "^9.15.1",
     "vite": "^4.3.2"
   }
 }
