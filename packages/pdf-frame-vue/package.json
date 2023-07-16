@@ -13,7 +13,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "release": "npm run lint && npm run build && npm publish --access=public && git push --follow-tags",
-    "lint": "eslint --ext .js,.vue . --fix"
+    "lint": "eslint --ext .js . --fix"
   },
   "dependencies": {
     "i2djs": "^4.0.1",
