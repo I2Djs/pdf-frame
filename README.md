@@ -11,7 +11,7 @@ pdf-frame is a web framework for client side PDF graphics requirements. With its
 
 ## Features
 
-* Declarative HTML syntax for defining graphical content.
+* Declarative HTML syntax for defining pdf content.
 * Adoption of SVG tag syntax for creating geometrical shapes.
 * Rendering options: PDF, Canvas and SVG.
 * Easy creation of multi-page PDF documents.
@@ -41,11 +41,12 @@ To use pdf-frame in your project, you can install it via npm:
 ```
 In the pdf-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
   
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas`
+  * type="pdf": The type attribute specifies the output format of rendered graphical content. In this case, it is set to "pdf", indicating that the content to be rendered as a PDF document. Possible values are `pdf`, `canvas`
 
-  * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
+  * width="595": The width attribute sets the width of the graphical element.
 
-  * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
+  * height="841": The height attribute sets the height of the graphical element.
+    
   
   Inside the <pdfFrame> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
   Inside the <i-page> tag, we have defined circle element with properties 'r', 'cx', 'cy' and 'styles'.
