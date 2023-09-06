@@ -52,17 +52,11 @@ To use pdf-frame in your project, you can install it via npm:
     </i-page> 
 </pdfFrame>
 ```
-In the pdf-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
-  
-  * type="pdf": The type attribute specifies the output format of rendered graphical content. In this case, it is set to "pdf", indicating that the content to be rendered as a PDF document. Possible values are `pdf`, `canvas`
 
-  * width="595": The width attribute sets the width of the graphical element.
-
-  * height="841": The height attribute sets the height of the graphical element.
-    
-  
-  Inside the <pdfFrame> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
-  Inside the <i-page> tag, we have defined circle element with properties 'r', 'cx', 'cy' and 'styles'.
+## Documentation
+* [PDF-Frame-Vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+* [PDF-Frame supported Tags](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue-tags-syntax)
+* [page‐template](https://github.com/I2Djs/pdf-frame/wiki/i%E2%80%90page%E2%80%90template)
   
 
 ## Contributing
