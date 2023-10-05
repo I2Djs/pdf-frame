@@ -135,6 +135,8 @@ export default function createI2djsRenderer(layerInstance) {
                     });
                 } else if (key === 'src' && imgCache[value]) {
                     el.setAttr(key, imgCache[value]);
+                } else if (key === 'text' && value) {
+                    el.text(value);
                 } else if (key ==='p-template' && el instanceof CanvasNodeExe) {
                     el.addTemplate(templates[value]);
                 } else {
@@ -170,6 +172,9 @@ export default function createI2djsRenderer(layerInstance) {
     * @parseTransformStr : Parse transform string, converts it to standard I2Djs transform object.  
     */
     function parseTransformStr(a) {
+        if (typeof a === "object" && !Array.isArray(a) && a !== null) {
+            return a;
+        }
         const b = {};
         for (const i in (a = a.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g))) {
             const c = a[i].match(/[\w\.\-]+/g);

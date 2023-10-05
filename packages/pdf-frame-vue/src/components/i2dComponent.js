@@ -41,12 +41,12 @@ export const i2dClient = defineComponent({
         },
         ctxConfig: {
             type: Object,
-            required: true,
+            required: false,
             default: () => {}
         },
         layerSetting: {
             type: Object,
-            required: true,
+            required: false,
             default: () => {}
         }
     },
@@ -68,7 +68,7 @@ export const i2dClient = defineComponent({
                 if (props.type === "pdf") {
                     layerInstance = createPdfInstance(props);
                 } else if (props.type === "canvas") {
-                    layerInstance = createCanvasInstance("#" + props.id, props.ctxConfig, props.layerSetting);
+                    layerInstance = createCanvasInstance(props);
                 } else {
                     console.warn(`Unknown render context: ${props.type}`);
                 }
@@ -105,23 +105,20 @@ export const i2dClient = defineComponent({
         });
 
         function createPdfInstance(props) {
-            const pdfInstance = pdfLayer({
+            const pdfInstance = pdfLayer(vNode.el, {
                 height: props.height,
                 width: props.width,
-                margin: props.margin,
-                el: document.getElementById(props.id)
+                margin: props.margin
             }, {
                 onUpdate: (url) => {
-                    document.getElementById(props.id).setAttribute("src", url);
+                    vNode.el.setAttribute("src", url);
                 }
             });
-
-            console.log(pdfInstance);
             return pdfInstance;
         }
 
-        function createCanvasInstance(id, ctxCfg, layerCfg) {
-            return canvasLayer(id, ctxCfg, layerCfg);
+        function createCanvasInstance(props) {
+            return canvasLayer(vNode.el, props.ctxConfig, props.layerSetting);
         }
 
         let vNode;
