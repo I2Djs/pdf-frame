@@ -7,11 +7,11 @@
 
 ## Introduction
 
-pdf-frame is a web framework for client side PDF graphics requirements. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats.
+pdf-frame is a web framework for client side PDF generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats.
 
 ## Features
 
-* Declarative HTML syntax for defining graphical content.
+* Declarative HTML syntax for defining pdf content.
 * Adoption of SVG tag syntax for creating geometrical shapes.
 * Rendering options: PDF, Canvas and SVG.
 * Easy creation of multi-page PDF documents.
@@ -33,22 +33,30 @@ To use pdf-frame in your project, you can install it via npm:
 ## Usage
 ```html
 <pdfFrame type="pdf" width="595" height="841">
-    <i-page>
-      <i-circle :cx=100 :cy=200 :r=50 :style="{ fillStyle: '#ff0000', strokeStyle= '#ff00ff' }">
-      <i-circle>
+    <!-- Page Templates -->
+    <i-page-template id="temp-1">
+        <i-rect :x="0" :y="0" :width="595" :height="841" :style="{ fillStyle:'#ffffff' }"></i-rect>
+        <i-text :x="30" :y="30" :text="'Header Text'" :width="530" :style="{font: '15px Arial'}"></i-text>
+        <i-text :x="30" :y="810" :text="'Footer Text'" :width="530" :style="{font: '15px Arial'}"></i-text>
+    </i-page-template>
+    <!-- Page 1 -->
+    <i-page p-template="temp-1">
+        <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+        <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
     </i-page>
+    
+    <!-- Page 2 -->
+    <i-page p-template="temp-1">
+        <i-text :x="30" :y="60" :text="'Page 2 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+        <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+    </i-page> 
 </pdfFrame>
 ```
-In the pdf-frame context, the `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
-  
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas`
 
-  * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
-
-  * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
-  
-  Inside the <pdfFrame> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
-  Inside the <i-page> tag, we have defined circle element with properties 'r', 'cx', 'cy' and 'styles'.
+## Documentation
+* [PDF-Frame-Vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+* [PDF-Frame supported Tags](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue-tags-syntax)
+* [page‐template](https://github.com/I2Djs/pdf-frame/wiki/i%E2%80%90page%E2%80%90template)
   
 
 ## Contributing
