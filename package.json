@@ -13,7 +13,7 @@
     "pdf-frame-vue:build": "npx nx build @i2d/pdf-frame-vue",
     "pdf-frame-vue:release": "npx nx release @i2d/pdf-frame-vue",
     "pdf-frame-nuxt:dev": "npx nx dev @i2d/pdf-frame-nuxt",
-    "pdf-frame-nuxt:build": "npx nx build @i2d/pdf-frame-nuxt",
+    "pdf-frame-nuxt:build": "npx nx prepack @i2d/pdf-frame-nuxt",
     "pdf-frame-nuxt:release": "npx nx release @i2d/pdf-frame-nuxt"
   },
   "workspaces": [

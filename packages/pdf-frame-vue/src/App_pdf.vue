@@ -15,7 +15,7 @@ setTimeout(() => {
 
 <template>
   <div class="pdfContainer">
-    <i2dClient
+    <pdfFrame
       id="nswamyid"
       type="pdf"
       :width="595"
@@ -146,7 +146,7 @@ setTimeout(() => {
       <i-page p-template="temp-1">
         
       </i-page>
-    </i2dClient>
+    </pdfFrame>
   </div>
 </template>
 

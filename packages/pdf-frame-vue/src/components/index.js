@@ -1,3 +1,3 @@
-import { i2dClient } from "./i2dComponent";
+import { pdfFrame } from "./i2dComponent";
 
-export default i2dClient;
+export default pdfFrame;

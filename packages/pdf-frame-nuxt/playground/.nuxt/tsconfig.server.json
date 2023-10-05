@@ -8,51 +8,61 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "paths": {
       "#imports": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/.nuxt/types/nitro-imports"
+        "./types/nitro-imports"
       ],
       "#paths": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/node_modules/nuxt/dist/core/runtime/nitro/paths"
+        "../../node_modules/nuxt/dist/core/runtime/nitro/paths"
       ],
       "~": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground"
+        "./.."
       ],
       "~/*": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/*"
+        "../*"
       ],
       "@": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground"
+        "./.."
       ],
       "@/*": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/*"
+        "../*"
       ],
       "~~": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground"
+        "./.."
       ],
       "~~/*": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/*"
+        "../*"
       ],
       "@@": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground"
+        "./.."
       ],
       "@@/*": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/*"
+        "../*"
       ],
       "assets": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/assets"
+        "../assets"
       ],
       "public": [
-        "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/public"
+        "../public"
       ]
     }
   },
   "include": [
-    "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/.nuxt/types/nitro-nuxt.d.ts",
+    "./types/nitro-nuxt.d.ts",
+    "../../../../../../../../nswam/runtime/server",
+    "../../../../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",
     "../server/**/*"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../../node_modules",
+    "../../../../node_modules",
+    "../../node_modules/nuxt/node_modules",
+    "../dist"
   ]
 }

@@ -17,7 +17,7 @@ let layerInstance = null;
 
 let resolvedImages = {};
 
-export const i2dClient = defineComponent({
+export const pdfFrame = defineComponent({
     props: {
         type: {
             type: String,

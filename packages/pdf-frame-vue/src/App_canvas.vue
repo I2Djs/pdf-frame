@@ -19,7 +19,7 @@ setTimeout(() => {
 
 <template>
   <div class="pdfContainer">
-    <i2dClient
+    <pdfFrame
       id="canvasContainer"
       type="canvas"
     >
@@ -38,7 +38,7 @@ setTimeout(() => {
             :style="{fillStyle:'#000000',font: '25px Arial'}"
             class="text_123"
           />
-    </i2dClient>
+    </pdfFrame>
   </div>
 </template>
 

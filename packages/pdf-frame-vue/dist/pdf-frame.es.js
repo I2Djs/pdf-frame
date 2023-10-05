@@ -1,5 +1,5 @@
-import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as T, CanvasNodeExe as x, pdfLayer as N, canvasLayer as q } from "i2djs";
-import { createRenderer as A, defineComponent as C, getCurrentInstance as b, onMounted as G, nextTick as I, h as m, Fragment as j } from "vue";
+import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as T, CanvasNodeExe as x, pdfLayer as I, canvasLayer as N } from "i2djs";
+import { createRenderer as q, defineComponent as C, getCurrentInstance as b, onMounted as A, nextTick as G, h as m, Fragment as j } from "vue";
 const O = [
   "i-group",
   "i-circle",
@@ -14,8 +14,8 @@ const O = [
   "i-page-template"
 ];
 function k(n) {
-  const c = {}, f = {}, p = {}, { render: h } = A({
-    patchProp(e, t, r, i, a, g, d, E, R) {
+  const d = {}, f = {}, p = {}, { render: g } = q({
+    patchProp(e, t, r, i, s, h, o, E, R) {
       y(t)(e, i);
     },
     insert: (e, t, r) => {
@@ -25,26 +25,26 @@ function k(n) {
       e != null && e.remove();
     },
     createElement: (e, t, r, i) => {
-      const a = e.split("-").slice(1).join("-");
-      let g = O.indexOf(e), d = null;
-      switch (g === -1 && console.warn(`Unknown I2Djs tag: ${e}`), a) {
+      const s = e.split("-").slice(1).join("-");
+      let h = O.indexOf(e), o = null;
+      switch (h === -1 && console.warn(`Unknown I2Djs tag: ${e}`), s) {
         case "page-template":
-          d = n.createTemplate(), f[i.id] = d;
+          o = n.createTemplate(), f[i.id] = o;
           break;
         case "page":
-          d = n.addPage();
+          o = n.addPage();
           break;
         case "linearGradient":
-          d = T(), p[i.id] = d;
+          o = T(), p[i.id] = o;
           break;
         case "radialGradient":
-          d = w(), p[i.id] = d;
+          o = w(), p[i.id] = o;
           break;
         default:
-          d = l(a);
+          o = c(s);
           break;
       }
-      return d;
+      return o;
     },
     createText: (e) => {
     },
@@ -60,47 +60,47 @@ function k(n) {
     querySelector: (e) => n.fetchEl(e) || null
   }), y = (e) => (t, r) => {
     if (typeof r == "function" && (r = r(t)), e !== "style")
-      e === "src" && !c[r] ? (c[r] = n.createAsyncTexture({
+      e === "src" && !d[r] ? (d[r] = n.createAsyncTexture({
         attr: {
           src: r
         }
-      }), c[r].then((i) => {
-        c[r] = i.exportAsDataUrl(), t.setAttr(e, c[r]);
-      })) : e === "src" && c[r] ? t.setAttr(e, c[r]) : e === "text" && r ? t.text(r) : e === "p-template" && t instanceof x ? t.addTemplate(f[r]) : t.setAttr(e, e === "transform" ? s(r) : r);
+      }), d[r].then((i) => {
+        d[r] = i.exportAsDataUrl(), t.setAttr(e, d[r]);
+      })) : e === "src" && d[r] ? t.setAttr(e, d[r]) : e === "text" && r ? t.text(r) : e === "p-template" && t instanceof x ? t.addTemplate(f[r]) : t.setAttr(e, e === "transform" ? a(r) : r);
     else
       for (let i in r) {
-        let a = r[i];
-        if ((i === "fillStyle" || i === "strokeStyle") && typeof a == "string" && a.startsWith("grad")) {
-          const g = a.match(/\(([^)]+)\)/)[1];
-          a = o(g);
+        let s = r[i];
+        if ((i === "fillStyle" || i === "strokeStyle") && typeof s == "string" && s.startsWith("grad")) {
+          const h = s.match(/\(([^)]+)\)/)[1];
+          s = u(h);
         }
-        t.setStyle(i, a);
+        t.setStyle(i, s);
       }
   };
-  function l(e, t) {
+  function c(e, t) {
     return new x(n.ctx, {
       el: e,
       attr: {},
       style: {}
     }, Math.round(Math.random() * 1e7), 0);
   }
-  function s(e) {
+  function a(e) {
     if (typeof e == "object" && !Array.isArray(e) && e !== null)
       return e;
     const t = {};
     for (const r in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
       const i = e[r].match(/[\w\.\-]+/g);
-      t[i.shift()] = i.map((a) => parseFloat(a));
+      t[i.shift()] = i.map((s) => parseFloat(s));
     }
     return t;
   }
-  function o(e) {
+  function u(e) {
     return p[e];
   }
-  return h;
+  return g;
 }
-let u = null;
-const M = C({
+let l = null;
+const L = C({
   props: {
     type: {
       type: String,
@@ -135,44 +135,43 @@ const M = C({
       }
     }
   },
-  setup(n, c) {
+  setup(n, d) {
     const f = b();
-    G(() => {
-      const s = c.slots.default;
-      u && u.flush(), u || (n.type === "pdf" ? u = h(n) : n.type === "canvas" ? u = y("#" + n.id, n.ctxConfig, n.layerSetting) : console.warn(`Unknown render context: ${n.type}`));
-      const o = k(u);
-      I().then(() => {
-        const e = m(p, s);
-        o(e, u);
+    A(() => {
+      const a = d.slots.default;
+      l && l.flush(), l || (n.type === "pdf" ? l = g(n) : n.type === "canvas" ? l = y(n) : console.warn(`Unknown render context: ${n.type}`));
+      const u = k(l);
+      G().then(() => {
+        const e = m(p, a);
+        u(e, l);
       });
     });
     const p = C({
-      setup(s, o) {
+      setup(a, u) {
         const e = b();
         e.parent = f, e.appContext = f.appContext, e.root = f.root, e.provides = f.provides;
-        const t = o.slots.default;
+        const t = u.slots.default;
         return () => m(j, t());
       }
     });
-    function h(s) {
-      const o = N(l.el, {
-        height: s.height,
-        width: s.width,
-        margin: s.margin
+    function g(a) {
+      return I(c.el, {
+        height: a.height,
+        width: a.width,
+        margin: a.margin
       }, {
         onUpdate: (e) => {
-          l.el.setAttribute("src", e);
+          c.el.setAttribute("src", e);
         }
       });
-      return console.log(o), o;
     }
-    function y(s, o, e) {
-      return q(s, o, e);
+    function y(a) {
+      return N(c.el, a.ctxConfig, a.layerSetting);
     }
-    let l;
+    let c;
     switch (n.type) {
       case "pdf":
-        l = m("iframe", {
+        c = m("iframe", {
           id: n.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -184,13 +183,13 @@ const M = C({
         });
         break;
       case "canvas":
-        l = m("div", {
+        c = m("div", {
           id: n.id,
           class: "renderOutput"
         });
         break;
       case "default":
-        l = m("iframe", {
+        c = m("iframe", {
           id: n.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -198,9 +197,9 @@ const M = C({
         });
         break;
     }
-    return () => l;
+    return () => c;
   }
 });
 export {
-  M as default
+  L as default
 };
