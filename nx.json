@@ -4,5 +4,10 @@
   "tasksRunnerOptions": {
     "default": {
     }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    }
   }
 }
