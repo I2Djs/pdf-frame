@@ -1,9 +1,8 @@
 <script setup>
-
 </script>
 
 <template>
-  <div class="pdfContainer">
+  <div class="canvasParentContainer">
     <pdfFrame
       id="canvasContainer"
       type="canvas"
@@ -88,9 +87,9 @@ html, body, #app {
     width: 100%;
   }
 
-.pdfContainer {
+.canvasParentContainer {
   height: 800px;
-  width: 800px;
+  width: 600px;
 }
 
 #canvasContainer{

@@ -16,7 +16,7 @@
     "lint": "eslint --ext .js . --fix"
   },
   "dependencies": {
-    "i2djs": "^4.0.1",
+    "i2djs": "^4.1.x",
     "vue": "^3.2.47"
   },
   "devDependencies": {

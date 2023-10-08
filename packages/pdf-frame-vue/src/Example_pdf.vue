@@ -1,16 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-// import {i2dClient} from './../dist/i2d-client.es.js'
-
-let showgreenrect = ref(false);
-let aboutText = ref("About I2djs frame");
-
-
-setTimeout(() => {
-  aboutText.value = "About PDF frame";
-  console.log("lable changed");
-}, 5000)
-
 </script>
 
 <template>
@@ -83,23 +71,24 @@ setTimeout(() => {
         <i-text 
           :x="30"
           :y="300"
-          :width="500"
-          text="Integrated-2D - is an Open source Javascript framework for rendering 2D graphics on SVG, Canvas and WebGL contexts. I2D's simple syntax and semantics lets you combine the power of Vector graphics and Bitmap to achieve complex visualisations easily."
-          :style="{ fillStyle: '#ffffff' }"
+          :width="540"
+          align="justify"
+          text="PDF-frame is a web framework for client side PDF generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats."
+          :style="{ fillStyle: '#ffffff',align:'justify' }"
         />
         <i-rect v-for="n in 30"
           :x="500 - n*15"
           :y="200 - n*2.5"
           :width="n*6"
           :height="n*6"
-          transform="translate(10,250)"
+          transform="translate(10,280)"
           :style="{ fillStyle:'hsl(' + ((n * 10) % 360) + ',100%,50%)', opacity: 0.2,strokeStyle: '#000000', lineWidth: 1 }"
         />
         <i-circle v-for="n in 30"
           :cx="30 + n*15"
           :cy="100"
           :r="10 + n*2"
-          transform="translate(10,550)"
+          transform="translate(10,580)"
           :style="{ fillStyle:'hsl(' + ((n * 10) % 360) + ',100%,50%)',opacity: 0.2, strokeStyle: '#000000', lineWidth: 1 }"
         />
       </i-page>
