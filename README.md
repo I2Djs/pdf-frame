@@ -16,21 +16,7 @@ pdf-frame is a web framework for client side PDF generation. With its declarativ
 * Rendering options: PDF, Canvas and SVG.
 * Easy creation of multi-page PDF documents.
 
-## Installation
-
-To use pdf-frame in your project, you can install it via npm:
-
-  ### vue
-  ``` bash
-    npm install pdf-frame-vue
-  ```
-
-  ### nuxt
-  ``` bash
-    npm install pdf-frame-nuxt
-  ```
-
-## Usage
+## Usage Example
 ```html
 <pdfFrame type="pdf" width="595" height="841">
     <!-- Page Templates -->
@@ -52,6 +38,26 @@ To use pdf-frame in your project, you can install it via npm:
     </i-page> 
 </pdfFrame>
 ```
+
+## Framework components
+
+pdf-frame provides framework specific components to support easy and quick adoptions in the projects:
+
+  ### vue
+  Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  
+  Example:
+  * [PDF Example](https://j8r4lw.csb.app/)
+  * [Canvas Example](https://j8r4lw.csb.app/)
+       
+  
+
+  ### nuxt
+  Tutorial: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  
+  Example:
+  * [PDF Example](https://j8r4lw.csb.app/)
+  * [Canvas Example](https://j8r4lw.csb.app/)
 
 ## Documentation
 * [PDF-Frame-Vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
