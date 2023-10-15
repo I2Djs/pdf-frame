@@ -21,10 +21,15 @@ pdf-frame-vue is a vue.js component designed for rendering PDF/Canvas graphics, 
 To use pdf-frame-vue in your project, you can install it via npm:
 
   
-  ### vue
   ``` bash
     npm install @i2d/pdf-frame-vue
   ```
+
+  Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  
+  Example:
+  * [PDF Example](https://j8r4lw.csb.app/)
+  * [Canvas Example](https://cmynlk.csb.app/)
 
 ## Usage
 ```html
@@ -48,6 +53,8 @@ To use pdf-frame-vue in your project, you can install it via npm:
     </i-page> 
 </pdfFrame>
 ```
+
+
 
 
 ## Contributing
