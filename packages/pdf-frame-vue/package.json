@@ -1,10 +1,14 @@
 {
   "name": "@i2d/pdf-frame-vue",
   "private": false,
-  "version": "0.0.2",
+  "version": "1.0.0",
+  "description": "pdf-frame: A web framework for PDF/Canvas generation, offering a declarative HTML syntax and semantics for defining graphical content.",
   "type": "module",
   "main": "dist/pdf-frame.cjs.js",
   "module": "dist/pdf-frame.es.js",
+  "author": "Narayana Swamy",
+  "license": "MIT License",
+  "homepage": "https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue",
   "files": [
     "dist"
   ],
@@ -24,5 +28,26 @@
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.15.1",
     "vite": "^4.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/I2Djs/pdf-frame.git"
+  },
+  "keywords": [
+    "PDF",
+    "PDF-frame",
+    "PDF Frame",
+    "Canvas",
+    "Vuejs",
+    "Data Visualization",
+    "Javascript",
+    "Visualization",
+    "2D Graphics",
+    "Graphics",
+    "Animation",
+    "Bitmap",
+    "pixel",
+    "Rendering",
+    "I2djs"
+  ]
 }
