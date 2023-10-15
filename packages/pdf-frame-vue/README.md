@@ -6,8 +6,7 @@
 
 ## Introduction
 
-pdf-frame-vue is a vue.js component for rendering PDF/Canvas graphics. It employs an intuitive HTML-based syntax to define graphics, making it simple and easy for users to create and manage 2D graphical content using SVG-like tags.It is built on the i2djs framework.
-
+pdf-frame-vue is a vue.js component for rendering PDF/Canvas graphics on web. It supports an intuitive HTML-based syntax to define graphics, making it simple and easy for users to create and manage 2D graphical content. It is implemented on I2djs framework.
 
 ## Features
 
@@ -19,11 +18,18 @@ pdf-frame-vue is a vue.js component for rendering PDF/Canvas graphics. It employ
 ## Installation
 
 To use pdf-frame-vue in your project, you can install it via npm:
-
   
   ``` bash
     npm install @i2d/pdf-frame-vue
   ```
+## Integration
+
+Register the pdf-frame-vue component to your application as shown below.
+Add the following code in vue entry file : main.js 
+``` Javascript
+import pdfFrame from "@i2d/pdf-frame-vue";
+createApp(App).component("pdfFrame", pdfFrame)
+```
 
   Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
