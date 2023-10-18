@@ -1,6 +1,6 @@
-import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as T, CanvasNodeExe as x, pdfLayer as I, canvasLayer as N } from "i2djs";
-import { createRenderer as q, defineComponent as C, getCurrentInstance as b, onMounted as A, nextTick as G, h as m, Fragment as j } from "vue";
-const O = [
+import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as N, CanvasNodeExe as x, pdfLayer as I, canvasLayer as T } from "i2djs";
+import { createRenderer as q, defineComponent as b, getCurrentInstance as C, onMounted as A, nextTick as G, h as p, Fragment as O } from "vue";
+const U = [
   "i-group",
   "i-circle",
   "i-line",
@@ -11,37 +11,39 @@ const O = [
   "i-rect",
   "i-text",
   "i-image",
+  "i-page",
+  "i-linearGradient",
   "i-page-template"
 ];
-function k(n) {
-  const d = {}, f = {}, p = {}, { render: g } = q({
-    patchProp(e, t, r, i, s, h, o, E, R) {
+function j(r) {
+  const c = {}, f = {}, m = {}, { render: g } = q({
+    patchProp(e, t, n, i, s, h, o, k, E) {
       y(t)(e, i);
     },
-    insert: (e, t, r) => {
+    insert: (e, t, n) => {
       !e || !t || !t.child || e instanceof S || t.child([e]);
     },
     remove: (e) => {
       e != null && e.remove();
     },
-    createElement: (e, t, r, i) => {
+    createElement: (e, t, n, i) => {
       const s = e.split("-").slice(1).join("-");
-      let h = O.indexOf(e), o = null;
+      let h = U.indexOf(e), o = null;
       switch (h === -1 && console.warn(`Unknown I2Djs tag: ${e}`), s) {
         case "page-template":
-          o = n.createTemplate(), f[i.id] = o;
+          o = r.createTemplate(), f[i.id] = o;
           break;
         case "page":
-          o = n.addPage();
+          o = r.addPage();
           break;
         case "linearGradient":
-          o = T(), p[i.id] = o;
+          o = N(), m[i.id] = o;
           break;
         case "radialGradient":
-          o = w(), p[i.id] = o;
+          o = w(), m[i.id] = o;
           break;
         default:
-          o = c(s);
+          o = d(s);
           break;
       }
       return o;
@@ -55,21 +57,21 @@ function k(n) {
     setElementText: (e, t) => {
     },
     parentNode: (e) => e && e.dom.parent ? e.dom.parent : null,
-    nextSibling: (e) => (t, r) => {
+    nextSibling: (e) => (t, n) => {
     },
-    querySelector: (e) => n.fetchEl(e) || null
-  }), y = (e) => (t, r) => {
-    if (typeof r == "function" && (r = r(t)), e !== "style")
-      e === "src" && !d[r] ? (d[r] = n.createAsyncTexture({
+    querySelector: (e) => r.fetchEl(e) || null
+  }), y = (e) => (t, n) => {
+    if (typeof n == "function" && (n = n(t)), e !== "style")
+      e === "src" && !c[n] ? (c[n] = r.createAsyncTexture({
         attr: {
-          src: r
+          src: n
         }
-      }), d[r].then((i) => {
-        d[r] = i.exportAsDataUrl(), t.setAttr(e, d[r]);
-      })) : e === "src" && d[r] ? t.setAttr(e, d[r]) : e === "text" && r ? t.text(r) : e === "p-template" && t instanceof x ? t.addTemplate(f[r]) : t.setAttr(e, e === "transform" ? a(r) : r);
+      }), c[n].then((i) => {
+        c[n] = i.exportAsDataUrl(), t.setAttr(e, c[n]);
+      })) : e === "src" && c[n] ? t.setAttr(e, c[n]) : e === "text" && n ? t.text(n) : e === "p-template" && t instanceof x ? t.addTemplate(f[n]) : t.setAttr(e, e === "transform" ? a(n) : n);
     else
-      for (let i in r) {
-        let s = r[i];
+      for (let i in n) {
+        let s = n[i];
         if ((i === "fillStyle" || i === "strokeStyle") && typeof s == "string" && s.startsWith("grad")) {
           const h = s.match(/\(([^)]+)\)/)[1];
           s = u(h);
@@ -77,8 +79,8 @@ function k(n) {
         t.setStyle(i, s);
       }
   };
-  function c(e, t) {
-    return new x(n.ctx, {
+  function d(e, t) {
+    return new x(r.ctx, {
       el: e,
       attr: {},
       style: {}
@@ -88,19 +90,19 @@ function k(n) {
     if (typeof e == "object" && !Array.isArray(e) && e !== null)
       return e;
     const t = {};
-    for (const r in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
-      const i = e[r].match(/[\w\.\-]+/g);
+    for (const n in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
+      const i = e[n].match(/[\w\.\-]+/g);
       t[i.shift()] = i.map((s) => parseFloat(s));
     }
     return t;
   }
   function u(e) {
-    return p[e];
+    return m[e];
   }
   return g;
 }
 let l = null;
-const L = C({
+const M = b({
   props: {
     type: {
       type: String,
@@ -120,7 +122,8 @@ const L = C({
     },
     margin: {
       type: Number,
-      required: !0
+      required: !1,
+      default: 0
     },
     ctxConfig: {
       type: Object,
@@ -133,46 +136,50 @@ const L = C({
       required: !1,
       default: () => {
       }
+    },
+    onUpdate: {
+      type: Function,
+      required: !1
     }
   },
-  setup(n, d) {
-    const f = b();
+  setup(r, c) {
+    const f = C();
     A(() => {
-      const a = d.slots.default;
-      l && l.flush(), l || (n.type === "pdf" ? l = g(n) : n.type === "canvas" ? l = y(n) : console.warn(`Unknown render context: ${n.type}`));
-      const u = k(l);
+      const a = c.slots.default;
+      l && l.flush(), l || (r.type === "pdf" || r.type === "pdf-blob" ? l = g(r) : r.type === "canvas" ? l = y(r) : console.warn(`Unknown render context: ${r.type}`));
+      const u = j(l);
       G().then(() => {
-        const e = m(p, a);
+        const e = p(m, a);
         u(e, l);
       });
     });
-    const p = C({
+    const m = b({
       setup(a, u) {
-        const e = b();
+        const e = C();
         e.parent = f, e.appContext = f.appContext, e.root = f.root, e.provides = f.provides;
         const t = u.slots.default;
-        return () => m(j, t());
+        return () => p(O, t());
       }
     });
     function g(a) {
-      return I(c.el, {
+      return I(d.el, {
         height: a.height,
         width: a.width,
-        margin: a.margin
+        margin: a.margin || 0
       }, {
         onUpdate: (e) => {
-          c.el.setAttribute("src", e);
+          console.log(d.el.tagName), d.el.tagName === "IFRAME" && d.el.setAttribute("src", e), a.onUpdate && a.onUpdate(e);
         }
       });
     }
     function y(a) {
-      return N(c.el, a.ctxConfig, a.layerSetting);
+      return T(d.el, a.ctxConfig, a.layerSetting);
     }
-    let c;
-    switch (n.type) {
+    let d;
+    switch (r.type) {
       case "pdf":
-        c = m("iframe", {
-          id: n.id,
+        d = p("iframe", {
+          id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
           src: null,
@@ -182,24 +189,30 @@ const L = C({
           }
         });
         break;
+      case "pdf-blob":
+        d = p("div", {
+          id: r.id,
+          class: "renderOutput"
+        });
+        break;
       case "canvas":
-        c = m("div", {
-          id: n.id,
+        d = p("div", {
+          id: r.id,
           class: "renderOutput"
         });
         break;
       case "default":
-        c = m("iframe", {
-          id: n.id,
+        d = p("iframe", {
+          id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
           src: null
         });
         break;
     }
-    return () => c;
+    return () => d;
   }
 });
 export {
-  L as default
+  M as default
 };

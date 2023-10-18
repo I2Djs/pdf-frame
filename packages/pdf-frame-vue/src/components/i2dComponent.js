@@ -37,7 +37,8 @@ export const pdfFrame = defineComponent({
         },
         margin: {
             type: Number,
-            required: true,
+            required: false,
+            default: 0
         },
         ctxConfig: {
             type: Object,
@@ -48,15 +49,15 @@ export const pdfFrame = defineComponent({
             type: Object,
             required: false,
             default: () => {}
+        },
+        onUpdate: {
+            type: Function,
+            required: false
         }
     },
     setup(props, setupContext) {
 
         const i2dComponentInstance = getCurrentInstance();
-
-        // onUpdated(() => {
-        //     console.log("update called");
-        // })
 
         onMounted(() => {
             const defaultSlot = setupContext.slots.default;
@@ -66,6 +67,8 @@ export const pdfFrame = defineComponent({
             }
             if (!layerInstance) {
                 if (props.type === "pdf") {
+                    layerInstance = createPdfInstance(props);
+                } else if (props.type === "pdf-blob") {
                     layerInstance = createPdfInstance(props);
                 } else if (props.type === "canvas") {
                     layerInstance = createCanvasInstance(props);
@@ -111,7 +114,12 @@ export const pdfFrame = defineComponent({
                 margin: props.margin
             }, {
                 onUpdate: (url) => {
-                    vNode.el.setAttribute("src", url);
+                    if (vNode.el.tagName === "IFRAME") {
+                        vNode.el.setAttribute("src", url);
+                    }
+                    if (props.onUpdate) {
+                        props.onUpdate(url);
+                    }
                 }
             });
             return pdfInstance;
@@ -133,6 +141,12 @@ export const pdfFrame = defineComponent({
                         height: "100%",
                         width: "100%",
                     },
+                });
+                break;
+            case "pdf-blob":
+                vNode = h("div", {
+                    id: props.id,
+                    class: "renderOutput",
                 });
                 break;
             case "canvas":

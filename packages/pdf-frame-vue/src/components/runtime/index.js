@@ -5,7 +5,8 @@ import { CanvasNodeExe, CanvasGradient, createRadialGradient, createLinearGradie
 /*
 ** List of valid Element types supported by I2Djs
 */
-const validNodeTypes = ["i-group",
+const validNodeTypes = [
+            "i-group",
             "i-circle",
             "i-line",
             "i-path",
@@ -15,6 +16,9 @@ const validNodeTypes = ["i-group",
             "i-rect",
             "i-text",
             "i-image",
+            "i-page",
+            "i-linearGradient",
+            "i-radialGradient",
             "i-page-template"];
 
 function nooperation(fn) {
