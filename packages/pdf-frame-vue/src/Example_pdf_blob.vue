@@ -1,4 +1,33 @@
 <script setup>
+  let config={
+    margin:5,
+    defaultFont: 'Courier',
+    margins: {
+      lef: 5,
+      right: 5,
+      top: 5,
+      bottom: 5
+    },
+  }
+  let encry = {
+    // userPassword: "pdfframe"
+    // ownerPassword:
+    // permissions: {
+        // printing:,
+        // modifying:,
+        // copying:,
+        // annotating:,
+        // fillingForms:,
+        // contentAccessibility:,
+        // documentAssembly:
+    // }
+  };
+  let info = {
+    title: "PDF-Frame Blob example",
+    author: "Narayana Swamy",
+    keywords: "PDF-Frame, I2Djs",
+    creationDate: new Date(),
+  }
   let updateExternalIframe = function (url) {
     document.getElementById("ext_iframe").setAttribute("src", url);
   }
@@ -12,7 +41,11 @@
       type="pdf-blob"
       :width="595"
       :height="841"
+      :config="config"
       :onUpdate="updateExternalIframe"
+      :encryption="encry"
+      :info="info"
+      v-if="flag"
     >
       <i-page-template id="temp-1">
         <i-linearGradient

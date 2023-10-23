@@ -61,7 +61,7 @@ export default function createI2djsRenderer(layerInstance) {
             let found = validNodeTypes.indexOf(tag);
             let node = null;
             if (found === -1) {
-                console.warn(`Unknown I2Djs tag: ${tag}`);
+                console.warn(`Unknown PDF-Frame tag: ${tag}`);
             }
 
             switch(elType) {

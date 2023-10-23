@@ -7,6 +7,7 @@ import {
     h,
     onMounted,
     onUpdated,
+    onUnmounted,
     ref,
     getCurrentInstance,
 } from "vue";
@@ -35,16 +36,6 @@ export const pdfFrame = defineComponent({
             type: Number,
             required: true,
         },
-        margin: {
-            type: Number,
-            required: false,
-            default: 0
-        },
-        ctxConfig: {
-            type: Object,
-            required: false,
-            default: () => {}
-        },
         layerSetting: {
             type: Object,
             required: false,
@@ -53,7 +44,22 @@ export const pdfFrame = defineComponent({
         onUpdate: {
             type: Function,
             required: false
-        }
+        },
+        config: {
+            type: Object,
+            required: false,
+            default: () => {}
+        },
+        info: {
+            type: Object,
+            required: false,
+            default: () => {}
+        },
+        encryption: {
+            type: Object,
+            required: false,
+            default: () => {}
+        },
     },
     setup(props, setupContext) {
 
@@ -62,9 +68,6 @@ export const pdfFrame = defineComponent({
         onMounted(() => {
             const defaultSlot = setupContext.slots.default;
 
-            if (layerInstance) {
-                layerInstance.flush();
-            }
             if (!layerInstance) {
                 if (props.type === "pdf") {
                     layerInstance = createPdfInstance(props);
@@ -83,6 +86,13 @@ export const pdfFrame = defineComponent({
                 const node = h(Connector, defaultSlot);
                 i2dRenderer(node, layerInstance);
             });
+        });
+
+        onUnmounted(() => {
+            if (layerInstance) {
+                layerInstance.destroy();
+                layerInstance= null;
+            }
         });
 
         /**
@@ -111,8 +121,11 @@ export const pdfFrame = defineComponent({
             const pdfInstance = pdfLayer(vNode.el, {
                 height: props.height,
                 width: props.width,
-                margin: props.margin
+                ...(props.config || {}),
+                info:(props.info || {}),
+                encryption: (props.encryption || {})
             }, {
+                autoUpdate: true,
                 onUpdate: (url) => {
                     if (vNode.el.tagName === "IFRAME") {
                         vNode.el.setAttribute("src", url);
@@ -126,7 +139,7 @@ export const pdfFrame = defineComponent({
         }
 
         function createCanvasInstance(props) {
-            return canvasLayer(vNode.el, props.ctxConfig, props.layerSetting);
+            return canvasLayer(vNode.el, props.config, props.layerSetting);
         }
 
         let vNode;
