@@ -2,7 +2,7 @@
   "name": "@i2d/pdf-frame-vue",
   "private": false,
   "version": "1.0.1",
-  "description": "A Vue.js PDF-Frame component for facilitating PDF/Canvas creation on the web, utilizing a straightforward declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs framework.",
+  "description": "PDF-Frame-vue is a vue.js component for rendering PDF/Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
   "type": "module",
   "main": "dist/pdf-frame.cjs.js",
   "module": "dist/pdf-frame.es.js",
@@ -20,7 +20,7 @@
     "lint": "eslint --ext .js . --fix"
   },
   "dependencies": {
-    "i2djs": "^4.1.x",
+    "i2djs": "^4.2.x",
     "vue": "^3.2.47"
   },
   "devDependencies": {
