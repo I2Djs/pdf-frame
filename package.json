@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "i2djs": "^4.1.x",
+    "i2djs": "^4.2.x",
     "nx": "16.2.2",
     "nx-cloud": "latest"
   },
