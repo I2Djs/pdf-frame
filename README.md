@@ -1,4 +1,4 @@
-# pdf-frame
+# pdf-frame [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue)
 
 
 <p align="center">
