@@ -129,7 +129,9 @@ const L = x({
     },
     onUpdate: {
       type: Function,
-      required: !1
+      required: !1,
+      default: () => {
+      }
     },
     config: {
       type: Object,

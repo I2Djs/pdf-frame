@@ -43,7 +43,8 @@ export const pdfFrame = defineComponent({
         },
         onUpdate: {
             type: Function,
-            required: false
+            required: false,
+            default: () => {}
         },
         config: {
             type: Object,
