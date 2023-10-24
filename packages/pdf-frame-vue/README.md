@@ -6,14 +6,14 @@
 
 ## Introduction
 
-A vue.js pdf-frame component for rendering PDF/Canvas graphics on web. It supports an intuitive HTML-based syntax and semantics to define graphics, making it simple and easy for users to create and manage 2D graphical content. It is implemented on I2djs framework.
+A vue.js pdf-frame component for rendering PDF/Canvas graphics on web. It supports an intuitive HTML-based syntax and semantics to define graphics, making it simple and easy for users to create and manage graphical content. It is implemented on I2djs frameworks.
 
 ## Features
 
 * Declarative HTML syntax for defining graphical content.
-* Renders PDF, Canvas output
-* Adoption of SVG tag syntax for creating geometrical shapes.
-* Easy creation of multi-page PDF documents.
+* Renders PDF and Canvas outputs.
+* Dynamic content creation leveraging vuejs capabilities - template engine and reactivity.
+* Provides abstract elements to define multi-page PDF documents.
 
 ## Tutorial
   Docs: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
