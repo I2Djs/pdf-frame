@@ -4,7 +4,6 @@
 <template>
   <div class="pdfContainer">
     <pdfFrame
-      id="nswamyid"
       type="pdf"
       :width="595"
       :height="841"

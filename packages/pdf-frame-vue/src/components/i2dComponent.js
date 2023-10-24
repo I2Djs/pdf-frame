@@ -16,25 +16,27 @@ import { nextTick } from "vue";
 
 let layerInstance = null;
 
-let resolvedImages = {};
-
 export const pdfFrame = defineComponent({
     props: {
         type: {
             type: String,
             required: true,
+            default: "pdf"
         },
         id: {
             type: String,
             required: true,
+            default: "pdf-frame-id"
         },
         height: {
             type: Number,
             required: true,
+            default: 0
         },
         width: {
             type: Number,
             required: true,
+            default: 0
         },
         layerSetting: {
             type: Object,
@@ -63,27 +65,27 @@ export const pdfFrame = defineComponent({
         },
     },
     setup(props, setupContext) {
+        let vNode;
 
         const i2dComponentInstance = getCurrentInstance();
 
         onMounted(() => {
-            const defaultSlot = setupContext.slots.default;
-
-            if (!layerInstance) {
-                if (props.type === "pdf") {
-                    layerInstance = createPdfInstance(props);
-                } else if (props.type === "pdf-blob") {
-                    layerInstance = createPdfInstance(props);
-                } else if (props.type === "canvas") {
-                    layerInstance = createCanvasInstance(props);
-                } else {
-                    console.warn(`Unknown render context: ${props.type}`);
-                }
-            }
-
-            const i2dRenderer = createI2djsRenderer(layerInstance);
-
             nextTick().then(() => {
+                const defaultSlot = setupContext.slots.default;
+
+                if (!layerInstance) {
+                    if (props.type === "pdf") {
+                        layerInstance = createPdfInstance(props);
+                    } else if (props.type === "pdf-blob") {
+                        layerInstance = createPdfInstance(props);
+                    } else if (props.type === "canvas") {
+                        layerInstance = createCanvasInstance(props);
+                    } else {
+                        console.warn(`Unknown render context: ${props.type}`);
+                    }
+                }
+
+                const i2dRenderer = createI2djsRenderer(layerInstance);
                 const node = h(Connector, defaultSlot);
                 i2dRenderer(node, layerInstance);
             });
@@ -119,7 +121,8 @@ export const pdfFrame = defineComponent({
         });
 
         function createPdfInstance(props) {
-            const pdfInstance = pdfLayer(vNode.el, {
+            let el = document.getElementById(vNode.props.id);
+            const pdfInstance = pdfLayer(el, {
                 height: props.height,
                 width: props.width,
                 ...(props.config || {}),
@@ -128,8 +131,8 @@ export const pdfFrame = defineComponent({
             }, {
                 autoUpdate: true,
                 onUpdate: (url) => {
-                    if (vNode.el.tagName === "IFRAME") {
-                        vNode.el.setAttribute("src", url);
+                    if (el.tagName === "IFRAME") {
+                        el.setAttribute("src", url);
                     }
                     if (props.onUpdate) {
                         props.onUpdate(url);
@@ -140,10 +143,10 @@ export const pdfFrame = defineComponent({
         }
 
         function createCanvasInstance(props) {
-            return canvasLayer(vNode.el, props.config, props.layerSetting);
+            let el = document.getElementById(vNode.props.id);
+            return canvasLayer(el, props.config, props.layerSetting);
         }
 
-        let vNode;
         switch (props.type) {
             case "pdf":
                 vNode = h("iframe", {
