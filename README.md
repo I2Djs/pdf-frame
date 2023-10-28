@@ -5,10 +5,11 @@
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
 
-| Framework | version |
+| Package | version |
 | --- | --- |
-| vuejs | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
-| nuxt |  |
+| [vuejs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
+| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) |  |
+| reactjs | WIP |
 
 ## Introduction
 
