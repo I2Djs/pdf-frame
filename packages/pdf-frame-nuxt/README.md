@@ -6,15 +6,15 @@
 
 ## Introduction
 
-pdf-frame-nuxt is a nuxt component designed for rendering PDF/Canvas graphics, and it's built upon the i2djs framework. It employs an intuitive HTML-based syntax to define graphics, making it simple for users to create and manage 2D graphical elements using SVG-like tags. In addition, pdf-frame-nuxt facilitates the rendering of graphics in both PDF and Canvas formats, offering efficiency and versatility in generating diverse graphical content.
+pdf-frame-nuxt is a nuxt module for rendering PDF/Canvas graphics, and it's built on the i2djs framework. It employs an intuitive HTML-based syntax to define graphics, making it simple for users to create and manage 2D graphical elements using SVG-like tags. In addition, pdf-frame-nuxt facilitates the rendering of graphics in both PDF and Canvas formats, offering efficiency and versatility in generating diverse graphical content.
 
 
 ## Features
 
 * Declarative HTML syntax for defining graphical content.
-* Renders PDF, Canvas output
-* Adoption of SVG tag syntax for creating geometrical shapes.
-* Easy creation of multi-page PDF documents.
+* Renders PDF and Canvas outputs.
+* Dynamic content creation leveraging vuejs capabilities - template engine and reactivity.
+* Provides abstract elements to define multi-page PDF documents.
 
 ## Installation
 
@@ -33,15 +33,13 @@ To use pdf-frame-nuxt in your project, you can install it via npm:
     </i-page>
 </pdfFrame>
 ```
-The `<pdfFrame>` tag is used to create a client instance for rendering graphical content in the specified format.
-  
-  * type="pdf": The type attribute specifies the output format for rendering the graphical content. In this case, it is set to "pdf", indicating that the content will be rendered as a PDF document. Possible values are `pdf/canvas/svg/webgl`
 
-  * width="595": The width attribute sets the width of the client area for rendering the graphical content. Here, it is set to "595", indicating a width of 595 units.
-
-  * height="841": The height attribute sets the height of the client area. It is set to "841", indicating a height of 841 units.
+## Tutorial
+  Docs: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
   
-  Inside the <pdfFrame> tag, you can add one or more <i-page> elements to represent different pages within the PDF document and define the content to be rendered on each page.
+  Examples:
+  * [PDF Example](https://j8r4lw.csb.app/)
+  * [Canvas Example](https://cmynlk.csb.app/)
   
 
 ## Contributing
