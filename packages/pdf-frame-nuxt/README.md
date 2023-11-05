@@ -35,7 +35,7 @@ To use pdf-frame-nuxt in your project, you can install it via npm:
 ```
 
 ## Tutorial
-  Docs: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
+  Docs: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
   
   Examples:
   * [PDF Example](https://j8r4lw.csb.app/)
