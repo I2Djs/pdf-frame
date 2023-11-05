@@ -1,6 +1,6 @@
-import { CanvasGradient as S, createRadialGradient as w, createLinearGradient as I, CanvasNodeExe as b, pdfLayer as q, canvasLayer as G } from "i2djs";
-import { createRenderer as T, defineComponent as x, getCurrentInstance as C, onMounted as A, nextTick as N, h as p, onUnmounted as O, Fragment as U } from "vue";
-const j = [
+import { CanvasGradient as S, createRadialGradient as I, createLinearGradient as q, CanvasNodeExe as x, pdfLayer as G, canvasLayer as T } from "i2djs";
+import { createRenderer as A, defineComponent as C, getCurrentInstance as w, onMounted as N, nextTick as O, h as p, onUnmounted as U, watch as b, Fragment as j } from "vue";
+const E = [
   "i-group",
   "i-circle",
   "i-line",
@@ -16,9 +16,9 @@ const j = [
   "i-radialGradient",
   "i-page-template"
 ];
-function E(r) {
-  const f = {}, c = {}, u = {}, { render: g } = T({
-    patchProp(e, t, n, a, o, y, s, F, k) {
+function F(r) {
+  const l = {}, c = {}, u = {}, { render: h } = A({
+    patchProp(e, t, n, a, s, g, f, k, R) {
       m(t)(e, a);
     },
     insert: (e, t, n) => {
@@ -28,26 +28,26 @@ function E(r) {
       e != null && e.remove();
     },
     createElement: (e, t, n, a) => {
-      const o = e.split("-").slice(1).join("-");
-      let y = j.indexOf(e), s = null;
-      switch (y === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), o) {
+      const s = e.split("-").slice(1).join("-");
+      let g = E.indexOf(e), f = null;
+      switch (g === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), s) {
         case "page-template":
-          s = r.createTemplate(), c[a.id] = s;
+          f = r.createTemplate(), c[a.id] = f;
           break;
         case "page":
-          s = r.addPage();
+          f = r.addPage();
           break;
         case "linearGradient":
-          s = I(), u[a.id] = s;
+          f = q(), u[a.id] = f;
           break;
         case "radialGradient":
-          s = w(), u[a.id] = s;
+          f = I(), u[a.id] = f;
           break;
         default:
-          s = h(o);
+          f = y(s);
           break;
       }
-      return s;
+      return f;
     },
     createText: (e) => {
     },
@@ -63,25 +63,25 @@ function E(r) {
     querySelector: (e) => r.fetchEl(e) || null
   }), m = (e) => (t, n) => {
     if (typeof n == "function" && (n = n(t)), e !== "style")
-      e === "src" && !f[n] ? (f[n] = r.createAsyncTexture({
+      e === "src" && !l[n] ? (l[n] = r.createAsyncTexture({
         attr: {
           src: n
         }
-      }), f[n].then((a) => {
-        f[n] = a.exportAsDataUrl(), t.setAttr(e, f[n]);
-      })) : e === "src" && f[n] ? t.setAttr(e, f[n]) : e === "text" && n ? t.text(n) : e === "p-template" && t instanceof b ? t.addTemplate(c[n]) : t.setAttr(e, e === "transform" ? i(n) : n);
+      }), l[n].then((a) => {
+        l[n] = a.exportAsDataUrl(), t.setAttr(e, l[n]);
+      })) : e === "src" && l[n] ? t.setAttr(e, l[n]) : e === "text" && n ? t.text(n) : e === "p-template" && t instanceof x ? t.addTemplate(c[n]) : t.setAttr(e, e === "transform" ? i(n) : n);
     else
       for (let a in n) {
-        let o = n[a];
-        if ((a === "fillStyle" || a === "strokeStyle") && typeof o == "string" && o.startsWith("grad")) {
-          const y = o.match(/\(([^)]+)\)/)[1];
-          o = d(y);
+        let s = n[a];
+        if ((a === "fillStyle" || a === "strokeStyle") && typeof s == "string" && s.startsWith("grad")) {
+          const g = s.match(/\(([^)]+)\)/)[1];
+          s = o(g);
         }
-        t.setStyle(a, o);
+        t.setStyle(a, s);
       }
   };
-  function h(e, t) {
-    return new b(r.ctx, {
+  function y(e, t) {
+    return new x(r.ctx, {
       el: e,
       attr: {},
       style: {}
@@ -93,17 +93,17 @@ function E(r) {
     const t = {};
     for (const n in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
       const a = e[n].match(/[\w\.\-]+/g);
-      t[a.shift()] = a.map((o) => parseFloat(o));
+      t[a.shift()] = a.map((s) => parseFloat(s));
     }
     return t;
   }
-  function d(e) {
+  function o(e) {
     return u[e];
   }
-  return g;
+  return h;
 }
-let l = null;
-const B = x({
+let d = null;
+const L = C({
   props: {
     type: {
       type: String,
@@ -115,11 +115,13 @@ const B = x({
       required: !0,
       default: "pdf-frame-id"
     },
+    // applicable for PDF Layer only
     height: {
       type: Number,
       required: !0,
       default: 0
     },
+    // applicable for PDF Layer only
     width: {
       type: Number,
       required: !0,
@@ -143,12 +145,14 @@ const B = x({
       default: () => {
       }
     },
+    // applicable for PDF Layer only
     info: {
       type: Object,
       required: !1,
       default: () => {
       }
     },
+    // applicable for PDF Layer only
     encryption: {
       type: Object,
       required: !1,
@@ -156,30 +160,48 @@ const B = x({
       }
     }
   },
-  setup(r, f) {
+  setup(r, l) {
     let c;
-    const u = C();
-    A(() => {
-      N().then(() => {
-        const i = f.slots.default;
-        l || (r.type === "pdf" || r.type === "pdf-blob" ? l = m(r) : r.type === "canvas" ? l = h(r) : console.warn(`Unknown render context: ${r.type}`));
-        const d = E(l), e = p(g, i);
-        d(e, l);
+    const u = w();
+    N(() => {
+      O().then(() => {
+        const i = l.slots.default;
+        d || (r.type === "pdf" || r.type === "pdf-blob" ? d = m(r) : r.type === "canvas" ? d = y(r) : console.warn(`Unknown render context: ${r.type}`));
+        const o = F(d), e = p(h, i);
+        o(e, d);
       });
-    }), O(() => {
-      l && (l.destroy(), l = null);
+    }), U(() => {
+      d && (d.destroy(), d = null);
+    }), b(() => r.encryption, (i) => {
+      d.setConfig && d.setConfig({
+        encryption: i
+      });
+    }, {
+      deep: !0
+    }), b(() => r.info, (i) => {
+      d.setConfig && d.setConfig({
+        info: i
+      });
+    }, {
+      deep: !0
+    }), b(() => r.config, (i) => {
+      d.setConfig && d.setConfig({
+        ...i
+      });
+    }, {
+      deep: !0
     });
-    const g = x({
-      setup(i, d) {
-        const e = C();
+    const h = C({
+      setup(i, o) {
+        const e = w();
         e.parent = u, e.appContext = u.appContext, e.root = u.root, e.provides = u.provides;
-        const t = d.slots.default;
-        return () => p(U, t());
+        const t = o.slots.default;
+        return () => p(j, t());
       }
     });
     function m(i) {
-      let d = document.getElementById(c.props.id);
-      return q(d, {
+      let o = document.getElementById(c.props.id);
+      return G(o, {
         height: i.height,
         width: i.width,
         ...i.config || {},
@@ -188,13 +210,13 @@ const B = x({
       }, {
         autoUpdate: !0,
         onUpdate: (t) => {
-          d.tagName === "IFRAME" && d.setAttribute("src", t), i.onUpdate && i.onUpdate(t);
+          o.tagName === "IFRAME" && o.setAttribute("src", t), i.onUpdate && i.onUpdate(t);
         }
       });
     }
-    function h(i) {
-      let d = document.getElementById(c.props.id);
-      return G(d, i.config, i.layerSetting);
+    function y(i) {
+      let o = document.getElementById(c.props.id);
+      return T(o, i.config, i.layerSetting);
     }
     switch (r.type) {
       case "pdf":
@@ -212,13 +234,21 @@ const B = x({
       case "pdf-blob":
         c = p("div", {
           id: r.id,
-          class: "renderOutput"
+          class: "renderOutput",
+          style: {
+            height: "100%",
+            width: "100%"
+          }
         });
         break;
       case "canvas":
         c = p("div", {
           id: r.id,
-          class: "renderOutput"
+          class: "renderOutput",
+          style: {
+            height: "100%",
+            width: "100%"
+          }
         });
         break;
       case "default":
@@ -226,7 +256,11 @@ const B = x({
           id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
-          src: null
+          src: null,
+          style: {
+            height: "100%",
+            width: "100%"
+          }
         });
         break;
     }
@@ -234,5 +268,5 @@ const B = x({
   }
 });
 export {
-  B as default
+  L as default
 };

@@ -5,6 +5,7 @@ import {
     Fragment,
     watchEffect,
     h,
+    watch,
     onMounted,
     onUpdated,
     onUnmounted,
@@ -28,11 +29,13 @@ export const pdfFrame = defineComponent({
             required: true,
             default: "pdf-frame-id"
         },
+        // applicable for PDF Layer only
         height: {
             type: Number,
             required: true,
             default: 0
         },
+        // applicable for PDF Layer only
         width: {
             type: Number,
             required: true,
@@ -53,11 +56,13 @@ export const pdfFrame = defineComponent({
             required: false,
             default: () => {}
         },
+        // applicable for PDF Layer only
         info: {
             type: Object,
             required: false,
             default: () => {}
         },
+        // applicable for PDF Layer only
         encryption: {
             type: Object,
             required: false,
@@ -96,6 +101,39 @@ export const pdfFrame = defineComponent({
                 layerInstance.destroy();
                 layerInstance= null;
             }
+        });
+
+        watch(()=> props.encryption, (newValue) => {
+            // applicable for PDF Layer only
+            if (layerInstance.setConfig) {
+                layerInstance.setConfig({
+                    encryption: newValue
+                })
+            }
+            }, {
+                deep: true,
+        });
+
+        watch(()=> props.info, (newValue) => {
+            // applicable for PDF Layer only
+            if (layerInstance.setConfig) {
+                layerInstance.setConfig({
+                    info: newValue
+                });
+            }
+            }, {
+                deep: true,
+        });
+
+        watch(()=> props.config, (newValue) => {
+            // applicable for PDF Layer only
+            if (layerInstance.setConfig) {
+                layerInstance.setConfig({
+                    ...newValue
+                });
+            }
+            }, {
+                deep: true,
         });
 
         /**
@@ -164,12 +202,20 @@ export const pdfFrame = defineComponent({
                 vNode = h("div", {
                     id: props.id,
                     class: "renderOutput",
+                    style: {
+                        height: "100%",
+                        width: "100%",
+                    },
                 });
                 break;
             case "canvas":
                 vNode = h("div", {
                     id: props.id,
                     class: "renderOutput",
+                    style: {
+                        height: "100%",
+                        width: "100%",
+                    },
                 });
                 break;
             case "default":
@@ -178,6 +224,10 @@ export const pdfFrame = defineComponent({
                     class: "pdfIframe renderOutput",
                     type: "application/pdf",
                     src: null,
+                    style: {
+                        height: "100%",
+                        width: "100%",
+                    },
                 });
                 break;
         }
