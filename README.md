@@ -8,7 +8,7 @@
 | Package | version |
 | --- | --- |
 | [vuejs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
-| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) |  |
+| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-nuxt.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-nuxt) |
 | reactjs | WIP |
 
 ## Introduction
