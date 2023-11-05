@@ -1,9 +1,15 @@
-# pdf-frame [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue)
+# pdf-frame
 
 
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
+
+| Package | version |
+| --- | --- |
+| [vuejs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
+| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) |  |
+| reactjs | WIP |
 
 ## Introduction
 
@@ -43,7 +49,8 @@ pdf-frame is a web framework for client side PDF generation. With its declarativ
 
 pdf-frame provides framework specific components to support easy and quick adoptions in the projects:
 
-  ### vue
+ ### vue
+ 
   Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
   Example:
