@@ -17,10 +17,11 @@ Pdf-frame is a javascript web framework for client-side PDF rendering. With its 
 
 ## Features
 
-* Declarative HTML syntax for defining pdf content.
+* Declarative HTML syntax for defining PDF content.
 * Adoption of SVG tag syntax for creating geometrical shapes.
-* Rendering options: PDF, Canvas and SVG.
-* Easy creation of multi-page PDF documents.
+* Rendering outputs: PDF and Canvas.
+* Supports the creation of multi-page PDF documents.
+* Framework component support: Vue, nuxt.
 
 ## Usage Example
 ```html
