@@ -66,11 +66,6 @@ pdf-frame provides framework specific components to support easy and quick adopt
   Example:
   * [PDF Example](https://j8r4lw.csb.app/)
   * [Canvas Example](https://j8r4lw.csb.app/)
-
-## Documentation
-* [PDF-Frame-Vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
-* [PDF-Frame supported Tags](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue-tags-syntax)
-* [page‐template](https://github.com/I2Djs/pdf-frame/wiki/i%E2%80%90page%E2%80%90template)
   
 
 ## Contributing
