@@ -8,19 +8,20 @@
 | Package | version |
 | --- | --- |
 | [vuejs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
-| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) |  |
+| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-nuxt.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-nuxt) |
 | reactjs | WIP |
 
 ## Introduction
 
-pdf-frame is a web framework for client side PDF generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats.
+Pdf-frame is a javascript web framework for client-side PDF rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue, nuxt, and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs as PDF and Canvas formats.
 
 ## Features
 
-* Declarative HTML syntax for defining pdf content.
+* Declarative HTML syntax for defining PDF content.
 * Adoption of SVG tag syntax for creating geometrical shapes.
-* Rendering options: PDF, Canvas and SVG.
-* Easy creation of multi-page PDF documents.
+* Rendering outputs: PDF and Canvas.
+* Supports the creation of multi-page PDF documents.
+* Framework component support: Vue, nuxt.
 
 ## Usage Example
 ```html
@@ -65,11 +66,6 @@ pdf-frame provides framework specific components to support easy and quick adopt
   Example:
   * [PDF Example](https://j8r4lw.csb.app/)
   * [Canvas Example](https://j8r4lw.csb.app/)
-
-## Documentation
-* [PDF-Frame-Vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
-* [PDF-Frame supported Tags](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue-tags-syntax)
-* [page‐template](https://github.com/I2Djs/pdf-frame/wiki/i%E2%80%90page%E2%80%90template)
   
 
 ## Contributing
