@@ -23,6 +23,8 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
+packages/pdf-frame-vue/src/Example_pdf_test.vue
+
 # misc
 /.sass-cache
 /connect.lock

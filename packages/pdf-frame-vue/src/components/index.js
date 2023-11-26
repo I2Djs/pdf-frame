@@ -1,3 +1,3 @@
-import { pdfFrame } from "./i2dComponent";
+import { pdfFrame } from "./pdfFrameComponent";
 
 export default pdfFrame;

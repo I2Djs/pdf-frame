@@ -10,12 +10,10 @@ import {
     onUpdated,
     onUnmounted,
     ref,
-    getCurrentInstance,
+    getCurrentInstance
 } from "vue";
 
 import { nextTick } from "vue";
-
-let layerInstance = null;
 
 export const pdfFrame = defineComponent({
     props: {
@@ -29,16 +27,14 @@ export const pdfFrame = defineComponent({
             required: true,
             default: "pdf-frame-id"
         },
-        // applicable for PDF Layer only
         height: {
             type: Number,
-            required: true,
+            required: false,
             default: 0
         },
-        // applicable for PDF Layer only
         width: {
             type: Number,
-            required: true,
+            required: false,
             default: 0
         },
         layerSetting: {
@@ -69,11 +65,11 @@ export const pdfFrame = defineComponent({
             default: () => {}
         },
     },
+    emits: ['on-resize', 'on-ready', 'on-update'],
     setup(props, setupContext) {
         let vNode;
-
+        let layerInstance = null;
         const i2dComponentInstance = getCurrentInstance();
-
         onMounted(() => {
             nextTick().then(() => {
                 const defaultSlot = setupContext.slots.default;
@@ -90,9 +86,21 @@ export const pdfFrame = defineComponent({
                     }
                 }
 
+                if (layerInstance && layerInstance.onResize) {
+                    layerInstance.onResize(() => {
+                        setupContext.emit("on-resize", {
+                            height: layerInstance.height,
+                            width: layerInstance.width
+                        });
+                    });
+                }
+
                 const i2dRenderer = createI2djsRenderer(layerInstance);
                 const node = h(Connector, defaultSlot);
                 i2dRenderer(node, layerInstance);
+
+                setupContext.emit("on-ready", layerInstance);
+
             });
         });
 
@@ -173,7 +181,7 @@ export const pdfFrame = defineComponent({
                         el.setAttribute("src", url);
                     }
                     if (props.onUpdate) {
-                        props.onUpdate(url);
+                        emitOnUpdate(url);
                     }
                 }
             });
@@ -182,7 +190,12 @@ export const pdfFrame = defineComponent({
 
         function createCanvasInstance(props) {
             let el = document.getElementById(vNode.props.id);
-            return canvasLayer(el, props.config, props.layerSetting);
+            return canvasLayer(el, props.config, {
+                ...props.layerSetting,
+                onUpdate: ()=>{
+                    emitOnUpdate();
+                }
+            });
         }
 
         switch (props.type) {
@@ -213,8 +226,8 @@ export const pdfFrame = defineComponent({
                     id: props.id,
                     class: "renderOutput",
                     style: {
-                        height: "100%",
-                        width: "100%",
+                        height: props.height ? (props.height + 'px') : "100%",
+                        width: props.width ? (props.width + 'px') : "100%",
                     },
                 });
                 break;
@@ -230,6 +243,10 @@ export const pdfFrame = defineComponent({
                     },
                 });
                 break;
+        }
+
+        function emitOnUpdate(data) {
+            setupContext.emit("on-update", data);
         }
 
         return () => {

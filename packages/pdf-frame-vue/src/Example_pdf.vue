@@ -4,6 +4,7 @@
 <template>
   <div class="pdfContainer">
     <pdfFrame
+      id="samplePdf"
       type="pdf"
       :width="595"
       :height="841"
@@ -71,9 +72,8 @@
           :x="30"
           :y="300"
           :width="540"
-          align="justify"
           text="PDF-frame is a web framework for client side PDF generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats."
-          :style="{ fillStyle: '#ffffff',align:'justify' }"
+          :style="{ fill: '#ffffff',textAlign:'justify' }"
         />
         <i-rect v-for="n in 30"
           :x="500 - n*15"
@@ -88,7 +88,7 @@
           :cy="100"
           :r="10 + n*2"
           transform="translate(10,580)"
-          :style="{ fillStyle:'hsl(' + ((n * 10) % 360) + ',100%,50%)',opacity: 0.2, strokeStyle: '#000000', lineWidth: 1 }"
+          :style="{ fill:'hsl(' + ((n * 10) % 360) + ',100%,50%)',opacity: 0.2, strokeStyle: '#000000', lineWidth: 1 }"
         />
       </i-page>
       <i-page p-template="temp-1">

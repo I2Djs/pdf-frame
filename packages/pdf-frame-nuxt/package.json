@@ -1,7 +1,7 @@
 {
   "name": "@i2d/pdf-frame-nuxt",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "PDF-frame-nuxt is a nuxtjs module for rendering PDF/Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
   "repository": {
     "type": "git",

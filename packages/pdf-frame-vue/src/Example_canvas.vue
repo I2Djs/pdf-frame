@@ -1,4 +1,13 @@
 <script setup>
+  import { ref, watch,onMounted } from "vue";
+
+  function onInstanceResize(data) {
+    console.log(data);
+  }
+
+  function onInstanceReady (layer) {
+    console.log(layer);
+  }
 </script>
 
 <template>
@@ -6,6 +15,10 @@
     <pdfFrame
       id="canvasContainer"
       type="canvas"
+      :width="595"
+      :height="841"
+      @on-ready="onInstanceReady"
+      @on-resize="onInstanceResize"
     >
     <i-linearGradient
             id="grad3"
@@ -60,7 +73,7 @@
           :y="300"
           :width="500"
           text="Integrated-2D - is an Open source Javascript framework for rendering 2D graphics on SVG, Canvas and WebGL contexts. I2D's simple syntax and semantics lets you combine the power of Vector graphics and Bitmap to achieve complex visualisations easily."
-          :style="{ fillStyle: '#ffffff' }"
+          :style="{ fill: '#ffffff' }"
         />
         <i-rect v-for="n in 30"
           :x="500 - n*15"
@@ -88,8 +101,8 @@ html, body, #app {
   }
 
 .canvasParentContainer {
-  height: 800px;
-  width: 600px;
+  height: 100%;
+  width: 100%;
 }
 
 #canvasContainer{
