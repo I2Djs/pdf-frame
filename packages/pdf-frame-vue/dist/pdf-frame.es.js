@@ -17,8 +17,8 @@ const j = [
   "i-page-template"
 ];
 function E(i) {
-  const d = {}, s = {}, r = {}, { render: f } = O({
-    patchProp(e, t, n, a, o, h, c, F, R) {
+  const d = {}, f = {}, r = {}, { render: c } = O({
+    patchProp(e, t, n, a, o, h, s, F, R) {
       m(t)(e, a);
     },
     insert: (e, t, n) => {
@@ -29,25 +29,25 @@ function E(i) {
     },
     createElement: (e, t, n, a) => {
       const o = e.split("-").slice(1).join("-");
-      let h = j.indexOf(e), c = null;
+      let h = j.indexOf(e), s = null;
       switch (h === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), o) {
         case "page-template":
-          c = i.createTemplate(), s[a.id] = c;
+          s = i.createTemplate(), f[a.id] = s;
           break;
         case "page":
-          c = i.addPage();
+          s = i.addPage();
           break;
         case "linearGradient":
-          c = I(), r[a.id] = c;
+          s = I(), r[a.id] = s;
           break;
         case "radialGradient":
-          c = S(), r[a.id] = c;
+          s = S(), r[a.id] = s;
           break;
         default:
-          c = u(o);
+          s = u(o);
           break;
       }
-      return c;
+      return s;
     },
     createText: (e) => {
     },
@@ -63,13 +63,25 @@ function E(i) {
     querySelector: (e) => i.fetchEl(e) || null
   }), m = (e) => (t, n) => {
     if (typeof n == "function" && (n = n(t)), e !== "style")
-      e === "src" && !d[n] ? (d[n] = i.createAsyncTexture({
-        attr: {
-          src: n
-        }
-      }), d[n].then((a) => {
-        d[n] = a.exportAsDataUrl(), t.setAttr(e, d[n]);
-      })) : e === "src" && d[n] ? t.setAttr(e, d[n]) : e === "text" && n ? t.text(n) : e === "p-template" && t instanceof b ? t.addTemplate(s[n]) : t.setAttr(e, e === "transform" ? g(n) : n);
+      if (e === "src" && !d[n])
+        d[n] = i.createAsyncTexture({
+          attr: {
+            src: n
+          }
+        }), d[n].then((a) => {
+          d[n] = a.exportAsDataUrl(), t.setAttr(e, d[n]);
+        });
+      else if (e === "src" && d[n])
+        t.setAttr(e, d[n]);
+      else if (e === "text" && n)
+        t.text(n);
+      else if (e === "p-template" && t instanceof b)
+        t.addTemplate(f[n]);
+      else if (e === "event")
+        for (let a in n)
+          t.on && t.on(a, n[a]);
+      else
+        t.setAttr(e, e === "transform" ? g(n) : n);
     else
       for (let a in n) {
         let o = n[a];
@@ -100,7 +112,7 @@ function E(i) {
   function p(e) {
     return r[e];
   }
-  return f;
+  return c;
 }
 const M = w({
   props: {
@@ -159,8 +171,8 @@ const M = w({
   },
   emits: ["on-resize", "on-ready", "on-update"],
   setup(i, d) {
-    let s, r = null;
-    const f = x();
+    let f, r = null;
+    const c = x();
     T(() => {
       U().then(() => {
         const e = d.slots.default;
@@ -197,13 +209,13 @@ const M = w({
     const m = w({
       setup(e, t) {
         const n = x();
-        n.parent = f, n.appContext = f.appContext, n.root = f.root, n.provides = f.provides;
+        n.parent = c, n.appContext = c.appContext, n.root = c.root, n.provides = c.provides;
         const a = t.slots.default;
         return () => l(N, a());
       }
     });
     function u(e) {
-      let t = document.getElementById(s.props.id);
+      let t = document.getElementById(f.props.id);
       return q(t, {
         height: e.height,
         width: e.width,
@@ -218,7 +230,7 @@ const M = w({
       });
     }
     function g(e) {
-      let t = document.getElementById(s.props.id);
+      let t = document.getElementById(f.props.id);
       return G(t, e.config, {
         ...e.layerSetting,
         onUpdate: () => {
@@ -228,7 +240,7 @@ const M = w({
     }
     switch (i.type) {
       case "pdf":
-        s = l("iframe", {
+        f = l("iframe", {
           id: i.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -240,7 +252,7 @@ const M = w({
         });
         break;
       case "pdf-blob":
-        s = l("div", {
+        f = l("div", {
           id: i.id,
           class: "renderOutput",
           style: {
@@ -250,7 +262,7 @@ const M = w({
         });
         break;
       case "canvas":
-        s = l("div", {
+        f = l("div", {
           id: i.id,
           class: "renderOutput",
           style: {
@@ -260,7 +272,7 @@ const M = w({
         });
         break;
       case "default":
-        s = l("iframe", {
+        f = l("iframe", {
           id: i.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -275,7 +287,7 @@ const M = w({
     function p(e) {
       d.emit("on-update", e);
     }
-    return () => s;
+    return () => f;
   }
 });
 export {

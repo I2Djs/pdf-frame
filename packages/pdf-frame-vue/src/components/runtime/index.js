@@ -143,6 +143,12 @@ export default function createI2djsRenderer(layerInstance) {
                     el.text(value);
                 } else if (key ==='p-template' && el instanceof CanvasNodeExe) {
                     el.addTemplate(templates[value]);
+                } else if (key === 'event') {
+                    for (let e in value) {
+                        if (el.on) {
+                            el.on(e, value[e]);
+                        }
+                    }
                 } else {
                     el.setAttr(key, key === 'transform' ? parseTransformStr(value) : value);
                 }

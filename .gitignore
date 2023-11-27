@@ -24,6 +24,7 @@ node_modules
 !.vscode/extensions.json
 
 packages/pdf-frame-vue/src/Example_pdf_test.vue
+packages/pdf-frame-vue/src/Example_canvas_test.vue
 
 # misc
 /.sass-cache
