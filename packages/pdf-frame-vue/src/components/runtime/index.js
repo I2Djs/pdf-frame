@@ -6,6 +6,7 @@ import { CanvasNodeExe, CanvasGradient, createRadialGradient, createLinearGradie
 ** List of valid Element types supported by I2Djs
 */
 const validNodeTypes = [
+            "i-g",
             "i-group",
             "i-circle",
             "i-line",
@@ -155,6 +156,9 @@ export default function createI2djsRenderer(layerInstance) {
             } else {
                 for (let sKey in value) {
                     let v = value[sKey];
+                    if (typeof v === 'function') {
+                        v = v(el);
+                    }
                     if (sKey === 'fillStyle' || sKey === 'strokeStyle') {
                         if (typeof v === "string" && v.startsWith('grad')) {
                             const gtId = v.match(/\(([^)]+)\)/)[1];
@@ -172,7 +176,7 @@ export default function createI2djsRenderer(layerInstance) {
     */
     function renderNode (el, vNodeProps) {
         return new CanvasNodeExe(layerInstance.ctx, {
-                    el: el,
+                    el: (el === "group" ? "g" : el),
                     attr: {},
                     style: {},
                 }, Math.round(Math.random() * 10000000), 0);

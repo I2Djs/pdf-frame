@@ -1,6 +1,7 @@
 import { CanvasGradient as C, createRadialGradient as S, createLinearGradient as I, CanvasNodeExe as b, pdfLayer as q, canvasLayer as G } from "i2djs";
 import { createRenderer as O, defineComponent as w, getCurrentInstance as x, onMounted as T, nextTick as U, h as l, onUnmounted as A, watch as y, Fragment as N } from "vue";
 const j = [
+  "i-g",
   "i-group",
   "i-circle",
   "i-line",
@@ -17,8 +18,8 @@ const j = [
   "i-page-template"
 ];
 function E(i) {
-  const d = {}, f = {}, r = {}, { render: c } = O({
-    patchProp(e, t, n, a, o, h, s, F, R) {
+  const o = {}, f = {}, r = {}, { render: c } = O({
+    patchProp(e, t, n, a, d, h, s, F, R) {
       m(t)(e, a);
     },
     insert: (e, t, n) => {
@@ -28,9 +29,9 @@ function E(i) {
       e != null && e.remove();
     },
     createElement: (e, t, n, a) => {
-      const o = e.split("-").slice(1).join("-");
+      const d = e.split("-").slice(1).join("-");
       let h = j.indexOf(e), s = null;
-      switch (h === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), o) {
+      switch (h === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), d) {
         case "page-template":
           s = i.createTemplate(), f[a.id] = s;
           break;
@@ -44,7 +45,7 @@ function E(i) {
           s = S(), r[a.id] = s;
           break;
         default:
-          s = u(o);
+          s = u(d);
           break;
       }
       return s;
@@ -63,16 +64,16 @@ function E(i) {
     querySelector: (e) => i.fetchEl(e) || null
   }), m = (e) => (t, n) => {
     if (typeof n == "function" && (n = n(t)), e !== "style")
-      if (e === "src" && !d[n])
-        d[n] = i.createAsyncTexture({
+      if (e === "src" && !o[n])
+        o[n] = i.createAsyncTexture({
           attr: {
             src: n
           }
-        }), d[n].then((a) => {
-          d[n] = a.exportAsDataUrl(), t.setAttr(e, d[n]);
+        }), o[n].then((a) => {
+          o[n] = a.exportAsDataUrl(), t.setAttr(e, o[n]);
         });
-      else if (e === "src" && d[n])
-        t.setAttr(e, d[n]);
+      else if (e === "src" && o[n])
+        t.setAttr(e, o[n]);
       else if (e === "text" && n)
         t.text(n);
       else if (e === "p-template" && t instanceof b)
@@ -84,17 +85,17 @@ function E(i) {
         t.setAttr(e, e === "transform" ? g(n) : n);
     else
       for (let a in n) {
-        let o = n[a];
-        if ((a === "fillStyle" || a === "strokeStyle") && typeof o == "string" && o.startsWith("grad")) {
-          const h = o.match(/\(([^)]+)\)/)[1];
-          o = p(h);
+        let d = n[a];
+        if (typeof d == "function" && (d = d(t)), (a === "fillStyle" || a === "strokeStyle") && typeof d == "string" && d.startsWith("grad")) {
+          const h = d.match(/\(([^)]+)\)/)[1];
+          d = p(h);
         }
-        t.setStyle(a, o);
+        t.setStyle(a, d);
       }
   };
   function u(e, t) {
     return new b(i.ctx, {
-      el: e,
+      el: e === "group" ? "g" : e,
       attr: {},
       style: {}
     }, Math.round(Math.random() * 1e7), 0);
@@ -105,7 +106,7 @@ function E(i) {
     const t = {};
     for (const n in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
       const a = e[n].match(/[\w\.\-]+/g);
-      t[a.shift()] = a.map((o) => parseFloat(o));
+      t[a.shift()] = a.map((d) => parseFloat(d));
     }
     return t;
   }
@@ -170,20 +171,20 @@ const M = w({
     }
   },
   emits: ["on-resize", "on-ready", "on-update"],
-  setup(i, d) {
+  setup(i, o) {
     let f, r = null;
     const c = x();
     T(() => {
       U().then(() => {
-        const e = d.slots.default;
+        const e = o.slots.default;
         r || (i.type === "pdf" || i.type === "pdf-blob" ? r = u(i) : i.type === "canvas" ? r = g(i) : console.warn(`Unknown render context: ${i.type}`)), r && r.onResize && r.onResize(() => {
-          d.emit("on-resize", {
+          o.emit("on-resize", {
             height: r.height,
             width: r.width
           });
         });
         const t = E(r), n = l(m, e);
-        t(n, r), d.emit("on-ready", r);
+        t(n, r), o.emit("on-ready", r);
       });
     }), A(() => {
       r && (r.destroy(), r = null);
@@ -285,7 +286,7 @@ const M = w({
         break;
     }
     function p(e) {
-      d.emit("on-update", e);
+      o.emit("on-update", e);
     }
     return () => f;
   }
