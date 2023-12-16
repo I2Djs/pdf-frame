@@ -1,4 +1,4 @@
-import { createRenderer } from "vue";
+import { createRenderer, nextTick } from "vue";
 import { CanvasNodeExe, CanvasGradient, createRadialGradient, createLinearGradient } from "i2djs";
 
 
@@ -20,7 +20,9 @@ const validNodeTypes = [
             "i-page",
             "i-linearGradient",
             "i-radialGradient",
-            "i-page-template"];
+            "i-page-template",
+            "i-animate",
+            "i-animatePath"];
 
 function nooperation(fn) {
   // throw Error(`no-op: ${fn}`)
@@ -47,7 +49,20 @@ export default function createI2djsRenderer(layerInstance) {
         insert: (child, parent, anchor) => {
             if (!child || !parent || !parent.child) return;
             if (child instanceof CanvasGradient) return;
-            parent.child([child]);
+            if (child.nodeName === 'animate') {
+                child.parent = parent;
+                nextTick().then(() => {
+                    parent.animateTo(child, child.from);
+                })
+            } else if (child.nodeName === 'animatePath') {
+                child.parent = parent;
+                nextTick().then(() => {
+                    parent.animatePathTo(child);
+                })
+            } else {
+                parent.child([child]);
+            }
+            
             return;
         },
 
@@ -80,6 +95,71 @@ export default function createI2djsRenderer(layerInstance) {
                 case "radialGradient":
                     node = createRadialGradient();
                     gradientCache[vnodeProps.id] = node;
+                    break;
+                case "animate":
+                    node = {
+                            nodeName: 'animate',
+                            from: {
+                                attr: {
+                                    ...vnodeProps.from,
+                                    style: null
+                                },
+                                style: vnodeProps?.from?.style ?? {}
+                            },
+                            attr: {
+                                ...vnodeProps?.to ?? {},
+                                style: null
+                            },
+                            style: vnodeProps?.to?.style ?? {},
+                            duration: vnodeProps.duration || 0,
+                            ease: vnodeProps.ease || 'default',
+                            loop: vnodeProps.loop || 0,
+                            end: vnodeProps.end || null,
+                            delay: vnodeProps.delay || 0,
+                            direction: vnodeProps.direction || 'default',
+                            setAttr: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            setStyle: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            remove: function () {
+                                this.parent.interrupt();
+                            }
+                        }
+                    console.log(node);
+                    break;
+                case "animatePath":
+                    node = {
+                            nodeName: 'animatePath',
+                            from: {
+                                attr: {
+                                    ...vnodeProps.from,
+                                    style: null
+                                },
+                                style: vnodeProps?.from?.style ?? {}
+                            },
+                            attr: {
+                                ...vnodeProps?.to ?? {},
+                                style: null
+                            },
+                            style: vnodeProps?.to?.style ?? {},
+                            duration: vnodeProps.duration || 0,
+                            ease: vnodeProps.ease || 'default',
+                            loop: vnodeProps.loop || 0,
+                            end: vnodeProps.end || null,
+                            delay: vnodeProps.delay || 0,
+                            direction: vnodeProps.direction || 'default',
+                            setAttr: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            setStyle: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            remove: function () {
+                                this.parent.interrupt();
+                            }
+                        }
                     break;
                 default:
                     node = renderNode(elType, vnodeProps);
@@ -150,8 +230,14 @@ export default function createI2djsRenderer(layerInstance) {
                             el.on(e, value[e]);
                         }
                     }
+                } else if (key === 'block') {
+                    el.block = true;
+                } else if (key === 'data') {
+                    el.data(value);
+                } else if (key === 'transform') {
+                    el.setAttr(key, parseTransformStr(value))
                 } else {
-                    el.setAttr(key, key === 'transform' ? parseTransformStr(value) : value);
+                    el.setAttr(key, value);
                 }
             } else {
                 for (let sKey in value) {
