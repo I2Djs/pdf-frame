@@ -55,8 +55,8 @@ pdf-frame provides framework specific components to support easy and quick adopt
   Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
   Example:
-  * [PDF Example](https://j8r4lw.csb.app/)
-  * [Canvas Example](https://cmynlk.csb.app/)
+  * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
+  * [Canvas Example](https://stackblitz.com/edit/pdf-frame-vuejs-canvas?embed=1&file=src%2FApp.vue)
        
   
 
