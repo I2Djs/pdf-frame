@@ -29,6 +29,7 @@
     creationDate: new Date(),
   }
   let updateExternalIframe = function (url) {
+    console.log(url);
     document.getElementById("ext_iframe").setAttribute("src", url);
   }
 </script>
@@ -44,9 +45,7 @@
       :config="config"
       :onUpdate="updateExternalIframe"
       :encryption="encry"
-      :info="info"
-      v-if="flag"
-    >
+      :info="info"    >
       <i-page-template id="temp-1">
         <i-linearGradient
             id="grad3"

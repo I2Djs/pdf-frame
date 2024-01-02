@@ -100,7 +100,6 @@ export const pdfFrame = defineComponent({
                 i2dRenderer(node, layerInstance);
 
                 setupContext.emit("on-ready", layerInstance);
-
             });
         });
 

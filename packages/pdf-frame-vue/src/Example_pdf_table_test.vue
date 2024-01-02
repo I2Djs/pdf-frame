@@ -1,3 +1,92 @@
+<template>
+    <div class="pdfContainer">
+        <pdfFrame
+            :id="id"
+            type="pdf"
+            :width="pdfCfg.width"
+            :height="pdfCfg.height"
+            :config="configObj"
+            @on-ready="callMethod">
+            <i-page>
+                <i-group
+                    ref="tablecomp"
+                    class="tableParent"
+                    :transform="
+                      (el) => {
+                        let t = getRowTransform(el);
+                        return t;
+                      }
+                    ">
+                    <i-group class="header" block>
+                      <i-group
+                        v-for="(col, index) in columns"
+                        :key="col.column"
+                        class="cell"
+                        :transform="getCellTransform(index, defaultCellWidth[col.column].x)">
+                        <i-rect
+                          :height="26"
+                          :width="defaultCellWidth[col.column].width"
+                          :x="0"
+                          :y="0"
+                          class="cell_rect"
+                          :style="{ fillStyle: '#a83232', strokeStyle: '#adadad' }"></i-rect>
+                        <i-text
+                          :text="col.label"
+                          :width="defaultCellWidth[col.column].width"
+                          :x="0"
+                          :y="5"
+                          class="cell_text"
+                          :style="{
+                            fillStyle: '#ffffff',
+                            font: '9px',
+                            textbaseline: 'middle',
+                            align: 'center',
+                            baseline: 'middle',
+                          }"></i-text>
+                      </i-group>
+                    </i-group>
+                    <i-group
+                      v-for="(item, index) in records"
+                      :key="index"
+                      :class="index + '-header'"
+                      block
+                      :class_="
+                        (el) => {
+                          return setLinePosition(el);
+                        }
+                      ">
+                      <i-group
+                        v-for="(col, ind) in columns"
+                        :key="ind"
+                        class="cell"
+                        :transform="getCellTransform(ind, defaultCellWidth[col.column].x)">
+                        <i-text
+                          :text="getColumnText(item, col)"
+                          :width="defaultCellWidth[col.column].width - 10"
+                          :x="5"
+                          :y="0"
+                          class="cell_text"
+                          :style="{
+                            fillStyle: '#363636',
+                            font: '10px Arial',
+                            textbaseline: 'middle',
+                            baseline: 'middle',
+                          }"></i-text>
+                      </i-group>
+                      <i-line
+                        :x1="0"
+                        :y1="0"
+                        :x2="pdfCfg.width - 100"
+                        :y2="0"
+                        class="cell_line"
+                        :style="{ strokeStyle: '#e3e3e3' }"></i-line>
+                    </i-group>
+                  </i-group>
+            </i-page>
+        </pdfFrame>
+    </div>
+</template>
+
 <script setup>
   import { ref, computed } from "vue";
   let pdfConfig = {
@@ -64,7 +153,7 @@
         n.updateBBox();
         const bbox = n.getBBox();
         n.setAttr("transform", {
-          translate: [0, runningY],
+          translate: [50, runningY],
         });
 
         n.fetchEls(".cell").forEach(function (c) {
@@ -79,7 +168,7 @@
         });
         runningY += bbox.height < 30 ? 30 : bbox.height * 1 + 12.5;
       });
-      return "translate(0,100)";
+      return "translate(0,0)";
     }
 
     function setLinePosition(el) {
@@ -1169,104 +1258,6 @@
         console.log(l);
     }
 </script>
-
-<template>
-    <div class="pdfContainer">
-        <pdfFrame
-            :id="id"
-            type="pdf"
-            :width="pdfCfg.width"
-            :height="pdfCfg.height"
-            :config="configObj"
-            @on-ready="callMethod">
-            <!-- <i-page>
-                <i-rect
-                          :height="1000"
-                          :width="200"
-                          :x="100"
-                          :y="500"
-                          class="cell_rect"
-                          :style="{ fillStyle: '#a83232' }"></i-rect>
-            </i-page> -->
-            <i-page>
-                <i-group
-                    ref="tablecomp"
-                    class="tableParent"
-                    :transform="
-                      (el) => {
-                        let t = getRowTransform(el);
-                        return t;
-                      }
-                    ">
-                    <i-group class="header" block>
-                      <i-group
-                        v-for="(col, index) in columns"
-                        :key="col.column"
-                        class="cell"
-                        :transform="getCellTransform(index, defaultCellWidth[col.column].x)">
-                        <i-rect
-                          :height="26"
-                          :width="defaultCellWidth[col.column].width"
-                          :x="0"
-                          :y="0"
-                          class="cell_rect"
-                          :style="{ fillStyle: '#a83232', strokeStyle: '#adadad' }"></i-rect>
-                        <i-text
-                          :text="col.label"
-                          :width="defaultCellWidth[col.column].width"
-                          :x="0"
-                          :y="5"
-                          class="cell_text"
-                          :style="{
-                            fillStyle: '#ffffff',
-                            font: '9px',
-                            textbaseline: 'middle',
-                            align: 'center',
-                            baseline: 'middle',
-                          }"></i-text>
-                      </i-group>
-                    </i-group>
-                    <i-group
-                      v-for="(item, index) in records"
-                      :key="index"
-                      :class="index + '-header'"
-                      block
-                      :class_="
-                        (el) => {
-                          return setLinePosition(el);
-                        }
-                      ">
-                      <i-group
-                        v-for="(col, ind) in columns"
-                        :key="ind"
-                        class="cell"
-                        :transform="getCellTransform(ind, defaultCellWidth[col.column].x)">
-                        <i-text
-                          :text="getColumnText(item, col)"
-                          :width="defaultCellWidth[col.column].width - 10"
-                          :x="5"
-                          :y="0"
-                          class="cell_text"
-                          :style="{
-                            fillStyle: '#363636',
-                            font: '10px Arial',
-                            textbaseline: 'middle',
-                            baseline: 'middle',
-                          }"></i-text>
-                      </i-group>
-                      <i-line
-                        :x1="0"
-                        :y1="0"
-                        :x2="pdfCfg.width"
-                        :y2="0"
-                        class="cell_line"
-                        :style="{ strokeStyle: '#e3e3e3' }"></i-line>
-                    </i-group>
-                  </i-group>
-            </i-page>
-        </pdfFrame>
-    </div>
-</template>
 
 <style>
 html, body, #app {

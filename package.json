@@ -19,6 +19,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "i2djs": "^4.3.1"
+    "i2djs": "^4.4.x"
   }
 }
