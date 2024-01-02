@@ -99,13 +99,6 @@ export default function createI2djsRenderer(layerInstance) {
                 case "animate":
                     node = {
                             nodeName: 'animate',
-                            from: {
-                                attr: {
-                                    ...vnodeProps.from,
-                                    style: null
-                                },
-                                style: vnodeProps?.from?.style ?? {}
-                            },
                             attr: {
                                 ...vnodeProps?.to ?? {},
                                 style: null
@@ -127,7 +120,16 @@ export default function createI2djsRenderer(layerInstance) {
                                 this.parent.interrupt();
                             }
                         }
-                    console.log(node);
+
+                    if (vnodeProps.from) {
+                        node.from = {
+                                attr: {
+                                    ...vnodeProps.from,
+                                    style: null
+                                },
+                                style: vnodeProps.from?.style ?? {}
+                            };
+                    }
                     break;
                 case "animatePath":
                     node = {
