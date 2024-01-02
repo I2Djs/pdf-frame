@@ -111,10 +111,8 @@ export default function createI2djsRenderer(layerInstance) {
                             delay: vnodeProps.delay || 0,
                             direction: vnodeProps.direction || 'default',
                             setAttr: function (key, value) {
-                                // console.log(this.parent);
                             },
                             setStyle: function (key, value) {
-                                // console.log(this.parent);
                             },
                             remove: function () {
                                 this.parent.interrupt();

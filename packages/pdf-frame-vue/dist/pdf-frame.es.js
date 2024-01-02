@@ -20,8 +20,8 @@ const M = [
   "i-animatePath"
 ];
 function B(a) {
-  const c = {}, d = {}, r = {}, { render: u } = E({
-    patchProp(e, i, n, t, f, y, l, b, p) {
+  const d = {}, c = {}, r = {}, { render: u } = E({
+    patchProp(e, i, n, t, f, y, l, p, b) {
       h(i)(e, t);
     },
     insert: (e, i, n) => {
@@ -35,12 +35,12 @@ function B(a) {
       e != null && e.remove();
     },
     createElement: (e, i, n, t) => {
-      var b, p, N, A;
+      var p, b, N, A;
       const f = e.split("-").slice(1).join("-");
       let y = M.indexOf(e), l = null;
       switch (y === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), f) {
         case "page-template":
-          l = a.createTemplate(), d[t.id] = l;
+          l = a.createTemplate(), c[t.id] = l;
           break;
         case "page":
           l = a.addPage();
@@ -54,13 +54,6 @@ function B(a) {
         case "animate":
           l = {
             nodeName: "animate",
-            from: {
-              attr: {
-                ...t.from,
-                style: null
-              },
-              style: ((b = t == null ? void 0 : t.from) == null ? void 0 : b.style) ?? {}
-            },
             attr: {
               ...(t == null ? void 0 : t.to) ?? {},
               style: null
@@ -79,7 +72,13 @@ function B(a) {
             remove: function() {
               this.parent.interrupt();
             }
-          }, console.log(l);
+          }, t.from && (l.from = {
+            attr: {
+              ...t.from,
+              style: null
+            },
+            style: ((b = t.from) == null ? void 0 : b.style) ?? {}
+          });
           break;
         case "animatePath":
           l = {
@@ -131,20 +130,20 @@ function B(a) {
     querySelector: (e) => a.fetchEl(e) || null
   }), h = (e) => (i, n) => {
     if (typeof n == "function" && (n = n(i)), e !== "style")
-      if (e === "src" && !c[n])
-        c[n] = a.createAsyncTexture({
+      if (e === "src" && !d[n])
+        d[n] = a.createAsyncTexture({
           attr: {
             src: n
           }
-        }), c[n].then((t) => {
-          c[n] = t.exportAsDataUrl(), i.setAttr(e, c[n]);
+        }), d[n].then((t) => {
+          d[n] = t.exportAsDataUrl(), i.setAttr(e, d[n]);
         });
-      else if (e === "src" && c[n])
-        i.setAttr(e, c[n]);
+      else if (e === "src" && d[n])
+        i.setAttr(e, d[n]);
       else if (e === "text" && n)
         i.text(n);
       else if (e === "p-template" && i instanceof T)
-        i.addTemplate(d[n]);
+        i.addTemplate(c[n]);
       else if (e === "event")
         for (let t in n)
           i.on && i.on(t, n[t]);
@@ -238,20 +237,20 @@ const D = I({
     }
   },
   emits: ["on-resize", "on-ready", "on-update"],
-  setup(a, c) {
-    let d, r = null;
+  setup(a, d) {
+    let c, r = null;
     const u = q();
     F(() => {
       S().then(() => {
-        const e = c.slots.default;
+        const e = d.slots.default;
         r || (a.type === "pdf" || a.type === "pdf-blob" ? r = o(a) : a.type === "canvas" ? r = g(a) : console.warn(`Unknown render context: ${a.type}`)), r && r.onResize && r.onResize(() => {
-          c.emit("on-resize", {
+          d.emit("on-resize", {
             height: r.height,
             width: r.width
           });
         });
         const i = B(r), n = s(h, e);
-        i(n, r), c.emit("on-ready", r);
+        i(n, r), d.emit("on-ready", r);
       });
     }), R(() => {
       r && (r.destroy(), r = null);
@@ -283,7 +282,7 @@ const D = I({
       }
     });
     function o(e) {
-      let i = document.getElementById(d.props.id);
+      let i = document.getElementById(c.props.id);
       return k(i, {
         height: e.height,
         width: e.width,
@@ -298,7 +297,7 @@ const D = I({
       });
     }
     function g(e) {
-      let i = document.getElementById(d.props.id);
+      let i = document.getElementById(c.props.id);
       return j(i, e.config, {
         ...e.layerSetting,
         onUpdate: () => {
@@ -308,7 +307,7 @@ const D = I({
     }
     switch (a.type) {
       case "pdf":
-        d = s("iframe", {
+        c = s("iframe", {
           id: a.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -320,7 +319,7 @@ const D = I({
         });
         break;
       case "pdf-blob":
-        d = s("div", {
+        c = s("div", {
           id: a.id,
           class: "renderOutput",
           style: {
@@ -330,7 +329,7 @@ const D = I({
         });
         break;
       case "canvas":
-        d = s("div", {
+        c = s("div", {
           id: a.id,
           class: "renderOutput",
           style: {
@@ -340,7 +339,7 @@ const D = I({
         });
         break;
       case "default":
-        d = s("iframe", {
+        c = s("iframe", {
           id: a.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -353,9 +352,9 @@ const D = I({
         break;
     }
     function m(e) {
-      c.emit("on-update", e);
+      d.emit("on-update", e);
     }
-    return () => d;
+    return () => c;
   }
 });
 export {
