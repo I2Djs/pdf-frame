@@ -10,7 +10,6 @@
 <template>
   <div class="canvasParentContainer">
     <pdfFrame id="nswamyid" type="canvas" :width="1000" :height="841">
-      <i-page>
       <i-path
         v-for="n in 40"
         v-bind:key="n"
@@ -30,7 +29,6 @@
           :duration="10000"
         />
       </i-path>
-    </i-page>
   </pdfFrame>
   </div>
 </template>
