@@ -57,7 +57,7 @@ export default function createI2djsRenderer(layerInstance) {
             } else if (child.nodeName === 'animatePath') {
                 child.parent = parent;
                 nextTick().then(() => {
-                    parent.animatePathTo(child);
+                    parent.animatePathTo(child, child.from);
                 })
             } else {
                 parent.child([child]);
@@ -76,16 +76,25 @@ export default function createI2djsRenderer(layerInstance) {
             const elType = tag.split("-").slice(1).join("-");
             let found = validNodeTypes.indexOf(tag);
             let node = null;
+            let ctxType = layerInstance.ctx.type_;
             if (found === -1) {
                 console.warn(`Unknown PDF-Frame tag: ${tag}`);
             }
 
             switch(elType) {
                 case "page-template":
+                    if (ctxType !== 'pdf') {
+                        console.warn("page-template element is invalid in canvas context");
+                        return null;
+                    }
                     node = layerInstance.createTemplate();
                     templates[vnodeProps.id] = node;
                     break;
                 case "page":
+                    if (ctxType !== 'pdf') {
+                        console.warn("Page element is invalid in canvas context");
+                        return null
+                    };
                     node = layerInstance.addPage();
                     break;
                 case "linearGradient":
@@ -97,28 +106,7 @@ export default function createI2djsRenderer(layerInstance) {
                     gradientCache[vnodeProps.id] = node;
                     break;
                 case "animate":
-                    node = {
-                            nodeName: 'animate',
-                            attr: {
-                                ...vnodeProps?.to ?? {},
-                                style: null
-                            },
-                            style: vnodeProps?.to?.style ?? {},
-                            duration: vnodeProps.duration || 0,
-                            ease: vnodeProps.ease || 'default',
-                            loop: vnodeProps.loop || 0,
-                            end: vnodeProps.end || null,
-                            delay: vnodeProps.delay || 0,
-                            direction: vnodeProps.direction || 'default',
-                            setAttr: function (key, value) {
-                            },
-                            setStyle: function (key, value) {
-                            },
-                            remove: function () {
-                                this.parent.interrupt();
-                            }
-                        }
-
+                    node = getAnimateObject(vnodeProps);
                     if (vnodeProps.from) {
                         node.from = {
                                 attr: {
@@ -130,36 +118,16 @@ export default function createI2djsRenderer(layerInstance) {
                     }
                     break;
                 case "animatePath":
-                    node = {
-                            nodeName: 'animatePath',
-                            from: {
+                    node = getAnimatePathToObject(vnodeProps);
+                    if (vnodeProps.from) {
+                        node.from = {
                                 attr: {
-                                    ...vnodeProps.from,
+                                    d : vnodeProps?.from?.d ?? '',
                                     style: null
                                 },
-                                style: vnodeProps?.from?.style ?? {}
-                            },
-                            attr: {
-                                ...vnodeProps?.to ?? {},
-                                style: null
-                            },
-                            style: vnodeProps?.to?.style ?? {},
-                            duration: vnodeProps.duration || 0,
-                            ease: vnodeProps.ease || 'default',
-                            loop: vnodeProps.loop || 0,
-                            end: vnodeProps.end || null,
-                            delay: vnodeProps.delay || 0,
-                            direction: vnodeProps.direction || 'default',
-                            setAttr: function (key, value) {
-                                // console.log(this.parent);
-                            },
-                            setStyle: function (key, value) {
-                                // console.log(this.parent);
-                            },
-                            remove: function () {
-                                this.parent.interrupt();
-                            }
-                        }
+                                style: vnodeProps.from?.style ?? {}
+                            };
+                    }
                     break;
                 default:
                     node = renderNode(elType, vnodeProps);
@@ -236,6 +204,8 @@ export default function createI2djsRenderer(layerInstance) {
                     el.data(value);
                 } else if (key === 'transform') {
                     el.setAttr(key, parseTransformStr(value))
+                } else if (key === 'bbox') {
+                    // console.log("Do nothing");
                 } else {
                     el.setAttr(key, value);
                 }
@@ -265,6 +235,7 @@ export default function createI2djsRenderer(layerInstance) {
                     el: (el === "group" ? "g" : el),
                     attr: {},
                     style: {},
+                    bbox: vNodeProps.bbox !== undefined ? vNodeProps.bbox : true,
                 }, Math.round(Math.random() * 10000000), 0);
     }
 
@@ -285,6 +256,56 @@ export default function createI2djsRenderer(layerInstance) {
 
     function getGrad (gradId) {
         return gradientCache[gradId];
+    }
+
+    function getAnimateObject(vnodeProps) {
+        return {
+                nodeName: 'animate',
+                attr: {
+                    ...vnodeProps?.to ?? {},
+                    style: null
+                },
+                style: vnodeProps?.to?.style ?? {},
+                duration: vnodeProps.duration || 0,
+                ease: vnodeProps.ease || 'default',
+                loop: vnodeProps.loop || 0,
+                end: vnodeProps.end || null,
+                delay: vnodeProps.delay || 0,
+                direction: vnodeProps.direction || 'default',
+                setAttr: function (key, value) {
+                },
+                setStyle: function (key, value) {
+                },
+                remove: function () {
+                    this.parent.interrupt();
+                }
+            }
+    }
+
+    function getAnimatePathToObject(vnodeProps) {
+        return {
+                            nodeName: 'animatePath',
+                            attr: {
+                                d: vnodeProps?.to?.d ?? '',
+                                style: null
+                            },
+                            style: vnodeProps?.to?.style ?? {},
+                            duration: vnodeProps.duration || 0,
+                            ease: vnodeProps.ease || 'default',
+                            loop: vnodeProps.loop || 0,
+                            end: vnodeProps.end || null,
+                            delay: vnodeProps.delay || 0,
+                            direction: vnodeProps.direction || 'default',
+                            setAttr: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            setStyle: function (key, value) {
+                                // console.log(this.parent);
+                            },
+                            remove: function () {
+                                this.parent.interrupt();
+                            }
+                        }
     }
 
     return render;

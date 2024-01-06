@@ -70,6 +70,12 @@
         />
         <i-text 
           :x="30"
+          :y="280"
+          text="Narayana swamy"
+          :style="{ fill: '#ffffff',textAlign:'justify' }"
+        />
+        <i-text 
+          :x="30"
           :y="300"
           :width="540"
           text="PDF-frame is a web framework for client side PDF generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats."
