@@ -1,5 +1,5 @@
-import { CanvasGradient as G, createRadialGradient as I, createLinearGradient as U, CanvasNodeExe as O, pdfLayer as j, canvasLayer as k } from "i2djs";
-import { createRenderer as E, nextTick as S, defineComponent as N, getCurrentInstance as q, onMounted as F, h as m, onUnmounted as R, watch as C, Fragment as z } from "vue";
+import { CanvasGradient as I, createRadialGradient as N, createLinearGradient as U, CanvasNodeExe as O, pdfLayer as j, canvasLayer as k } from "i2djs";
+import { createRenderer as E, nextTick as S, defineComponent as q, getCurrentInstance as G, onMounted as F, h as m, onUnmounted as R, watch as C, Fragment as z } from "vue";
 const M = [
   "i-g",
   "i-group",
@@ -21,11 +21,11 @@ const M = [
 ];
 function B(a) {
   const d = {}, s = {}, r = {}, { render: o } = E({
-    patchProp(e, t, i, n, l, g, c, x, w) {
-      b(t)(e, n);
+    patchProp(e, t, n, i, l, g, c, x, w) {
+      b(t)(e, i);
     },
-    insert: (e, t, i) => {
-      !e || !t || !t.child || e instanceof G || (e.nodeName === "animate" ? (e.parent = t, S().then(() => {
+    insert: (e, t, n) => {
+      !e || !t || !t.child || e instanceof I || (e.nodeName === "animate" ? (e.parent = t, S().then(() => {
         t.animateTo(e, e.from);
       })) : e.nodeName === "animatePath" ? (e.parent = t, S().then(() => {
         t.animatePathTo(e, e.from);
@@ -34,7 +34,7 @@ function B(a) {
     remove: (e) => {
       e != null && e.remove();
     },
-    createElement: (e, t, i, n) => {
+    createElement: (e, t, n, i) => {
       var w, A, T;
       const l = e.split("-").slice(1).join("-");
       let g = M.indexOf(e), c = null, x = a.ctx.type_;
@@ -42,7 +42,7 @@ function B(a) {
         case "page-template":
           if (x !== "pdf")
             return console.warn("page-template element is invalid in canvas context"), null;
-          c = a.createTemplate(), s[n.id] = c;
+          c = a.createTemplate(), s[i.id] = c;
           break;
         case "page":
           if (x !== "pdf")
@@ -50,31 +50,31 @@ function B(a) {
           c = a.addPage();
           break;
         case "linearGradient":
-          c = U(), r[n.id] = c;
+          c = U(), r[i.id] = c;
           break;
         case "radialGradient":
-          c = I(), r[n.id] = c;
+          c = N(), r[i.id] = c;
           break;
         case "animate":
-          c = f(n), n.from && (c.from = {
+          c = f(i), i.from && (c.from = {
             attr: {
-              ...n.from,
+              ...i.from,
               style: null
             },
-            style: ((w = n.from) == null ? void 0 : w.style) ?? {}
+            style: ((w = i.from) == null ? void 0 : w.style) ?? {}
           });
           break;
         case "animatePath":
-          c = u(n), n.from && (c.from = {
+          c = u(i), i.from && (c.from = {
             attr: {
-              d: ((A = n == null ? void 0 : n.from) == null ? void 0 : A.d) ?? "",
+              d: ((A = i == null ? void 0 : i.from) == null ? void 0 : A.d) ?? "",
               style: null
             },
-            style: ((T = n.from) == null ? void 0 : T.style) ?? {}
+            style: ((T = i.from) == null ? void 0 : T.style) ?? {}
           });
           break;
         default:
-          c = y(l, n);
+          c = y(l, i);
           break;
       }
       return c;
@@ -88,38 +88,38 @@ function B(a) {
     setElementText: (e, t) => {
     },
     parentNode: (e) => e && e.dom.parent ? e.dom.parent : null,
-    nextSibling: (e) => (t, i) => {
+    nextSibling: (e) => (t, n) => {
     },
     querySelector: (e) => a.fetchEl(e) || null
-  }), b = (e) => (t, i) => {
-    if (typeof i == "function" && (i = i(t)), e !== "style")
-      if (e === "src" && !d[i])
-        d[i] = a.createAsyncTexture({
+  }), b = (e) => (t, n) => {
+    if (typeof n == "function" && (n = n(t)), e !== "style")
+      if (e === "src" && !d[n])
+        d[n] = a.createAsyncTexture({
           attr: {
-            src: i
+            src: n
           }
-        }), d[i].then((n) => {
-          d[i] = n.exportAsDataUrl(), t.setAttr(e, d[i]);
+        }), d[n].then((i) => {
+          d[n] = i.exportAsDataUrl(), t.setAttr(e, d[n]);
         });
-      else if (e === "src" && d[i])
-        t.setAttr(e, d[i]);
-      else if (e === "text" && i)
-        t.text(i);
+      else if (e === "src" && d[n])
+        t.setAttr(e, d[n]);
+      else if (e === "text" && n)
+        t.text(n);
       else if (e === "p-template" && t instanceof O)
-        t.addTemplate(s[i]);
+        t.addTemplate(s[n]);
       else if (e === "event")
-        for (let n in i)
-          t.on && t.on(n, i[n]);
+        for (let i in n)
+          t.on && t.on(i, n[i]);
       else
-        e === "block" ? t.block = !0 : e === "data" ? t.data(i) : e === "transform" ? t.setAttr(e, p(i)) : e === "bbox" || t.setAttr(e, i);
+        e === "block" ? t.block = !0 : e === "data" ? t.data(n) : e === "transform" ? t.setAttr(e, p(n)) : e === "bbox" ? t.bbox = n : t.setAttr(e, n);
     else
-      for (let n in i) {
-        let l = i[n];
-        if (typeof l == "function" && (l = l(t)), (n === "fillStyle" || n === "strokeStyle") && typeof l == "string" && l.startsWith("grad")) {
+      for (let i in n) {
+        let l = n[i];
+        if (typeof l == "function" && (l = l(t)), (i === "fillStyle" || i === "strokeStyle") && typeof l == "string" && l.startsWith("grad")) {
           const g = l.match(/\(([^)]+)\)/)[1];
           l = h(g);
         }
-        t.setStyle(n, l);
+        t.setStyle(i, l);
       }
   };
   function y(e, t) {
@@ -127,16 +127,16 @@ function B(a) {
       el: e === "group" ? "g" : e,
       attr: {},
       style: {},
-      bbox: t.bbox !== void 0 ? t.bbox : !0
+      bbox: t && t.bbox !== void 0 ? t.bbox : !0
     }, Math.round(Math.random() * 1e7), 0);
   }
   function p(e) {
     if (typeof e == "object" && !Array.isArray(e) && e !== null)
       return e;
     const t = {};
-    for (const i in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
-      const n = e[i].match(/[\w\.\-]+/g);
-      t[n.shift()] = n.map((l) => parseFloat(l));
+    for (const n in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
+      const i = e[n].match(/[\w\.\-]+/g);
+      t[i.shift()] = i.map((l) => parseFloat(l));
     }
     return t;
   }
@@ -158,9 +158,9 @@ function B(a) {
       end: e.end || null,
       delay: e.delay || 0,
       direction: e.direction || "default",
-      setAttr: function(i, n) {
+      setAttr: function(n, i) {
       },
-      setStyle: function(i, n) {
+      setStyle: function(n, i) {
       },
       remove: function() {
         this.parent.interrupt();
@@ -168,23 +168,23 @@ function B(a) {
     };
   }
   function u(e) {
-    var t, i;
+    var t, n;
     return {
       nodeName: "animatePath",
       attr: {
         d: ((t = e == null ? void 0 : e.to) == null ? void 0 : t.d) ?? "",
         style: null
       },
-      style: ((i = e == null ? void 0 : e.to) == null ? void 0 : i.style) ?? {},
+      style: ((n = e == null ? void 0 : e.to) == null ? void 0 : n.style) ?? {},
       duration: e.duration || 0,
       ease: e.ease || "default",
       loop: e.loop || 0,
       end: e.end || null,
       delay: e.delay || 0,
       direction: e.direction || "default",
-      setAttr: function(n, l) {
+      setAttr: function(i, l) {
       },
-      setStyle: function(n, l) {
+      setStyle: function(i, l) {
       },
       remove: function() {
         this.parent.interrupt();
@@ -193,7 +193,7 @@ function B(a) {
   }
   return o;
 }
-const D = N({
+const D = q({
   props: {
     type: {
       type: String,
@@ -251,7 +251,7 @@ const D = N({
   emits: ["on-resize", "on-ready", "on-update"],
   setup(a, d) {
     let s, r = null;
-    const o = q();
+    const o = G();
     F(() => {
       S().then(() => {
         const f = d.slots.default;
@@ -285,9 +285,9 @@ const D = N({
     }, {
       deep: !0
     });
-    const b = N({
+    const b = q({
       setup(f, u) {
-        const e = q();
+        const e = G();
         e.parent = o, e.appContext = o.appContext, e.root = o.root, e.provides = o.provides;
         const t = u.slots.default;
         return () => m(z, t());

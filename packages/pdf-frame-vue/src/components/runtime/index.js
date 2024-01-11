@@ -205,7 +205,7 @@ export default function createI2djsRenderer(layerInstance) {
                 } else if (key === 'transform') {
                     el.setAttr(key, parseTransformStr(value))
                 } else if (key === 'bbox') {
-                    // console.log("Do nothing");
+                    el.bbox = value;
                 } else {
                     el.setAttr(key, value);
                 }
@@ -235,7 +235,7 @@ export default function createI2djsRenderer(layerInstance) {
                     el: (el === "group" ? "g" : el),
                     attr: {},
                     style: {},
-                    bbox: vNodeProps.bbox !== undefined ? vNodeProps.bbox : true,
+                    bbox: vNodeProps && vNodeProps.bbox !== undefined ? vNodeProps.bbox : true,
                 }, Math.round(Math.random() * 10000000), 0);
     }
 
