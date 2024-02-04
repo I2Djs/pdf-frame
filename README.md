@@ -20,7 +20,7 @@ Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. Wi
 * **Declarative Syntax:** Easily define PDF/Canvas graphical content using a clear and declarative syntax.
 * **SVG-like Syntax and Semantics:** Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
 * **Consistent Rendering:** Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
-* **Auto Layouting:** Automatic layout adjustments when content overflows.
+* **Auto Pagination:** Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
 * **Multi-page Support:** Create multi-page PDF documents seamlessly.
 * **Animations & Events:** Easy way to define the animations and events on elements in canvas context.
 * Framework component support: Vue, nuxt.
@@ -58,6 +58,7 @@ pdf-frame provides framework specific components to support easy and quick adopt
   
   Playground:
   * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
+  * [PDF Font Example](https://stackblitz.com/edit/pdf-frame-vuejs-67yqev)
   * [Canvas Example](https://stackblitz.com/edit/pdf-frame-vuejs-canvas?embed=1&file=src%2FApp.vue)
   * [Canvas Animation](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-qp1rhy?file=src%2FApp.vue)
   * [Canvas Animation 2](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-ragz9p?file=src%2FApp.vue)
