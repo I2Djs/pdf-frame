@@ -70,7 +70,7 @@ pdf-frame provides framework specific components to support easy and quick adopt
   
 
   ### nuxt
-  Documentation: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  Documentation: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
   
   Playground:
   * [PDF Example](https://j8r4lw.csb.app/)
