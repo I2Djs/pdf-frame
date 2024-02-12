@@ -20,10 +20,14 @@ Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. Wi
 * **Declarative Syntax:** Easily define PDF/Canvas graphical content using a clear and declarative syntax.
 * **SVG-like Syntax and Semantics:** Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
 * **Consistent Rendering:** Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
-* **Auto Layouting:** Automatic layout adjustments when content overflows.
+* **Auto Pagination:** Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
 * **Multi-page Support:** Create multi-page PDF documents seamlessly.
 * **Animations & Events:** Easy way to define the animations and events on elements in canvas context.
 * Framework component support: Vue, nuxt.
+
+## Blogs:
+  * [Creating visually rich PDFs with PDF-Frame-Vue](https://nswamy14.hashnode.dev/creating-visually-rich-pdfs-with-pdf-frame-vue)
+  * [Simplifying PDF Rendering in Vue with PDF-Frame-Vue](https://nswamy14.hashnode.dev/pdf-rendering-made-easy-with-pdf-frame-vue)
 
 ## PDF Usage Example
 ```html
@@ -54,17 +58,19 @@ pdf-frame provides framework specific components to support easy and quick adopt
 
  ### vue
  
-  Tutorial: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  Documentation: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
   Playground:
   * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
+  * [PDF Custom Font Example](https://stackblitz.com/edit/pdf-frame-vuejs-67yqev)
   * [Canvas Example](https://stackblitz.com/edit/pdf-frame-vuejs-canvas?embed=1&file=src%2FApp.vue)
-  * [Canvas Animation](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-qp1rhy?file=package.json)
+  * [Canvas Animation](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-qp1rhy?file=src%2FApp.vue)
+  * [Canvas Animation 2](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-ragz9p?file=src%2FApp.vue)
        
   
 
   ### nuxt
-  Tutorial: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  Documentation: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
   
   Playground:
   * [PDF Example](https://j8r4lw.csb.app/)
