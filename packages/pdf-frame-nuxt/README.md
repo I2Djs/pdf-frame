@@ -16,37 +16,4 @@ pdf-frame-nuxt is a nuxt module for rendering PDF/Canvas graphics, and it's buil
 * Dynamic content creation leveraging vuejs capabilities - template engine and reactivity.
 * Provides abstract elements to define multi-page PDF documents.
 
-## Installation
 
-To use pdf-frame-nuxt in your project, you can install it via npm:
-
-  
-  ### vue
-  ``` bash
-    npm install @i2d/pdf-frame-nuxt
-  ```
-
-## Usage
-```html
-<pdfFrame type="pdf" width="595" height="841">
-    <i-page>
-    </i-page>
-</pdfFrame>
-```
-
-## Tutorial
-  Docs: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
-  
-  Examples:
-  * [PDF Example](https://j8r4lw.csb.app/)
-  * [Canvas Example](https://cmynlk.csb.app/)
-  
-
-## Contributing
-Contributions are welcome! If you would like to contribute to pdf-frame, please follow the guidelines in CONTRIBUTING.md.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
-
-## Contact
-For any inquiries or support, please contact `narayanaswamy14@gmail.com`.

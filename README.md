@@ -8,7 +8,7 @@
 | Package | version |
 | --- | --- |
 | [vuejs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
-| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-nuxt.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-nuxt) |
+| [nuxtjs](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | WIP |
 | reactjs | WIP |
 
 ## Introduction
@@ -70,11 +70,8 @@ pdf-frame provides framework specific components to support easy and quick adopt
   
 
   ### nuxt
-  Documentation: [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90nuxt)
-  
-  Playground:
-  * [PDF Example](https://j8r4lw.csb.app/)
-  * [Canvas Example](https://j8r4lw.csb.app/)
+
+  WIP
   
 
 ## Contributing
