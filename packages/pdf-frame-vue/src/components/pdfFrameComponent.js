@@ -73,7 +73,6 @@ export const pdfFrame = defineComponent({
         onMounted(() => {
             nextTick().then(() => {
                 const defaultSlot = setupContext.slots.default;
-
                 if (!layerInstance) {
                     if (props.type === "pdf") {
                         layerInstance = createPdfInstance(props);
@@ -93,6 +92,17 @@ export const pdfFrame = defineComponent({
                             width: layerInstance.width
                         });
                     });
+                }
+
+                if (layerInstance && layerInstance.onChange) {
+                    layerInstance.onChange((url)=>{
+                        if (layerInstance && layerInstance.container && layerInstance.container.tagName === "IFRAME") {
+                            layerInstance.container.setAttribute("src", url);
+                        }
+                        if (props.onUpdate) {
+                            emitOnUpdate(url);
+                        }
+                    })
                 }
 
                 const i2dRenderer = createI2djsRenderer(layerInstance);
@@ -189,12 +199,10 @@ export const pdfFrame = defineComponent({
 
         function createCanvasInstance(props) {
             let el = document.getElementById(vNode.props.id);
-            return canvasLayer(el, props.config, {
-                ...props.layerSetting,
-                onUpdate: ()=>{
-                    emitOnUpdate();
-                }
+            const canvasInstance = canvasLayer(el, props.config, {
+                ...props.layerSetting
             });
+            return canvasInstance;
         }
 
         switch (props.type) {

@@ -1,12 +1,3 @@
-<script setup>
-  import { ref, watch,onMounted } from "vue";
-  let startAnimation = ref(false);
-
-  setTimeout(()=>{
-    startAnimation.value = true;
-  }, 5000)
-</script>
-
 <template>
   <div class="canvasParentContainer">
     <pdfFrame id="nswamyid" type="canvas" :width="1000" :height="841">
@@ -30,15 +21,16 @@
           }
         }"
         ease= "easeInOutSin"
-        :loop="100"
         :delay="Math.random()*1000"
+        loop="100"
         direction= "alternate" :duration="1000"
       />
     </i-rect>
   </pdfFrame>
   </div>
 </template>
-
+<script setup>
+</script>
 <style>
 html, body, #app {
     height: 100%;
