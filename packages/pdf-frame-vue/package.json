@@ -4,8 +4,8 @@
   "version": "1.4.5",
   "description": "PDF-Frame-vue is a vue.js component for rendering PDF/Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
   "type": "module",
-  "main": "dist/pdf-frame.cjs.js",
-  "module": "dist/pdf-frame.es.js",
+  "main": "dist/pdf-frame.cjs",
+  "module": "dist/pdf-frame.js",
   "author": "Narayana Swamy",
   "license": "MIT License",
   "homepage": "https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue",
@@ -24,10 +24,11 @@
     "vue": "^3.4.x"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.15.1",
-    "@vitejs/plugin-vue": "^4.5.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-node-polyfills": "^0.21.0"
   },
   "repository": {
     "type": "git",

@@ -6,13 +6,15 @@
     "jsxImportSource": "vue",
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "skipLibCheck": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "strict": true,
     "noImplicitThis": true,
     "esModuleInterop": true,
+    "types": [],
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "noEmit": true,
     "resolveJsonModule": true,
@@ -58,7 +60,7 @@
         "../../node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#vue-router": [
-        "./vue-router"
+        "./vue-router-stub"
       ],
       "#imports": [
         "./imports"
@@ -78,18 +80,19 @@
     "./nuxt.d.ts",
     "../**/*",
     "../../../../../../../../nswam/runtime",
-    "../../../../node_modules/@nuxt/telemetry/runtime",
+    "../node_modules/@nuxt/devtools/runtime",
+    "../node_modules/@nuxt/telemetry/runtime",
     "..",
     "../../node_modules/nuxt/dist/app",
     "../../node_modules/nuxt/dist/app/compat/vue-demi"
   ],
   "exclude": [
     "../node_modules",
-    "../../node_modules",
     "../../../../node_modules",
     "../../node_modules/nuxt/node_modules",
     "../../../../../../../../nswam/runtime/server",
-    "../../../../node_modules/@nuxt/telemetry/runtime/server",
+    "../node_modules/@nuxt/devtools/runtime/server",
+    "../node_modules/@nuxt/telemetry/runtime/server",
     "../dist",
     "../.output"
   ]

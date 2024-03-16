@@ -1,5 +1,5 @@
 import { createRenderer, nextTick } from "vue";
-import { CanvasNodeExe, CanvasGradient, createRadialGradient, createLinearGradient } from "i2djs";
+import { canvasNodeExe, canvasGradient, createRadialGradient, createLinearGradient } from "i2djs";
 
 
 /*
@@ -47,8 +47,11 @@ export default function createI2djsRenderer(layerInstance) {
             getSetter(key)(el, nextValue);
         },
         insert: (child, parent, anchor) => {
+            if (!parent) {
+                parent = layerInstance;
+            }
             if (!child || !parent || !parent.child) return;
-            if (child instanceof CanvasGradient) return;
+            if (child instanceof canvasGradient) return;
             if (child.nodeName === 'animate') {
                 child.parent = parent;
                 nextTick().then(() => {
@@ -190,7 +193,7 @@ export default function createI2djsRenderer(layerInstance) {
                     el.setAttr(key, imgCache[value]);
                 } else if (key === 'text' && value) {
                     el.text(value);
-                } else if (key ==='p-template' && el instanceof CanvasNodeExe) {
+                } else if (key ==='p-template' && el instanceof canvasNodeExe) {
                     el.addTemplate(templates[value]);
                 } else if (key === 'event') {
                     for (let e in value) {
@@ -231,7 +234,7 @@ export default function createI2djsRenderer(layerInstance) {
     * @renderNode : Creates i2djs vnode based on args, returns vNode of a rendered element
     */
     function renderNode (el, vNodeProps) {
-        return new CanvasNodeExe(layerInstance.ctx, {
+        return new canvasNodeExe(layerInstance.ctx, {
                     el: (el === "group" ? "g" : el),
                     attr: {},
                     style: {},

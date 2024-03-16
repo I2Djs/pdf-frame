@@ -10,7 +10,7 @@
     },
   }
   let encry = {
-    // userPassword: "pdfframe"
+    userPassword: "pdfframe"
     // ownerPassword:
     // permissions: {
         // printing:,
@@ -29,21 +29,21 @@
     creationDate: new Date(),
   }
   let updateExternalIframe = function (url) {
-    console.log(url);
-    document.getElementById("ext_iframe").setAttribute("src", url);
+    document.getElementById("ext_iframe_").setAttribute("src", url);
   }
 </script>
 
 <template>
   <div class="pdfContainer">
-    <iframe src="" height="100%" width="100%" id="ext_iframe"></iframe>
+    <iframe src="" height="100%" width="100%" id="ext_iframe_"></iframe>
     <pdfFrame
       id="nswamyid"
       type="pdf-blob"
       :width="595"
       :height="841"
       :config="config"
-      :onUpdate="updateExternalIframe"
+      :encrypt="encry"
+      @on-update="updateExternalIframe"
       :encryption="encry"
       :info="info"    >
       <i-page-template id="temp-1">
@@ -177,11 +177,6 @@
 </template>
 
 <style>
-html, body, #app {
-    height: 100%;
-    width: 100%;
-  }
-
 .pdfContainer {
   height: 100%;
   width: 100%;

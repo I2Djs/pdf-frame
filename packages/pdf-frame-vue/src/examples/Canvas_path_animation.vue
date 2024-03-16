@@ -1,12 +1,3 @@
-<script setup>
-  import { ref, watch,onMounted } from "vue";
-  let startAnimation = ref(false);
-
-  setTimeout(()=>{
-    startAnimation.value = true;
-  }, 5000)
-</script>
-
 <template>
   <div class="canvasParentContainer">
     <pdfFrame id="nswamyid" type="canvas" :width="1000" :height="841">
