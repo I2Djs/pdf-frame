@@ -32,7 +32,7 @@
         ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
-    <i-g transform="translate(180,50)">
+    <i-g :transform="{ translate: [width * 0.5 - 50,50], scale: [2, 2] }">
       <i-rect
         v-for="n in 30"
         v-bind:key="n"
@@ -68,7 +68,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 let t = ref(0);
-let loopCount = 1000;
+let loopCount = 2000;
 let runningCount = 0;
 let i2dinstanceID = 0;
 function step() {
