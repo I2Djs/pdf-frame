@@ -8,14 +8,15 @@
     "nx-cloud": "latest"
   },
   "scripts": {
-    "pdf-frame-vue:dev": "npx nx run @i2d/pdf-frame-vue:dev",
-    "pdf-frame-vue:build": "npx nx run @i2d/pdf-frame-vue:build",
+    "pdf-frame-vue:dev": "npx nx dev @i2d/pdf-frame-vue",
+    "pdf-frame-vue:build": "npx nx build @i2d/pdf-frame-vue",
+    "pdf-frame-vue:clean": "npx nx clean @i2d/pdf-frame-vue",
     "pdf-frame-vue:release": "npx nx run @i2d/pdf-frame-vue:release",
+    "pdf-frame-nuxt:dev": "npx nx run @i2d/pdf-frame-nuxt:dev",
+    "pdf-frame-nuxt:build": "npx nx run @i2d/pdf-frame-nuxt:prepack",
+    "pdf-frame-nuxt:release": "npx nx run @i2d/pdf-frame-nuxt:release"
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "i2djs": "^4.4.x"
-  }
+  ]
 }

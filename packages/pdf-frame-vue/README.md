@@ -1,10 +1,8 @@
-# pdf-frame-vue
-
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
 
-## Introduction
+# pdf-frame-vue [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue)
 
 PDF-Frame-Vue is a vue.js component designed for rendering PDF and Canvas graphics effortlessly on the web. This component provides an intuitive HTML Template-based syntax and semantics that simplifies the creation and management of graphical content. Leveraging the [i2djs](https://github.com/I2Djs/I2Djs) framework, PDF-Frame-Vue currently supports rendering outputs in both PDF and Canvas formats.
 
@@ -12,14 +10,15 @@ PDF-Frame-Vue implements Vue.js' custom renderer, taking advantage of framework 
 
 ## Features
 
-* Declarative Syntax: Easily define PDF/Canvas graphical content using a clear and declarative syntax. Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
-* Multi media output: Canvas and PDF.
-* Consistent Rendering: Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
-* Auto Pagination: Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
-* Multi-page PDF Support: Create multi-page PDF documents seamlessly.
-* Animations & Events: Easy way to define the animations and events on elements in canvas context.
+* **Declarative Syntax**: Easily define PDF/Canvas graphical content using a clear and declarative syntax. Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
+* **Multi media output**: **Canvas** and **PDF**.
+* **Consistent Rendering**: Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
+* **Auto Pagination**: Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
+* **Multi-page PDF Support**: Create multi-page PDF documents seamlessly.
+* **Animations & Events**: Easy way to define the animations and events on elements in canvas context.
 
-## Documentation: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+## Documentation: 
+  * [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
 ## Playground:
   * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
