@@ -15,12 +15,13 @@
   "scripts": {
     "dev": "vite --force",
     "build": "vite build",
+    "clean": "npx nuxi cleanup",
     "preview": "vite preview",
     "release": "npm run lint && npm run build && npm publish --access=public && git push --follow-tags",
     "lint": "eslint --ext .js . --fix"
   },
   "dependencies": {
-    "i2djs": "^4.4.x",
+    "i2djs": "^5.x",
     "vue": "^3.4.x"
   },
   "devDependencies": {
