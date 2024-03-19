@@ -6,23 +6,34 @@
 
 ## Introduction
 
-A vue.js pdf-frame component for rendering PDF/Canvas graphics on web. It supports an intuitive HTML-based syntax and semantics to define graphics, making it simple and easy for users to create and manage graphical content. It is implemented on I2djs frameworks.
+PDF-Frame-Vue is a vue.js component designed for rendering PDF and Canvas graphics effortlessly on the web. This component provides an intuitive HTML Template-based syntax and semantics that simplifies the creation and management of graphical content. Leveraging the [i2djs](https://github.com/I2Djs/I2Djs) framework, PDF-Frame-Vue currently supports rendering outputs in both PDF and Canvas formats.
+
+PDF-Frame-Vue implements Vue.js' custom renderer, taking advantage of framework capabilities like templating, the reactivity system, component architecture and many more.
 
 ## Features
 
-* Declarative HTML syntax for defining graphical content.
-* Renders PDF and Canvas outputs.
-* Dynamic content creation leveraging vuejs capabilities - template engine and reactivity.
-* Provides abstract elements to define multi-page PDF documents.
+* Declarative Syntax: Easily define PDF/Canvas graphical content using a clear and declarative syntax. Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
+* Multi media output: Canvas and PDF.
+* Consistent Rendering: Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
+* Auto Pagination: Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
+* Multi-page PDF Support: Create multi-page PDF documents seamlessly.
+* Animations & Events: Easy way to define the animations and events on elements in canvas context.
 
-## Tutorial
-  Docs: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+## Documentation: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
   
-  Examples:
-  * [PDF Example](https://j8r4lw.csb.app/)
-  * [Canvas Example](https://cmynlk.csb.app/)
+## Playground:
+  * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
+  * [PDF Custom Font Example](https://stackblitz.com/edit/pdf-frame-vuejs-67yqev)
+  * [Canvas Example](https://stackblitz.com/edit/pdf-frame-vuejs-canvas?embed=1&file=src%2FApp.vue)
+  * [Canvas Animation](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-qp1rhy?file=src%2FApp.vue)
+  * [Canvas Animation 2](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-ragz9p?file=src%2FApp.vue)
+
+## Blogs:
+  * [Creating visually rich PDFs with PDF-Frame-Vue](https://nswamy14.hashnode.dev/creating-visually-rich-pdfs-with-pdf-frame-vue)
+  * [Simplifying PDF Rendering in Vue with PDF-Frame-Vue](https://nswamy14.hashnode.dev/pdf-rendering-made-easy-with-pdf-frame-vue)
 
 ## Usage
+### PDF Template
 ```html
 <pdfFrame type="pdf" width="595" height="841">
     <!-- Page Templates -->
@@ -33,8 +44,10 @@ A vue.js pdf-frame component for rendering PDF/Canvas graphics on web. It suppor
     </i-page-template>
     <!-- Page 1 -->
     <i-page p-template="temp-1">
-        <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
-        <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+      <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+          <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+          <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+      </i-g>
     </i-page>
     
     <!-- Page 2 -->
@@ -45,8 +58,16 @@ A vue.js pdf-frame component for rendering PDF/Canvas graphics on web. It suppor
 </pdfFrame>
 ```
 
-
-
+### Canvas Template
+```html
+<pdfFrame type="pdf" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
 
 ## Contributing
 Contributions are welcome! If you would like to contribute to pdf-frame, please follow the guidelines in CONTRIBUTING.md.
