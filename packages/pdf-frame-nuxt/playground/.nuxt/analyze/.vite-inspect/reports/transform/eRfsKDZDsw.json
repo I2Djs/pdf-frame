@@ -1,0 +1,17 @@
+{
+  "resolvedId": "virtual:nuxt:/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/playground/.nuxt/css.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "",
+      "start": 1711218913948,
+      "end": 1711218913948
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1711218913948,
+      "end": 1711218913948,
+      "order": "normal"
+    }
+  ]
+}

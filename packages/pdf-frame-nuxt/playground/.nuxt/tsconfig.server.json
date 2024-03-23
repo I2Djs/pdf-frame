@@ -15,6 +15,36 @@
       "#imports": [
         "./types/nitro-imports"
       ],
+      "nitropack": [
+        "../../../../node_modules/nitropack"
+      ],
+      "defu": [
+        "../../../../node_modules/defu"
+      ],
+      "h3": [
+        "../../../../node_modules/h3"
+      ],
+      "@unhead/vue": [
+        "../../../../node_modules/@unhead/vue"
+      ],
+      "vue": [
+        "../../../../node_modules/vue"
+      ],
+      "vue-router": [
+        "../../../../node_modules/vue-router"
+      ],
+      "@nuxt/schema": [
+        "../../../../node_modules/@nuxt/schema"
+      ],
+      "nuxt": [
+        "../../node_modules/nuxt"
+      ],
+      "consola": [
+        "../../../../node_modules/consola"
+      ],
+      "ofetch": [
+        "../../../../node_modules/ofetch"
+      ],
       "#paths": [
         "../../node_modules/nuxt/dist/core/runtime/nitro/paths"
       ],
@@ -53,8 +83,8 @@
   "include": [
     "./types/nitro-nuxt.d.ts",
     "../../../../../../../../nswam/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
-    "../node_modules/@nuxt/telemetry/runtime/server",
+    "../../node_modules/@nuxt/devtools/runtime/server",
+    "../../../../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",
     "../server/**/*"

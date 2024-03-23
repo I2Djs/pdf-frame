@@ -7,6 +7,8 @@ tmp
 # dependencies
 node_modules
 
+/packages/pdf-frame-vue
+
 # IDEs and editors
 /.idea
 .project

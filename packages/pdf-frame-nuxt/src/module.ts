@@ -1,5 +1,6 @@
 import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
 
+// Module options TypeScript interface definition
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
@@ -9,11 +10,12 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup () {
-    const resolver = createResolver(import.meta.url)
+  setup (options, nuxt) {
+    // const resolver = createResolver(import.meta.url)
+
     addComponent({
-      name: 'pdfFrame',
-      filePath: resolver.resolve('./runtime/components/pdf-frame')
+      name: 'pdfFrame', // name of the component to be used in vue templates
+      filePath: '@i2d/pdf-frame-vue'
     })
   }
 })

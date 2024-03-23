@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponent } from '@nuxt/kit';
+import { defineNuxtModule, addComponent } from '@nuxt/kit';
 
 const module = defineNuxtModule({
   meta: {
@@ -7,11 +7,11 @@ const module = defineNuxtModule({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup() {
-    const resolver = createResolver(import.meta.url);
+  setup(options, nuxt) {
     addComponent({
       name: "pdfFrame",
-      filePath: resolver.resolve("./runtime/components/pdf-frame")
+      // name of the component to be used in vue templates
+      filePath: "@i2d/pdf-frame-vue"
     });
   }
 });

@@ -1,0 +1,200 @@
+{
+  "resolvedId": "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/node_modules/nuxt/dist/app/components/test-component-wrapper.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { parseURL } from \"ufo\";\nimport { defineComponent, h } from \"vue\";\nimport { parseQuery } from \"vue-router\";\nimport { resolve } from \"pathe\";\nimport destr from \"destr\";\nimport { devRootDir } from \"#build/nuxt.config.mjs\";\nexport default (url) => defineComponent({\n  name: \"NuxtTestComponentWrapper\",\n  async setup(props, { attrs }) {\n    const query = parseQuery(parseURL(url).search);\n    const urlProps = query.props ? destr(query.props) : {};\n    const path = resolve(query.path);\n    if (!path.startsWith(devRootDir)) {\n      throw new Error(`[nuxt] Cannot access path outside of project root directory: \\`${path}\\`.`);\n    }\n    const comp = await import(\n      /* @vite-ignore */\n      query.path\n    ).then((r) => r.default);\n    return () => [\n      h(\"div\", \"Component Test Wrapper for \" + query.path),\n      h(\"div\", { id: \"nuxt-component-root\" }, [\n        h(comp, { ...attrs, ...props, ...urlProps })\n      ])\n    ];\n  }\n});\n",
+      "start": 1711218914022,
+      "end": 1711218914076,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { parseURL } from \"ufo\";\nimport { defineComponent, h } from \"vue\";\nimport { parseQuery } from \"vue-router\";\nimport { resolve } from \"pathe\";\nimport destr from \"destr\";\nimport { devRootDir } from \"#build/nuxt.config.mjs\";\nexport default (url) => defineComponent({\n  name: \"NuxtTestComponentWrapper\",\n  async setup(props, { attrs }) {\n    const query = parseQuery(parseURL(url).search);\n    const urlProps = query.props ? destr(query.props) : {};\n    const path = resolve(query.path);\n    if (!path.startsWith(devRootDir)) {\n      throw new Error(`[nuxt] Cannot access path outside of project root directory: \\`${path}\\`.`);\n    }\n    const comp = await __vitePreload(() => import(\n      /* @vite-ignore */\n      query.path\n    ),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then((r) => r.default);\n    return () => [\n      h(\"div\", \"Component Test Wrapper for \" + query.path),\n      h(\"div\", { id: \"nuxt-component-root\" }, [\n        h(comp, { ...attrs, ...props, ...urlProps })\n      ])\n    ];\n  }\n});\n",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1711218914076,
+      "end": 1711218914076,
+      "order": "normal"
+    }
+  ]
+}
