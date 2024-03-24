@@ -1,1 +1,0 @@
-export { default } from "/Users/nswamy14/Documents/GitHub/pdf-frame/packages/pdf-frame-nuxt/node_modules/nuxt/dist/app/components/test-component-wrapper";

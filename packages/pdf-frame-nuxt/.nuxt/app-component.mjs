@@ -1,1 +1,0 @@
-export { default } from "/Users/nswamy14/Documents/GitHub/pdf-frame/node_modules/@nuxt/ui-templates/dist/templates/welcome.vue";
