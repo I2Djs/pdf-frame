@@ -1,4 +1,4 @@
-import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponent } from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -10,7 +10,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup (options, nuxt) {
+  setup () {
     // const resolver = createResolver(import.meta.url)
 
     addComponent({

@@ -7,7 +7,7 @@ const module = defineNuxtModule({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup(options, nuxt) {
+  setup() {
     addComponent({
       name: "pdfFrame",
       // name of the component to be used in vue templates
