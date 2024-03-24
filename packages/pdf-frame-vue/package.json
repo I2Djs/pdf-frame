@@ -14,11 +14,11 @@
   ],
   "scripts": {
     "dev": "vite --force",
-    "build": "vite build",
+    "build": "vite build && rimraf dist/fonts",
     "clean": "npx nuxi cleanup",
     "preview": "vite preview",
     "release": "npm run lint && npm run build && npm publish --access=public && git push --follow-tags",
-    "lint": "eslint --ext .js . --fix"
+    "lint": "eslint --ext .js ."
   },
   "dependencies": {
     "i2djs": "^5.0.0",
@@ -28,6 +28,7 @@
     "@vitejs/plugin-vue": "^4.5.2",
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.15.1",
+    "rimraf": "^5.0.5",
     "vite": "^5.0.8",
     "vite-plugin-node-polyfills": "^0.21.0"
   },
