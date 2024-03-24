@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   myModule: {},
   vue: {
         compilerOptions: {
-          // treat any tag that starts with ion- as custom elements
           isCustomElement: tag => tag.startsWith('i-')
         }
     }
