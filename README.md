@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue, nuxt, and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs as PDF and Canvas formats.
+Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue, nuxt, and React(work in progress). Powered by [i2djs](https://github.com/I2Djs/I2Djs), PDF-frame presently supports rendering outputs as PDF and Canvas formats.
 
 ## Features
 
