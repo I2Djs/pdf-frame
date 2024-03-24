@@ -11,9 +11,11 @@ pdf-frame-nuxt is a nuxt module for rendering PDF/Canvas graphics, and it's buil
 
 ## Features
 
-* Declarative HTML syntax for defining graphical content.
-* Renders PDF and Canvas outputs.
-* Dynamic content creation leveraging vuejs capabilities - template engine and reactivity.
-* Provides abstract elements to define multi-page PDF documents.
+* Declarative Syntax: Easily define PDF/Canvas graphical content using a clear and declarative syntax.
+* SVG-like Syntax and Semantics: Adopts the familiar SVG tag and attribute syntax for defining geometrical shapes.
+* Consistent Rendering: Provides the same syntax and semantics for rendering both PDF and Canvas outputs.
+* Auto Pagination: Content overflow is taken care by the engine by spawning new pages, ensuring the document's integrity and readability.
+* Multi-page Support: Create multi-page PDF documents seamlessly.
+* Animations & Events: Easy way to define the animations and events on elements in canvas context.
 
 
