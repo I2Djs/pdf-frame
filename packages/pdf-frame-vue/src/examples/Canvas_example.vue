@@ -12,7 +12,7 @@
         :y1="0"
         :x2="100"
         :y2="100"
-        :colorStops="[
+        :color-stops="[
           {
             color: '#023c73',
             offset: 0,

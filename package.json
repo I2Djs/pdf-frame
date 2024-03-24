@@ -11,6 +11,7 @@
     "pdf-frame-vue:dev": "npx nx dev @i2d/pdf-frame-vue",
     "pdf-frame-vue:build": "npx nx build @i2d/pdf-frame-vue",
     "pdf-frame-vue:clean": "npx nx clean @i2d/pdf-frame-vue",
+    "pdf-frame-vue:lint": "npx nx lint @i2d/pdf-frame-vue",
     "pdf-frame-vue:release": "npx nx run @i2d/pdf-frame-vue:release",
     "pdf-frame-nuxt:dev": "npx nx run @i2d/nuxt-pdf-frame:dev",
     "pdf-frame-nuxt:build": "npx nx run @i2d/nuxt-pdf-frame:prepack",

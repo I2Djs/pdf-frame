@@ -11,10 +11,9 @@
             :style="{
                 fill: fillColor
             }"
-            :event="{
-                mousein: mouseinhdlr,
-                mouseout: mouseouthdlr
-            }">
+            @click="mouseClick"
+            @mousein="mouseinhdlr"
+            @mouseout="mouseouthdlr">
         </i-circle>
     </pdfFrame>
   </div>
@@ -25,7 +24,11 @@ import { ref } from "vue";
 
 let fillColor = ref('#0ff000');
 
-  function mouseinhdlr() {
+  function mouseClick(event) {
+    fillColor.value = 'pink';
+  }
+
+  function mouseinhdlr(event) {
     fillColor.value = '#f0f0f0';
   }
 
