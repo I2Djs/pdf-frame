@@ -10,8 +10,6 @@ node_modules
 .nuxt
 .output
 
-/packages/pdf-frame-vue
-
 
 # IDEs and editors
 /.idea
