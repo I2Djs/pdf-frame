@@ -173,10 +173,20 @@ export default function createI2djsRenderer(layerInstance) {
     * @getSetter : Method which handles attribute settings
     */
     const getSetter = (key) => {
+        if (key.includes('-')) {
+          key = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+        }
+
         return (el, value) => {
-            if (typeof value === 'function') {
+            if (/^on[A-Z]/.test(key)) {
+              const eventName = key.slice(2).toLowerCase();
+                if (el.on) {
+                    el.on(eventName, value);
+                }
+            } else if (typeof value === 'function') {
                 value = value(el);
             }
+
             if (key !== "style") {
                 if (key === 'src' && !imgCache[value]) {
                     imgCache[value]= layerInstance.createAsyncTexture({
@@ -193,7 +203,7 @@ export default function createI2djsRenderer(layerInstance) {
                     el.setAttr(key, imgCache[value]);
                 } else if (key === 'text' && value) {
                     el.text(value);
-                } else if (key ==='p-template' && el instanceof canvasNodeExe) {
+                } else if (((key ==='p-template') || (key ==='pTemplate'))  && el instanceof canvasNodeExe) {
                     el.addTemplate(templates[value]);
                 } else if (key === 'event') {
                     for (let e in value) {
