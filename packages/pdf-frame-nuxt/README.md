@@ -32,7 +32,14 @@ pdf-frame-nuxt is a Nuxt 3 module , enabling the rendering of PDF and Canvas gra
 
 ### Installation
 ```
-  npm install @i2d/nuxt-pdf-frame
+# Using pnpm
+pnpm add @i2d/nuxt-pdf-frame
+
+# Using yarn
+yarn add @i2d/nuxt-pdf-frame
+
+# Using npm
+npm install @i2d/nuxt-pdf-frame
 ```
 
 ### Integration
