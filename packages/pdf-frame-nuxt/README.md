@@ -22,6 +22,12 @@ pdf-frame-nuxt is a Nuxt 3 module , enabling the rendering of PDF and Canvas gra
 * Animations & Events: Easy way to define the animations and events on elements in canvas context.
 * Nuxt 3 Compatible module.
 
+## Documentation
+  * [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  
+## Playground
+  * Try examples on [Stackblitz](https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase)
+
 ## Quick Setup
 
 ### Installation
