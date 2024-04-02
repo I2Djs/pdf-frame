@@ -1,11 +1,14 @@
-
 <p align="center">
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
 
-# pdf-frame-nuxt [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame)
+<h3 align="center">
+    
+  [www.pdf-frame.org](https://www.pdf-frame.org)
+   
+</h3>
 
-## Introduction
+# pdf-frame-nuxt [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![License](https://img.shields.io/npm/l/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![Nuxt](https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js)](https://nuxt.com)
 
 pdf-frame-nuxt is a Nuxt 3 module , enabling the rendering of PDF and Canvas graphics within Nuxt applications. This module offers a straightforward Template-based syntax and semantics, streamlining the process of generating and managing graphical content. Utilizing the capabilities of the i2djs framework, PDF-Frame-Vue facilitates the production of graphical outputs in both PDF and Canvas formats.
 
@@ -19,12 +22,14 @@ pdf-frame-nuxt is a Nuxt 3 module , enabling the rendering of PDF and Canvas gra
 * Animations & Events: Easy way to define the animations and events on elements in canvas context.
 * Nuxt 3 Compatible module.
 
-## Installation
+## Quick Setup
+
+### Installation
 ```
   npm install @i2d/nuxt-pdf-frame
 ```
 
-## Integration
+### Integration
 Add `@i2d/nuxt-pdf-frame` module to the nuxt.config.js.
 ```javascript
 export default defineNuxtConfig({
@@ -34,8 +39,8 @@ export default defineNuxtConfig({
 })
 ```
 
-## Usage
-### PDF Template
+### Usage
+#### PDF Template
 ```html
 <pdfFrame type="pdf" width="595" height="841">
     <!-- Page Templates -->
@@ -60,7 +65,7 @@ export default defineNuxtConfig({
 </pdfFrame>
 ```
 
-### Canvas Template
+#### Canvas Template
 ```html
 <pdfFrame type="pdf" width="595" height="841">
   <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
@@ -71,9 +76,9 @@ export default defineNuxtConfig({
 </pdfFrame>
 ```
 
-## License
+### License
 This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
 
-## Compatibility
+### Compatibility
 This is Nuxt 3 client only module.
 
