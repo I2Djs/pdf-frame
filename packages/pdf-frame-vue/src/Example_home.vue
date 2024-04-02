@@ -3,7 +3,7 @@ import { watch, shallowRef } from 'vue';
 import Canvas_example from './examples/Canvas_example.vue';
 import Canvas_path_animation from './examples/Canvas_path_animation.vue';
 import Canvas_pathanimation from './examples/Canvas_path_animation2.vue';
-import Pdf_example from './examples/Pdf_example.vue';
+import Pdf_example from './examples/Pdf_example_2.vue';
 import Pdf_custom_fonts from './examples/Pdf_custom_fonts.vue';
 import Canvas_Helix_animation from './examples/Canvas_helix_animation.vue';
 import Canvas_animation from './examples/Canvas_animate.vue';
@@ -15,6 +15,9 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
   let exampleList = [{
     title: 'Canvas Example',
     component: Canvas_example
+  }, {
+    title: 'PDF Example',
+    component: Pdf_example
   },{
     title: 'Canvas Path Animaton - 1',
     component: Canvas_path_animation
@@ -27,9 +30,6 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
   }, {
     title: 'Canvas rect Animation',
     component: Canvas_animation
-  }, {
-    title: 'PDF Example',
-    component: Pdf_example
   }, {
     title: 'PDF Custom Fonts',
     component: Pdf_custom_fonts
@@ -47,7 +47,7 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
     component: Canvas_tadpole_animation
   }]
 
-  let selectedExample = shallowRef(Canvas_example);
+  let selectedExample = shallowRef(Pdf_example);
 
 </script>
 

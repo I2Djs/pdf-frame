@@ -2,6 +2,12 @@
   <img src="https://github.com/I2Djs/pdf-frame/blob/main/assets/pdf-frame.svg?raw=true" width=500>
 </p>
 
+<h3 align="center">
+    
+  [www.pdf-frame.org](https://www.pdf-frame.org)
+   
+</h3>
+
 # pdf-frame-vue [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue)
 
 PDF-Frame-Vue is a vue.js component designed for rendering PDF and Canvas graphics effortlessly on the web. This component provides an intuitive HTML Template-based syntax and semantics that simplifies the creation and management of graphical content. Powered by [i2djs](https://github.com/I2Djs/I2Djs) framework, PDF-Frame-Vue currently supports rendering outputs in PDF and Canvas formats.
@@ -32,7 +38,30 @@ PDF-Frame-Vue implements Vue.js' custom renderer, taking advantage of framework 
   * [Simplifying PDF Rendering in Vue with PDF-Frame-Vue](https://nswamy14.hashnode.dev/pdf-rendering-made-easy-with-pdf-frame-vue)
 
 ## Usage
-### PDF Template
+
+### Canvas Template
+```html
+<pdfFrame type="canvas" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
+
+### PDF Basic Template
+```html
+<pdfFrame type="pdf" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
+
+### Multi-Page PDF Template
 ```html
 <pdfFrame type="pdf" width="595" height="841">
     <!-- Page Templates -->
@@ -57,16 +86,6 @@ PDF-Frame-Vue implements Vue.js' custom renderer, taking advantage of framework 
 </pdfFrame>
 ```
 
-### Canvas Template
-```html
-<pdfFrame type="pdf" width="595" height="841">
-  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
-    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
-    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
-    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
-  </i-g>
-</pdfFrame>
-```
 
 ## Contributing
 Contributions are welcome! If you would like to contribute to pdf-frame, please follow the guidelines in CONTRIBUTING.md.

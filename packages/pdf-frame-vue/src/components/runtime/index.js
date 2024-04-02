@@ -1,5 +1,5 @@
 import { createRenderer, nextTick } from "vue";
-import { canvasNodeExe, canvasGradient, createRadialGradient, createLinearGradient } from "i2djs";
+import { canvasNodeExe, canvasGradient, createRadialGradient, createLinearGradient, PDFCreator } from "i2djs";
 
 
 /*
@@ -47,20 +47,27 @@ export default function createI2djsRenderer(layerInstance) {
             getSetter(key)(el, nextValue);
         },
         insert: (child, parent, anchor) => {
-            if (!parent) {
-                parent = layerInstance;
+            
+            parent = parent || layerInstance;
+
+            
+
+            if ( child && parent instanceof PDFCreator && parent.pages ) {
+                if (!["template", "page"].includes(child.nodeName)) {
+                    parent = parent.pages.length ? parent.pages[0] : parent.addPage();
+                } else {
+                    console.log("don't change parent");
+                }
             }
-            if (!child || !parent || !parent.child) return;
+
+            if (!child || !parent?.child) return;
             if (child instanceof canvasGradient) return;
-            if (child.nodeName === 'animate') {
+
+            if (child.nodeName === 'animate' || child.nodeName === 'animatePath') {
+                const animationMethod = child.nodeName === 'animate' ? 'animateTo' : 'animatePathTo';
                 child.parent = parent;
                 nextTick().then(() => {
-                    parent.animateTo(child, child.from);
-                })
-            } else if (child.nodeName === 'animatePath') {
-                child.parent = parent;
-                nextTick().then(() => {
-                    parent.animatePathTo(child, child.from);
+                    parent[animationMethod](child, child.from);
                 })
             } else {
                 parent.child([child]);
@@ -84,6 +91,10 @@ export default function createI2djsRenderer(layerInstance) {
                 console.warn(`Unknown PDF-Frame tag: ${tag}`);
             }
 
+            if ((elType === "animate" || elType === "animatePath") && layerInstance instanceof PDFCreator) {
+                return null;
+            }
+
             switch(elType) {
                 case "page-template":
                     if (ctxType !== 'pdf') {
@@ -91,6 +102,7 @@ export default function createI2djsRenderer(layerInstance) {
                         return null;
                     }
                     node = layerInstance.createTemplate();
+                    node.nodeName = "template";
                     templates[vnodeProps.id] = node;
                     break;
                 case "page":
@@ -99,14 +111,17 @@ export default function createI2djsRenderer(layerInstance) {
                         return null
                     };
                     node = layerInstance.addPage();
+                    node.nodeName = "page";
                     break;
                 case "linearGradient":
                     node = createLinearGradient();
                     gradientCache[vnodeProps.id] = node;
+                    node.nodeName = "linearGradient";
                     break;
                 case "radialGradient":
                     node = createRadialGradient();
                     gradientCache[vnodeProps.id] = node;
+                    node.nodeName = "radialGradient";
                     break;
                 case "animate":
                     node = getAnimateObject(vnodeProps);
@@ -169,13 +184,66 @@ export default function createI2djsRenderer(layerInstance) {
         },
     });
 
+    const normalizeKey = (key) => key.includes('-') ? key.replace(/-([a-z])/g, (_, char) => char.toUpperCase()) : key;
+
+    const setAttribute = (key, el, value) => {
+        switch (key) {
+            case 'src':
+                if (!imgCache[value]) {
+                    imgCache[value] = layerInstance.createAsyncTexture({ attr: { src: value } });
+                    imgCache[value].then((ins) => {
+                        imgCache[value] = ins.exportAsDataUrl();
+                        el.setAttr(key, imgCache[value]);
+                    });
+                } else {
+                    el.setAttr(key, imgCache[value]);
+                }
+                break;
+            case 'text':
+                el.text(value);
+                break;
+            case 'p-template':
+            case 'pTemplate':
+                if (el instanceof canvasNodeExe) el.addTemplate(templates[value]);
+                break;
+            case 'event':
+                Object.entries(value).forEach(([eventName, handler]) => el.on?.(eventName, handler));
+                break;
+            case 'block':
+                el.block = true;
+                break;
+            case 'data':
+                el.data(value);
+                break;
+            case 'transform':
+                el.setAttr(key, parseTransformStr(value));
+                break;
+            case 'bbox':
+                el.bbox = value;
+                break;
+            default:
+                el.setAttr(key, value);
+        }
+    };
+
+    const setStyle = (el, styles) => {
+        Object.entries(styles).forEach(([styleKey, styleValue]) => {
+            let v = typeof styleValue === 'function' ? styleValue(el) : styleValue;
+            if ((styleKey === 'fillStyle' || styleKey === 'strokeStyle') && typeof v === 'string' && v.startsWith('grad')) {
+                const gtId = v.match(/\(([^)]+)\)/)[1];
+                v = getGrad(gtId);
+            }
+            el.setStyle(styleKey, v);
+        });
+    };
+    
+
     /*
     * @getSetter : Method which handles attribute settings
     */
     const getSetter = (key) => {
-        if (key.includes('-')) {
-          key = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-        }
+
+        key = normalizeKey(key);
 
         return (el, value) => {
             if (/^on[A-Z]/.test(key)) {
@@ -188,54 +256,9 @@ export default function createI2djsRenderer(layerInstance) {
             }
 
             if (key !== "style") {
-                if (key === 'src' && !imgCache[value]) {
-                    imgCache[value]= layerInstance.createAsyncTexture({
-                        attr: {
-                            src: value
-                        },
-                    });
-
-                    imgCache[value].then((ins) => {
-                        imgCache[value] = ins.exportAsDataUrl();
-                        el.setAttr(key, imgCache[value]);
-                    });
-                } else if (key === 'src' && imgCache[value]) {
-                    el.setAttr(key, imgCache[value]);
-                } else if (key === 'text' && value) {
-                    el.text(value);
-                } else if (((key ==='p-template') || (key ==='pTemplate'))  && el instanceof canvasNodeExe) {
-                    el.addTemplate(templates[value]);
-                } else if (key === 'event') {
-                    for (let e in value) {
-                        if (el.on) {
-                            el.on(e, value[e]);
-                        }
-                    }
-                } else if (key === 'block') {
-                    el.block = true;
-                } else if (key === 'data') {
-                    el.data(value);
-                } else if (key === 'transform') {
-                    el.setAttr(key, parseTransformStr(value))
-                } else if (key === 'bbox') {
-                    el.bbox = value;
-                } else {
-                    el.setAttr(key, value);
-                }
+                setAttribute(key, el, value);
             } else {
-                for (let sKey in value) {
-                    let v = value[sKey];
-                    if (typeof v === 'function') {
-                        v = v(el);
-                    }
-                    if (sKey === 'fillStyle' || sKey === 'strokeStyle') {
-                        if (typeof v === "string" && v.startsWith('grad')) {
-                            const gtId = v.match(/\(([^)]+)\)/)[1];
-                            v = getGrad(gtId);
-                        }
-                    }
-                    el.setStyle(sKey, v);
-                }
+                setStyle(el, value);
             }
         };
     };

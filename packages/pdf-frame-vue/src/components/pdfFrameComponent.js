@@ -3,11 +3,9 @@ import createI2djsRenderer from "./runtime";
 import {
     defineComponent,
     Fragment,
-    watchEffect,
     h,
     watch,
     onMounted,
-    onUpdated,
     onUnmounted,
     ref,
     getCurrentInstance
@@ -30,12 +28,12 @@ export const pdfFrame = defineComponent({
         height: {
             type: Number,
             required: false,
-            default: 0
+            default: undefined
         },
         width: {
             type: Number,
             required: false,
-            default: 0
+            default: undefined
         },
         layerSetting: {
             type: Object,
@@ -64,6 +62,13 @@ export const pdfFrame = defineComponent({
             required: false,
             default: () => {}
         },
+        // applicable for PDF Layer only
+        autoPagination: {
+            type: Boolean,
+            required: false,
+            default: true
+        },
+
     },
     emits: ['on-resize', 'on-ready', 'on-update'],
     setup(props, setupContext) {
@@ -118,6 +123,15 @@ export const pdfFrame = defineComponent({
                 layerInstance.destroy();
                 layerInstance= null;
             }
+        });
+
+        watch([()=> props.height,()=> props.width] , (newValue) => {
+            // applicable for PDF Layer only
+            if (layerInstance.setSize) {
+                layerInstance.setSize(props.width, props.height)
+            }
+            }, {
+                deep: true,
         });
 
         watch(()=> props.encryption, (newValue) => {
@@ -177,14 +191,16 @@ export const pdfFrame = defineComponent({
 
         function createPdfInstance(props) {
             let el = document.getElementById(vNode.props.id);
-            const pdfInstance = pdfLayer(el, {
-                height: props.height,
-                width: props.width,
+            let config = {
+                ...((props.height !== undefined) && {height: props.height}),
+                ...((props.width !== undefined) && {width: props.width}),
                 ...(props.config || {}),
                 info:(props.info || {}),
                 encryption: (props.encryption || {})
-            }, {
+            };
+            const pdfInstance = pdfLayer(el, config, {
                 autoUpdate: true,
+                autoPagination: props.autoPagination,
                 onUpdate: (url) => {
                     if (el.tagName === "IFRAME") {
                         el.setAttribute("src", url);
