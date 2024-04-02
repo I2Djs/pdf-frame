@@ -92,7 +92,7 @@ export default defineNuxtConfig({
 
 #### Canvas Template
 ```html
-<pdfFrame type="pdf" width="595" height="841">
+<pdfFrame type="canvas" width="595" height="841">
   <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
     <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
     <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
