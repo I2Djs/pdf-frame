@@ -29,7 +29,29 @@ Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. Wi
   * [Creating visually rich PDFs with PDF-Frame-Vue](https://nswamy14.hashnode.dev/creating-visually-rich-pdfs-with-pdf-frame-vue)
   * [Simplifying PDF Rendering in Vue with PDF-Frame-Vue](https://nswamy14.hashnode.dev/pdf-rendering-made-easy-with-pdf-frame-vue)
 
-## PDF Usage Example
+### Canvas Template
+```html
+<pdfFrame type="canvas" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
+
+### PDF Basic Template
+```html
+<pdfFrame type="pdf" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
+
+### Multi-Page PDF Template
 ```html
 <pdfFrame type="pdf" width="595" height="841">
     <!-- Page Templates -->
@@ -40,8 +62,10 @@ Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. Wi
     </i-page-template>
     <!-- Page 1 -->
     <i-page p-template="temp-1">
-        <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
-        <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+      <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+          <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+          <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+      </i-g>
     </i-page>
     
     <!-- Page 2 -->

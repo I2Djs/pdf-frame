@@ -18,7 +18,8 @@
     "clean": "npx nuxi cleanup",
     "preview": "vite preview",
     "release": "npm run lint && npm run build && npm publish --access=public && git push --follow-tags",
-    "lint": "eslint --ext .js ."
+    "lint": "eslint --ext .js .",
+    "postversion": "git tag vue-$(node -p -e \"require('./package.json').version\") && git push origin vue-$(node -p -e \"require('./package.json').version\") && git tag -d v$(node -p -e \"require('./package.json').version\") && git push origin :refs/tags/v$(node -p -e \"require('./package.json').version\")"
   },
   "dependencies": {
     "i2djs": "^5.1.0",
