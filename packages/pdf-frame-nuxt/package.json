@@ -2,7 +2,7 @@
   "name": "@i2d/nuxt-pdf-frame",
   "private": false,
   "version": "0.0.4",
-  "description": "nuxt-pdf-frame is a nuxtjs module for rendering PDF/Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
+  "description": "nuxt-pdf-frame is a nuxt 3 module for rendering PDF and Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/I2Djs/pdf-frame.git"
@@ -24,14 +24,15 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build build",
+    "prepack": "nuxt-module-build prepare && nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint  && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint . --fix",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "postversion": "git tag nuxt-$(node -p -e \"require('./package.json').version\") && git push origin nuxt-$(node -p -e \"require('./package.json').version\") && git tag -d v$(node -p -e \"require('./package.json').version\") && git push origin :refs/tags/v$(node -p -e \"require('./package.json').version\")"
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.1",
