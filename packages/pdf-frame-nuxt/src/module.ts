@@ -1,15 +1,36 @@
-import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addComponent, createResolver, isNuxt3 } from '@nuxt/kit'
 
+// Module options TypeScript interface definition
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'pdf-frame',
-    configKey: 'pdfFrame'
+    configKey: 'PdfFrame',
+    compatibility: {
+      nuxt: '^3.0.0'
+    }
   },
-  // Default configuration options of the Nuxt module
+  hooks: {
+    'vite:extendConfig': (config, { isClient }) => {
+      if (isClient) {
+        if (config?.vue?.template?.compilerOptions === undefined) {
+          config.vue ??= {}
+          config.vue.template ??= {}
+          config.vue.template.compilerOptions ??= {}
+        }
+
+        config.vue.template.compilerOptions.isCustomElement = (tag) => tag.startsWith('i-');
+      }
+    }
+  },
   defaults: {},
-  setup () {
+  async setup (options, nuxt) {
+    if (!isNuxt3(nuxt)) {
+      console.error("nuxt-pdf-frame compatible with Nuxt 3");
+      return;
+    }
+
     const resolver = createResolver(import.meta.url)
     addComponent({
       name: 'pdfFrame',

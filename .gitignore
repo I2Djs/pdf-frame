@@ -7,6 +7,10 @@ tmp
 # dependencies
 node_modules
 
+.nuxt
+.output
+
+
 # IDEs and editors
 /.idea
 .project
