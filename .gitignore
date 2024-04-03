@@ -17,6 +17,7 @@ node_modules
 *.sublime-workspace
 
 .nuxt
+.output
 
 # IDE - VSCode
 .vscode/*
