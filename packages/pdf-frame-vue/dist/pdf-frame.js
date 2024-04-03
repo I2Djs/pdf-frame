@@ -1,6 +1,6 @@
-import { canvasGradient as q, createRadialGradient as G, createLinearGradient as U, canvasNodeExe as I, pdfLayer as j, canvasLayer as k } from "i2djs";
-import { createRenderer as E, nextTick as S, defineComponent as O, getCurrentInstance as N, onMounted as F, h as m, onUnmounted as R, watch as C, Fragment as z } from "vue";
-const M = [
+import { canvasGradient as U, createRadialGradient as q, createLinearGradient as G, canvasNodeExe as I, pdfLayer as j, canvasLayer as E } from "i2djs";
+import { createRenderer as F, nextTick as S, defineComponent as N, getCurrentInstance as O, onMounted as R, h as m, onUnmounted as z, watch as C, Fragment as M } from "vue";
+const L = [
   "i-g",
   "i-group",
   "i-circle",
@@ -20,12 +20,12 @@ const M = [
   "i-animatePath"
 ];
 function B(r) {
-  const d = {}, s = {}, a = {}, { render: o } = E({
-    patchProp(t, e, n, i, c, h, l, p, w) {
-      b(e)(t, i);
+  const d = {}, u = {}, a = {}, { render: o } = F({
+    patchProp(t, e, i, n, c, y, l, x, w) {
+      b(e)(t, n);
     },
-    insert: (t, e, n) => {
-      e || (e = r), !(!t || !e || !e.child) && (t instanceof q || (t.nodeName === "animate" ? (t.parent = e, S().then(() => {
+    insert: (t, e, i) => {
+      e || (e = r), !(!t || !e || !e.child) && (t instanceof U || (t.nodeName === "animate" ? (t.parent = e, S().then(() => {
         e.animateTo(t, t.from);
       })) : t.nodeName === "animatePath" ? (t.parent = e, S().then(() => {
         e.animatePathTo(t, t.from);
@@ -34,47 +34,47 @@ function B(r) {
     remove: (t) => {
       t != null && t.remove();
     },
-    createElement: (t, e, n, i) => {
+    createElement: (t, e, i, n) => {
       var w, A, T;
       const c = t.split("-").slice(1).join("-");
-      let h = M.indexOf(t), l = null, p = r.ctx.type_;
-      switch (h === -1 && console.warn(`Unknown PDF-Frame tag: ${t}`), c) {
+      let y = L.indexOf(t), l = null, x = r.ctx.type_;
+      switch (y === -1 && console.warn(`Unknown PDF-Frame tag: ${t}`), c) {
         case "page-template":
-          if (p !== "pdf")
+          if (x !== "pdf")
             return console.warn("page-template element is invalid in canvas context"), null;
-          l = r.createTemplate(), s[i.id] = l;
+          l = r.createTemplate(), u[n.id] = l;
           break;
         case "page":
-          if (p !== "pdf")
+          if (x !== "pdf")
             return console.warn("Page element is invalid in canvas context"), null;
           l = r.addPage();
           break;
         case "linearGradient":
-          l = U(), a[i.id] = l;
+          l = G(), a[n.id] = l;
           break;
         case "radialGradient":
-          l = G(), a[i.id] = l;
+          l = q(), a[n.id] = l;
           break;
         case "animate":
-          l = f(i), i.from && (l.from = {
+          l = f(n), n.from && (l.from = {
             attr: {
-              ...i.from,
+              ...n.from,
               style: null
             },
-            style: ((w = i.from) == null ? void 0 : w.style) ?? {}
+            style: ((w = n.from) == null ? void 0 : w.style) ?? {}
           });
           break;
         case "animatePath":
-          l = u(i), i.from && (l.from = {
+          l = s(n), n.from && (l.from = {
             attr: {
-              d: ((A = i == null ? void 0 : i.from) == null ? void 0 : A.d) ?? "",
+              d: ((A = n == null ? void 0 : n.from) == null ? void 0 : A.d) ?? "",
               style: null
             },
-            style: ((T = i.from) == null ? void 0 : T.style) ?? {}
+            style: ((T = n.from) == null ? void 0 : T.style) ?? {}
           });
           break;
         default:
-          l = y(c, i);
+          l = g(c, n);
           break;
       }
       return l;
@@ -88,41 +88,46 @@ function B(r) {
     setElementText: (t, e) => {
     },
     parentNode: (t) => t && t.dom.parent ? t.dom.parent : null,
-    nextSibling: (t) => (e, n) => {
+    nextSibling: (t) => (e, i) => {
     },
     querySelector: (t) => r.fetchEl(t) || null
-  }), b = (t) => (e, n) => {
-    if (typeof n == "function" && (n = n(e)), t !== "style")
-      if (t === "src" && !d[n])
-        d[n] = r.createAsyncTexture({
+  }), b = (t) => (t.includes("-") && (t = t.replace(/-([a-z])/g, (e) => e[1].toUpperCase())), (e, i) => {
+    if (/^on[A-Z]/.test(t)) {
+      const n = t.slice(2).toLowerCase();
+      e.on && e.on(n, i);
+    } else
+      typeof i == "function" && (i = i(e));
+    if (t !== "style")
+      if (t === "src" && !d[i])
+        d[i] = r.createAsyncTexture({
           attr: {
-            src: n
+            src: i
           }
-        }), d[n].then((i) => {
-          d[n] = i.exportAsDataUrl(), e.setAttr(t, d[n]);
+        }), d[i].then((n) => {
+          d[i] = n.exportAsDataUrl(), e.setAttr(t, d[i]);
         });
-      else if (t === "src" && d[n])
-        e.setAttr(t, d[n]);
-      else if (t === "text" && n)
-        e.text(n);
-      else if (t === "p-template" && e instanceof I)
-        e.addTemplate(s[n]);
+      else if (t === "src" && d[i])
+        e.setAttr(t, d[i]);
+      else if (t === "text" && i)
+        e.text(i);
+      else if ((t === "p-template" || t === "pTemplate") && e instanceof I)
+        e.addTemplate(u[i]);
       else if (t === "event")
-        for (let i in n)
-          e.on && e.on(i, n[i]);
+        for (let n in i)
+          e.on && e.on(n, i[n]);
       else
-        t === "block" ? e.block = !0 : t === "data" ? e.data(n) : t === "transform" ? e.setAttr(t, x(n)) : t === "bbox" ? e.bbox = n : e.setAttr(t, n);
+        t === "block" ? e.block = !0 : t === "data" ? e.data(i) : t === "transform" ? e.setAttr(t, p(i)) : t === "bbox" ? e.bbox = i : e.setAttr(t, i);
     else
-      for (let i in n) {
-        let c = n[i];
-        if (typeof c == "function" && (c = c(e)), (i === "fillStyle" || i === "strokeStyle") && typeof c == "string" && c.startsWith("grad")) {
-          const h = c.match(/\(([^)]+)\)/)[1];
-          c = g(h);
+      for (let n in i) {
+        let c = i[n];
+        if (typeof c == "function" && (c = c(e)), (n === "fillStyle" || n === "strokeStyle") && typeof c == "string" && c.startsWith("grad")) {
+          const y = c.match(/\(([^)]+)\)/)[1];
+          c = h(y);
         }
-        e.setStyle(i, c);
+        e.setStyle(n, c);
       }
-  };
-  function y(t, e) {
+  });
+  function g(t, e) {
     return new I(r.ctx, {
       el: t === "group" ? "g" : t,
       attr: {},
@@ -130,17 +135,17 @@ function B(r) {
       bbox: e && e.bbox !== void 0 ? e.bbox : !0
     }, Math.round(Math.random() * 1e7), 0);
   }
-  function x(t) {
+  function p(t) {
     if (typeof t == "object" && !Array.isArray(t) && t !== null)
       return t;
     const e = {};
-    for (const n in t = t.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
-      const i = t[n].match(/[\w\.\-]+/g);
-      e[i.shift()] = i.map((c) => parseFloat(c));
+    for (const i in t = t.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
+      const n = t[i].match(/[\w\.\-]+/g);
+      e[n.shift()] = n.map((c) => parseFloat(c));
     }
     return e;
   }
-  function g(t) {
+  function h(t) {
     return a[t];
   }
   function f(t) {
@@ -158,33 +163,33 @@ function B(r) {
       end: t.end || null,
       delay: t.delay || 0,
       direction: t.direction || "default",
-      setAttr: function(n, i) {
+      setAttr: function(i, n) {
       },
-      setStyle: function(n, i) {
+      setStyle: function(i, n) {
       },
       remove: function() {
         this.parent.interrupt();
       }
     };
   }
-  function u(t) {
-    var e, n;
+  function s(t) {
+    var e, i;
     return {
       nodeName: "animatePath",
       attr: {
         d: ((e = t == null ? void 0 : t.to) == null ? void 0 : e.d) ?? "",
         style: null
       },
-      style: ((n = t == null ? void 0 : t.to) == null ? void 0 : n.style) ?? {},
+      style: ((i = t == null ? void 0 : t.to) == null ? void 0 : i.style) ?? {},
       duration: t.duration || 0,
       ease: t.ease || "default",
       loop: t.loop || 0,
       end: t.end || null,
       delay: t.delay || 0,
       direction: t.direction || "default",
-      setAttr: function(i, c) {
+      setAttr: function(n, c) {
       },
-      setStyle: function(i, c) {
+      setStyle: function(n, c) {
       },
       remove: function() {
         this.parent.interrupt();
@@ -193,7 +198,7 @@ function B(r) {
   }
   return o;
 }
-const D = O({
+const D = N({
   props: {
     type: {
       type: String,
@@ -250,23 +255,23 @@ const D = O({
   },
   emits: ["on-resize", "on-ready", "on-update"],
   setup(r, d) {
-    let s, a = null;
-    const o = N();
-    F(() => {
+    let u, a = null;
+    const o = O();
+    R(() => {
       S().then(() => {
         const f = d.slots.default;
-        a || (r.type === "pdf" || r.type === "pdf-blob" ? a = y(r) : r.type === "canvas" ? a = x(r) : console.warn(`Unknown render context: ${r.type}`)), a && a.onResize && a.onResize(() => {
+        a || (r.type === "pdf" || r.type === "pdf-blob" ? a = g(r) : r.type === "canvas" ? a = p(r) : console.warn(`Unknown render context: ${r.type}`)), a && a.onResize && a.onResize(() => {
           d.emit("on-resize", {
             height: a.height,
             width: a.width
           });
         }), a && a.onChange && a.onChange((e) => {
-          a && a.container && a.container.tagName === "IFRAME" && a.container.setAttribute("src", e), r.onUpdate && g(e);
+          a && a.container && a.container.tagName === "IFRAME" && a.container.setAttribute("src", e), r.onUpdate && h(e);
         });
-        const u = B(a), t = m(b, f);
-        u(t, a), d.emit("on-ready", a);
+        const s = B(a), t = m(b, f);
+        s(t, a), d.emit("on-ready", a);
       });
-    }), R(() => {
+    }), z(() => {
       a && (a.destroy(), a = null);
     }), C(() => r.encryption, (f) => {
       a.setConfig && a.setConfig({
@@ -287,17 +292,17 @@ const D = O({
     }, {
       deep: !0
     });
-    const b = O({
-      setup(f, u) {
-        const t = N();
+    const b = N({
+      setup(f, s) {
+        const t = O();
         t.parent = o, t.appContext = o.appContext, t.root = o.root, t.provides = o.provides;
-        const e = u.slots.default;
-        return () => m(z, e());
+        const e = s.slots.default;
+        return () => m(M, e());
       }
     });
-    function y(f) {
-      let u = document.getElementById(s.props.id);
-      return j(u, {
+    function g(f) {
+      let s = document.getElementById(u.props.id);
+      return j(s, {
         height: f.height,
         width: f.width,
         ...f.config || {},
@@ -306,19 +311,19 @@ const D = O({
       }, {
         autoUpdate: !0,
         onUpdate: (e) => {
-          u.tagName === "IFRAME" && u.setAttribute("src", e), f.onUpdate && g(e);
+          s.tagName === "IFRAME" && s.setAttribute("src", e), f.onUpdate && h(e);
         }
       });
     }
-    function x(f) {
-      let u = document.getElementById(s.props.id);
-      return k(u, f.config, {
+    function p(f) {
+      let s = document.getElementById(u.props.id);
+      return E(s, f.config, {
         ...f.layerSetting
       });
     }
     switch (r.type) {
       case "pdf":
-        s = m("iframe", {
+        u = m("iframe", {
           id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -330,7 +335,7 @@ const D = O({
         });
         break;
       case "pdf-blob":
-        s = m("div", {
+        u = m("div", {
           id: r.id,
           class: "renderOutput",
           style: {
@@ -340,7 +345,7 @@ const D = O({
         });
         break;
       case "canvas":
-        s = m("div", {
+        u = m("div", {
           id: r.id,
           class: "renderOutput",
           style: {
@@ -350,7 +355,7 @@ const D = O({
         });
         break;
       case "default":
-        s = m("iframe", {
+        u = m("iframe", {
           id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
@@ -362,10 +367,10 @@ const D = O({
         });
         break;
     }
-    function g(f) {
+    function h(f) {
       d.emit("on-update", f);
     }
-    return () => s;
+    return () => u;
   }
 });
 export {
