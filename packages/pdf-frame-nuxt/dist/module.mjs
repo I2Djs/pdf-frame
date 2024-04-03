@@ -3,7 +3,7 @@ import { defineNuxtModule, isNuxt3, createResolver, addComponent } from '@nuxt/k
 const module = defineNuxtModule({
   meta: {
     name: "pdf-frame",
-    configKey: "PdfFrameNuxt",
+    configKey: "PdfFrame",
     compatibility: {
       nuxt: "^3.0.0"
     }

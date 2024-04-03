@@ -6,7 +6,7 @@ export interface ModuleOptions {}
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'pdf-frame',
-    configKey: 'PdfFrameNuxt',
+    configKey: 'PdfFrame',
     compatibility: {
       nuxt: '^3.0.0'
     }

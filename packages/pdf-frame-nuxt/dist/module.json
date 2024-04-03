@@ -1,6 +1,6 @@
 {
   "name": "pdf-frame",
-  "configKey": "PdfFrameNuxt",
+  "configKey": "PdfFrame",
   "compatibility": {
     "nuxt": "^3.0.0"
   },
