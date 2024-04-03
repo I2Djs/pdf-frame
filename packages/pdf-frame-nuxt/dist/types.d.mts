@@ -3,13 +3,13 @@ import type { ModuleOptions } from './module.js'
 
 
 declare module '@nuxt/schema' {
-  interface NuxtConfig { ['pdfFrame']?: Partial<ModuleOptions> }
-  interface NuxtOptions { ['pdfFrame']?: ModuleOptions }
+  interface NuxtConfig { ['PdfFrameNuxt']?: Partial<ModuleOptions> }
+  interface NuxtOptions { ['PdfFrameNuxt']?: ModuleOptions }
 }
 
 declare module 'nuxt/schema' {
-  interface NuxtConfig { ['pdfFrame']?: Partial<ModuleOptions> }
-  interface NuxtOptions { ['pdfFrame']?: ModuleOptions }
+  interface NuxtConfig { ['PdfFrameNuxt']?: Partial<ModuleOptions> }
+  interface NuxtOptions { ['PdfFrameNuxt']?: ModuleOptions }
 }
 
 
