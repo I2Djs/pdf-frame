@@ -43,7 +43,12 @@ export const pdfFrame = defineComponent({
         onUpdate: {
             type: Function,
             required: false,
-            default: () => {}
+            default: null
+        },
+        onClear: {
+            type: Function,
+            required: false,
+            default: null
         },
         config: {
             type: Object,
@@ -70,7 +75,7 @@ export const pdfFrame = defineComponent({
         },
 
     },
-    emits: ['on-resize', 'on-ready', 'on-update'],
+    emits: ['on-resize', 'on-ready'],
     setup(props, setupContext) {
         let vNode;
         let layerInstance = null;
@@ -104,8 +109,8 @@ export const pdfFrame = defineComponent({
                         if (layerInstance && layerInstance.container && layerInstance.container.tagName === "IFRAME") {
                             layerInstance.container.setAttribute("src", url);
                         }
-                        if (props.onUpdate) {
-                            emitOnUpdate(url);
+                        if (props.onUpdate && typeof props.onUpdate === "function") {
+                            props.onUpdate(url);
                         }
                     })
                 }
@@ -205,8 +210,8 @@ export const pdfFrame = defineComponent({
                     if (el.tagName === "IFRAME") {
                         el.setAttribute("src", url);
                     }
-                    if (props.onUpdate) {
-                        emitOnUpdate(url);
+                    if (props.onUpdate && typeof props.onUpdate === "function") {
+                        props.onUpdate(url);
                     }
                 }
             });
@@ -218,6 +223,10 @@ export const pdfFrame = defineComponent({
             const canvasInstance = canvasLayer(el, props.config, {
                 ...props.layerSetting
             });
+
+            if (props.onClear && typeof props.onClear === "function") {
+                canvasInstance.setClear(props.onClear);
+            }
             return canvasInstance;
         }
 
@@ -266,10 +275,6 @@ export const pdfFrame = defineComponent({
                     },
                 });
                 break;
-        }
-
-        function emitOnUpdate(data) {
-            setupContext.emit("on-update", data);
         }
 
         return () => {

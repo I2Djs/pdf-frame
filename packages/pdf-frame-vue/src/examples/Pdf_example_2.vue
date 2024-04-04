@@ -52,7 +52,8 @@ function onInstanceReady (layer) {
             :width="width"
             :height="height"
             :style="{ fillStyle:'grad(grad3)' }"
-          />
+          >          
+        </i-rect>
          <i-linearGradient
             id="grad4"
             :x1="0"
