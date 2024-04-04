@@ -1,6 +1,6 @@
 {
   "name": "pdf-frame",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "private": true,
   "devDependencies": {
@@ -13,9 +13,9 @@
     "pdf-frame-vue:clean": "npx nx clean @i2d/pdf-frame-vue",
     "pdf-frame-vue:lint": "npx nx lint @i2d/pdf-frame-vue",
     "pdf-frame-vue:release": "npx nx run @i2d/pdf-frame-vue:release",
-    "pdf-frame-nuxt:dev": "npx nx run @i2d/pdf-frame-nuxt:dev",
-    "pdf-frame-nuxt:build": "npx nx run @i2d/pdf-frame-nuxt:prepack",
-    "pdf-frame-nuxt:release": "npx nx run @i2d/pdf-frame-nuxt:release"
+    "pdf-frame-nuxt:dev": "npx nx run @i2d/nuxt-pdf-frame:dev",
+    "pdf-frame-nuxt:build": "npx nx run @i2d/nuxt-pdf-frame:prepack",
+    "pdf-frame-nuxt:release": "npx nx run @i2d/nuxt-pdf-frame:release"
   },
   "workspaces": [
     "packages/*"
