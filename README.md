@@ -14,7 +14,6 @@
 | --- | --- |
 | [pdf-frame-vue](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
 | [pdf-frame-nuxt](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) |
-| reactjs | WIP |
 
 ## Introduction
 
@@ -80,27 +79,6 @@ Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. Wi
     </i-page> 
 </pdfFrame>
 ```
-
-## Framework components
-
-pdf-frame provides framework specific components to support easy and quick adoptions in the projects:
-
- ### vue
- 
-  Documentation: [PDF-frame-vue](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
-  
-  Playground:
-  * [PDF Example](https://stackblitz.com/edit/pdf-frame-vuejs?embed=1&file=src%2FApp.vue)
-  * [PDF Custom Font Example](https://stackblitz.com/edit/pdf-frame-vuejs-67yqev)
-  * [Canvas Example](https://stackblitz.com/edit/pdf-frame-vuejs-canvas?embed=1&file=src%2FApp.vue)
-  * [Canvas Animation](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-qp1rhy?file=src%2FApp.vue)
-  * [Canvas Animation 2](https://stackblitz.com/edit/pdf-frame-vuejs-canvas-ragz9p?file=src%2FApp.vue)
-       
-  
-
-  ### nuxt
-
-  WIP
   
 
 ## Contributing
