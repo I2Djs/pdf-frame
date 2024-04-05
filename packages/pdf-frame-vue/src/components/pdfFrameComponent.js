@@ -40,7 +40,7 @@ export const pdfFrame = defineComponent({
             required: false,
             default: () => {}
         },
-        needOnAfterRender: {
+        needOnUpdated: {
             type: Boolean,
             required: false,
             default: false
@@ -75,7 +75,7 @@ export const pdfFrame = defineComponent({
         },
 
     },
-    emits: ['on-resize', 'on-ready', 'on-after-render'],
+    emits: ['on-resize', 'on-ready', 'on-updated'],
     setup(props, setupContext) {
         let vNode;
         let layerInstance = null;
@@ -109,8 +109,8 @@ export const pdfFrame = defineComponent({
                         if (layerInstance instanceof PDFCreator && layerInstance?.container?.tagName === "IFRAME") {
                             layerInstance.container.setAttribute("src", url);
                         }
-                        if (props.needOnAfterRender) {
-                            setupContext.emit("on-after-render", url);
+                        if (props.needOnUpdated) {
+                            setupContext.emit("on-updated", url);
                         }
                     })
                 }

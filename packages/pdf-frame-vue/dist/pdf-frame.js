@@ -1,4 +1,4 @@
-import { PDFCreator as N, canvasGradient as E, createRadialGradient as R, createLinearGradient as F, canvasNodeExe as p, pdfLayer as U, canvasLayer as B } from "i2djs";
+import { PDFCreator as p, canvasGradient as E, createRadialGradient as F, createLinearGradient as U, canvasNodeExe as T, pdfLayer as R, canvasLayer as B } from "i2djs";
 import { createRenderer as M, nextTick as j, defineComponent as q, getCurrentInstance as G, onMounted as L, h as b, onUnmounted as D, watch as w, Fragment as I } from "vue";
 const V = [
   "i-g",
@@ -21,11 +21,11 @@ const V = [
 ];
 function $(r) {
   const l = {}, o = {}, n = {}, { render: h } = M({
-    patchProp(e, t, i, a, c, g, d, C, A) {
+    patchProp(e, t, i, a, c, g, d, C, N) {
       e && f(t)(e, a);
     },
     insert: (e, t, i) => {
-      if (t = t || r, e && t instanceof N && t.pages && (["template", "page"].includes(e.nodeName) || (t = t.pages.length ? t.pages[0] : t.addPage())), !(!e || !(t != null && t.child)) && !(e instanceof E))
+      if (t = t || r, e && t instanceof p && t.pages && (["template", "page"].includes(e.nodeName) || (t = t.pages.length ? t.pages[0] : t.addPage())), !(!e || !(t != null && t.child)) && !(e instanceof E))
         if (e.nodeName === "animate" || e.nodeName === "animatePath") {
           const a = e.nodeName === "animate" ? "animateTo" : "animatePathTo";
           e.parent = t, j().then(() => {
@@ -38,9 +38,9 @@ function $(r) {
       e != null && e.remove();
     },
     createElement: (e, t, i, a) => {
-      var A, O, T;
+      var N, A, O;
       const c = e.split("-").slice(1).join("-");
-      let g = V.indexOf(e), d = null, C = r instanceof N ? "pdf" : "canvas";
+      let g = V.indexOf(e), d = null, C = r instanceof p ? "pdf" : "canvas";
       if (g === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), (c === "animate" || c === "animatePath") && C === "pdf")
         return null;
       switch (c) {
@@ -55,10 +55,10 @@ function $(r) {
           d = r.addPage(), d.nodeName = "page";
           break;
         case "linearGradient":
-          d = F(), n[a.id] = d, d.nodeName = "linearGradient";
+          d = U(), n[a.id] = d, d.nodeName = "linearGradient";
           break;
         case "radialGradient":
-          d = R(), n[a.id] = d, d.nodeName = "radialGradient";
+          d = F(), n[a.id] = d, d.nodeName = "radialGradient";
           break;
         case "animate":
           d = x(a), a.from && (d.from = {
@@ -66,16 +66,16 @@ function $(r) {
               ...a.from,
               style: null
             },
-            style: ((A = a.from) == null ? void 0 : A.style) ?? {}
+            style: ((N = a.from) == null ? void 0 : N.style) ?? {}
           });
           break;
         case "animatePath":
           d = z(a), a.from && (d.from = {
             attr: {
-              d: ((O = a == null ? void 0 : a.from) == null ? void 0 : O.d) ?? "",
+              d: ((A = a == null ? void 0 : a.from) == null ? void 0 : A.d) ?? "",
               style: null
             },
-            style: ((T = a.from) == null ? void 0 : T.style) ?? {}
+            style: ((O = a.from) == null ? void 0 : O.style) ?? {}
           });
           break;
         default:
@@ -109,7 +109,7 @@ function $(r) {
           break;
         case "p-template":
         case "pTemplate":
-          t instanceof p && t.addTemplate(o[i]);
+          t instanceof T && t.addTemplate(o[i]);
           break;
         case "event":
           Object.entries(i).forEach(([a, c]) => {
@@ -150,7 +150,7 @@ function $(r) {
     e !== "style" ? y(e, t, i) : k(t, i);
   });
   function s(e, t) {
-    return new p(r.ctx, {
+    return new T(r.ctx, {
       el: e === "group" ? "g" : e,
       attr: {},
       style: {},
@@ -248,7 +248,7 @@ const _ = q({
       default: () => {
       }
     },
-    needOnAfterRender: {
+    needOnUpdated: {
       type: Boolean,
       required: !1,
       default: !1
@@ -285,7 +285,7 @@ const _ = q({
       default: !0
     }
   },
-  emits: ["on-resize", "on-ready", "on-after-render"],
+  emits: ["on-resize", "on-ready", "on-updated"],
   setup(r, l) {
     let o, n = null;
     const h = G();
@@ -299,7 +299,7 @@ const _ = q({
           });
         }), n != null && n.onChange && n.onChange((m) => {
           var x;
-          n instanceof N && ((x = n == null ? void 0 : n.container) == null ? void 0 : x.tagName) === "IFRAME" && n.container.setAttribute("src", m), r.needOnAfterRender && l.emit("on-after-render", m);
+          n instanceof p && ((x = n == null ? void 0 : n.container) == null ? void 0 : x.tagName) === "IFRAME" && n.container.setAttribute("src", m), r.needOnUpdated && l.emit("on-updated", m);
         }), n != null && n.setClear && typeof r.setCtxClear == "function" && n.setClear(r.setCtxClear);
         const s = $(n), u = b(S, f);
         s(u, n), l.emit("on-ready", n);
@@ -345,7 +345,7 @@ const _ = q({
         info: f.info || {},
         encryption: f.encryption || {}
       };
-      return U(s, u, {
+      return R(s, u, {
         autoUpdate: !0,
         autoPagination: f.autoPagination
       });
