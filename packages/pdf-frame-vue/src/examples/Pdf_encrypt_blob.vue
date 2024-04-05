@@ -43,7 +43,8 @@
       :height="841"
       :config="config"
       :encrypt="encry"
-      :onUpdate="updateExternalIframe"
+      :needOnAfterRender="true"
+      @on-after-render="updateExternalIframe"
       :encryption="encry"
       :info="info"    >
       <i-page-template id="temp-1">

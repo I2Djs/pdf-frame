@@ -1,5 +1,5 @@
-import { PDFCreator as U, canvasGradient as I, createRadialGradient as E, createLinearGradient as F, canvasNodeExe as O, pdfLayer as z, canvasLayer as R } from "i2djs";
-import { createRenderer as M, nextTick as j, defineComponent as q, getCurrentInstance as G, onMounted as B, h as y, onUnmounted as L, watch as C, Fragment as D } from "vue";
+import { PDFCreator as N, canvasGradient as E, createRadialGradient as R, createLinearGradient as F, canvasNodeExe as p, pdfLayer as U, canvasLayer as B } from "i2djs";
+import { createRenderer as M, nextTick as j, defineComponent as q, getCurrentInstance as G, onMounted as L, h as b, onUnmounted as D, watch as w, Fragment as I } from "vue";
 const V = [
   "i-g",
   "i-group",
@@ -19,13 +19,13 @@ const V = [
   "i-animate",
   "i-animatePath"
 ];
-function $(i) {
-  const o = {}, s = {}, r = {}, { render: h } = M({
-    patchProp(e, t, n, a, d, g, c, w, A) {
+function $(r) {
+  const l = {}, o = {}, n = {}, { render: h } = M({
+    patchProp(e, t, i, a, c, g, d, C, A) {
       e && f(t)(e, a);
     },
-    insert: (e, t, n) => {
-      if (t = t || i, e && t instanceof U && t.pages && (["template", "page"].includes(e.nodeName) || (t = t.pages.length ? t.pages[0] : t.addPage())), !(!e || !(t != null && t.child)) && !(e instanceof I))
+    insert: (e, t, i) => {
+      if (t = t || r, e && t instanceof N && t.pages && (["template", "page"].includes(e.nodeName) || (t = t.pages.length ? t.pages[0] : t.addPage())), !(!e || !(t != null && t.child)) && !(e instanceof E))
         if (e.nodeName === "animate" || e.nodeName === "animatePath") {
           const a = e.nodeName === "animate" ? "animateTo" : "animatePathTo";
           e.parent = t, j().then(() => {
@@ -37,31 +37,31 @@ function $(i) {
     remove: (e) => {
       e != null && e.remove();
     },
-    createElement: (e, t, n, a) => {
-      var A, N, T;
-      const d = e.split("-").slice(1).join("-");
-      let g = V.indexOf(e), c = null, w = i instanceof U ? "pdf" : "canvas";
-      if (g === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), (d === "animate" || d === "animatePath") && w === "pdf")
+    createElement: (e, t, i, a) => {
+      var A, O, T;
+      const c = e.split("-").slice(1).join("-");
+      let g = V.indexOf(e), d = null, C = r instanceof N ? "pdf" : "canvas";
+      if (g === -1 && console.warn(`Unknown PDF-Frame tag: ${e}`), (c === "animate" || c === "animatePath") && C === "pdf")
         return null;
-      switch (d) {
+      switch (c) {
         case "page-template":
-          if (w !== "pdf")
+          if (C !== "pdf")
             return console.warn("page-template element is invalid in canvas context"), null;
-          c = i.createTemplate(), c.nodeName = "template", s[a.id] = c;
+          d = r.createTemplate(), d.nodeName = "template", o[a.id] = d;
           break;
         case "page":
-          if (w !== "pdf")
+          if (C !== "pdf")
             return console.warn("Page element is invalid in canvas context"), null;
-          c = i.addPage(), c.nodeName = "page";
+          d = r.addPage(), d.nodeName = "page";
           break;
         case "linearGradient":
-          c = F(), r[a.id] = c, c.nodeName = "linearGradient";
+          d = F(), n[a.id] = d, d.nodeName = "linearGradient";
           break;
         case "radialGradient":
-          c = E(), r[a.id] = c, c.nodeName = "radialGradient";
+          d = R(), n[a.id] = d, d.nodeName = "radialGradient";
           break;
         case "animate":
-          c = x(a), a.from && (c.from = {
+          d = x(a), a.from && (d.from = {
             attr: {
               ...a.from,
               style: null
@@ -70,19 +70,19 @@ function $(i) {
           });
           break;
         case "animatePath":
-          c = p(a), a.from && (c.from = {
+          d = z(a), a.from && (d.from = {
             attr: {
-              d: ((N = a == null ? void 0 : a.from) == null ? void 0 : N.d) ?? "",
+              d: ((O = a == null ? void 0 : a.from) == null ? void 0 : O.d) ?? "",
               style: null
             },
             style: ((T = a.from) == null ? void 0 : T.style) ?? {}
           });
           break;
         default:
-          c = u(d, a);
+          d = s(c, a);
           break;
       }
-      return c;
+      return d;
     },
     createText: (e) => {
     },
@@ -93,82 +93,82 @@ function $(i) {
     setElementText: (e, t) => {
     },
     parentNode: (e) => e && e.dom.parent ? e.dom.parent : null,
-    nextSibling: (e) => (t, n) => {
+    nextSibling: (e) => (t, i) => {
     },
-    querySelector: (e) => i.fetchEl(e) || null
-  }), S = (e) => e.includes("-") ? e.replace(/-([a-z])/g, (t, n) => n.toUpperCase()) : e, b = (e, t, n) => {
+    querySelector: (e) => r.fetchEl(e) || null
+  }), S = (e) => e.includes("-") ? e.replace(/-([a-z])/g, (t, i) => i.toUpperCase()) : e, y = (e, t, i) => {
     if (t)
       switch (e) {
         case "src":
-          o[n] ? t.setAttr(e, o[n]) : (o[n] = i.createAsyncTexture({ attr: { src: n } }), o[n].then((a) => {
-            o[n] = a.exportAsDataUrl(), t.setAttr(e, o[n]);
+          l[i] ? t.setAttr(e, l[i]) : (l[i] = r.createAsyncTexture({ attr: { src: i } }), l[i].then((a) => {
+            l[i] = a.exportAsDataUrl(), t.setAttr(e, l[i]);
           }));
           break;
         case "text":
-          t.text(n);
+          t.text(i);
           break;
         case "p-template":
         case "pTemplate":
-          t instanceof O && t.addTemplate(s[n]);
+          t instanceof p && t.addTemplate(o[i]);
           break;
         case "event":
-          Object.entries(n).forEach(([a, d]) => {
+          Object.entries(i).forEach(([a, c]) => {
             var g;
-            return (g = t.on) == null ? void 0 : g.call(t, a, d);
+            return (g = t.on) == null ? void 0 : g.call(t, a, c);
           });
           break;
         case "block":
           t.block = !0;
           break;
         case "data":
-          t.data(n);
+          t.data(i);
           break;
         case "transform":
-          t.setAttr(e, l(n));
+          t.setAttr(e, u(i));
           break;
         case "bbox":
-          t.bbox = n;
+          t.bbox = i;
           break;
         default:
-          t.setAttr(e, n);
+          t.setAttr(e, i);
       }
   }, k = (e, t) => {
-    Object.entries(t).forEach(([n, a]) => {
-      let d = typeof a == "function" ? a(e) : a;
-      if ((n === "fillStyle" || n === "strokeStyle") && typeof d == "string" && d.startsWith("grad")) {
-        const g = d.match(/\(([^)]+)\)/)[1];
-        d = m(g);
+    Object.entries(t).forEach(([i, a]) => {
+      let c = typeof a == "function" ? a(e) : a;
+      if ((i === "fillStyle" || i === "strokeStyle") && typeof c == "string" && c.startsWith("grad")) {
+        const g = c.match(/\(([^)]+)\)/)[1];
+        c = m(g);
       }
-      e.setStyle(n, d);
+      e.setStyle(i, c);
     });
-  }, f = (e) => (e = S(e), (t, n) => {
+  }, f = (e) => (e = S(e), (t, i) => {
     if (/^on[A-Z]/.test(e)) {
       const a = e.slice(2).toLowerCase();
-      t.on && t.on(a, n);
+      t.on && t.on(a, i);
     } else
-      typeof n == "function" && (n = n(t));
-    e !== "style" ? b(e, t, n) : k(t, n);
+      typeof i == "function" && (i = i(t));
+    e !== "style" ? y(e, t, i) : k(t, i);
   });
-  function u(e, t) {
-    return new O(i.ctx, {
+  function s(e, t) {
+    return new p(r.ctx, {
       el: e === "group" ? "g" : e,
       attr: {},
       style: {},
       bbox: t && t.bbox !== void 0 ? t.bbox : !0
     }, Math.round(Math.random() * 1e7), 0);
   }
-  function l(e) {
+  function u(e) {
     if (typeof e == "object" && !Array.isArray(e) && e !== null)
       return e;
     const t = {};
-    for (const n in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
-      const a = e[n].match(/[\w\.\-]+/g);
-      t[a.shift()] = a.map((d) => parseFloat(d));
+    for (const i in e = e.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g)) {
+      const a = e[i].match(/[\w\.\-]+/g);
+      t[a.shift()] = a.map((c) => parseFloat(c));
     }
     return t;
   }
   function m(e) {
-    return r[e];
+    return n[e];
   }
   function x(e) {
     var t;
@@ -185,33 +185,33 @@ function $(i) {
       end: e.end || null,
       delay: e.delay || 0,
       direction: e.direction || "default",
-      setAttr: function(n, a) {
+      setAttr: function(i, a) {
       },
-      setStyle: function(n, a) {
+      setStyle: function(i, a) {
       },
       remove: function() {
         this.parent.interrupt();
       }
     };
   }
-  function p(e) {
-    var t, n;
+  function z(e) {
+    var t, i;
     return {
       nodeName: "animatePath",
       attr: {
         d: ((t = e == null ? void 0 : e.to) == null ? void 0 : t.d) ?? "",
         style: null
       },
-      style: ((n = e == null ? void 0 : e.to) == null ? void 0 : n.style) ?? {},
+      style: ((i = e == null ? void 0 : e.to) == null ? void 0 : i.style) ?? {},
       duration: e.duration || 0,
       ease: e.ease || "default",
       loop: e.loop || 0,
       end: e.end || null,
       delay: e.delay || 0,
       direction: e.direction || "default",
-      setAttr: function(a, d) {
+      setAttr: function(a, c) {
       },
-      setStyle: function(a, d) {
+      setStyle: function(a, c) {
       },
       remove: function() {
         this.parent.interrupt();
@@ -248,12 +248,12 @@ const _ = q({
       default: () => {
       }
     },
-    onUpdate: {
-      type: Function,
+    needOnAfterRender: {
+      type: Boolean,
       required: !1,
-      default: null
+      default: !1
     },
-    onClear: {
+    setCtxClear: {
       type: Function,
       required: !1,
       default: null
@@ -285,84 +285,81 @@ const _ = q({
       default: !0
     }
   },
-  emits: ["on-resize", "on-ready"],
-  setup(i, o) {
-    let s, r = null;
+  emits: ["on-resize", "on-ready", "on-after-render"],
+  setup(r, l) {
+    let o, n = null;
     const h = G();
-    B(() => {
+    L(() => {
       j().then(() => {
-        const f = o.slots.default;
-        r || (i.type === "pdf" || i.type === "pdf-blob" ? r = b(i) : i.type === "canvas" ? r = k(i) : console.warn(`Unknown render context: ${i.type}`)), r && r.onResize && r.onResize(() => {
-          o.emit("on-resize", {
-            height: r.height,
-            width: r.width
+        const f = l.slots.default;
+        n || (r.type === "pdf" || r.type === "pdf-blob" ? n = y(r) : r.type === "canvas" ? n = k(r) : console.warn(`Unknown render context: ${r.type}`)), n != null && n.onResize && n.onResize(() => {
+          l.emit("on-resize", {
+            height: n.height,
+            width: n.width
           });
-        }), r && r.onChange && r.onChange((m) => {
-          r && r.container && r.container.tagName === "IFRAME" && r.container.setAttribute("src", m), i.onUpdate && typeof i.onUpdate == "function" && i.onUpdate(m);
-        });
-        const u = $(r), l = y(S, f);
-        u(l, r), o.emit("on-ready", r);
+        }), n != null && n.onChange && n.onChange((m) => {
+          var x;
+          n instanceof N && ((x = n == null ? void 0 : n.container) == null ? void 0 : x.tagName) === "IFRAME" && n.container.setAttribute("src", m), r.needOnAfterRender && l.emit("on-after-render", m);
+        }), n != null && n.setClear && typeof r.setCtxClear == "function" && n.setClear(r.setCtxClear);
+        const s = $(n), u = b(S, f);
+        s(u, n), l.emit("on-ready", n);
       });
-    }), L(() => {
-      r && (r.destroy(), r = null);
-    }), C([() => i.height, () => i.width], (f) => {
-      r.setSize && r.setSize(i.width, i.height);
+    }), D(() => {
+      n && (n.destroy(), n = null);
+    }), w([() => r.height, () => r.width], (f) => {
+      n.setSize && n.setSize(r.width, r.height);
     }, {
       deep: !0
-    }), C(() => i.encryption, (f) => {
-      r.setConfig && r.setConfig({
+    }), w(() => r.encryption, (f) => {
+      n.setConfig && n.setConfig({
         encryption: f
       });
     }, {
       deep: !0
-    }), C(() => i.info, (f) => {
-      r.setConfig && r.setConfig({
+    }), w(() => r.info, (f) => {
+      n.setConfig && n.setConfig({
         info: f
       });
     }, {
       deep: !0
-    }), C(() => i.config, (f) => {
-      r.setConfig && r.setConfig({
+    }), w(() => r.config, (f) => {
+      n.setConfig && n.setConfig({
         ...f
       });
     }, {
       deep: !0
     });
     const S = q({
-      setup(f, u) {
-        const l = G();
-        l.parent = h, l.appContext = h.appContext, l.root = h.root, l.provides = h.provides;
-        const m = u.slots.default;
-        return () => y(D, m());
+      setup(f, s) {
+        const u = G();
+        u.parent = h, u.appContext = h.appContext, u.root = h.root, u.provides = h.provides;
+        const m = s.slots.default;
+        return () => b(I, m());
       }
     });
-    function b(f) {
-      let u = document.getElementById(s.props.id), l = {
+    function y(f) {
+      let s = document.getElementById(o.props.id), u = {
         ...f.height !== void 0 && { height: f.height },
         ...f.width !== void 0 && { width: f.width },
         ...f.config || {},
         info: f.info || {},
         encryption: f.encryption || {}
       };
-      return z(u, l, {
+      return U(s, u, {
         autoUpdate: !0,
-        autoPagination: f.autoPagination,
-        onUpdate: (x) => {
-          u.tagName === "IFRAME" && u.setAttribute("src", x), f.onUpdate && typeof f.onUpdate == "function" && f.onUpdate(x);
-        }
+        autoPagination: f.autoPagination
       });
     }
     function k(f) {
-      let u = document.getElementById(s.props.id);
-      const l = R(u, f.config, {
+      let s = document.getElementById(o.props.id);
+      return B(s, f.config, {
         ...f.layerSetting
       });
-      return f.onClear && typeof f.onClear == "function" && l.setClear(f.onClear), l;
     }
-    switch (i.type) {
+    switch (r.type) {
       case "pdf":
-        s = y("iframe", {
-          id: i.id,
+        o = b("iframe", {
+          id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
           src: null,
@@ -373,8 +370,8 @@ const _ = q({
         });
         break;
       case "pdf-blob":
-        s = y("div", {
-          id: i.id,
+        o = b("div", {
+          id: r.id,
           class: "renderOutput",
           style: {
             height: "100%",
@@ -383,18 +380,18 @@ const _ = q({
         });
         break;
       case "canvas":
-        s = y("div", {
-          id: i.id,
+        o = b("div", {
+          id: r.id,
           class: "renderOutput",
           style: {
-            height: i.height ? i.height + "px" : "100%",
-            width: i.width ? i.width + "px" : "100%"
+            height: r.height ? r.height + "px" : "100%",
+            width: r.width ? r.width + "px" : "100%"
           }
         });
         break;
       case "default":
-        s = y("iframe", {
-          id: i.id,
+        o = b("iframe", {
+          id: r.id,
           class: "pdfIframe renderOutput",
           type: "application/pdf",
           src: null,
@@ -405,7 +402,7 @@ const _ = q({
         });
         break;
     }
-    return () => s;
+    return () => o;
   }
 });
 export {
