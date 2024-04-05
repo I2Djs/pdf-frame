@@ -44,19 +44,17 @@ export default function createI2djsRenderer(layerInstance) {
             parentSuspense,
             unmountChildren,
         ) {
-            getSetter(key)(el, nextValue);
+            if (el) {
+                getSetter(key)(el, nextValue);
+            }
         },
         insert: (child, parent, anchor) => {
             
             parent = parent || layerInstance;
 
-            
-
             if ( child && parent instanceof PDFCreator && parent.pages ) {
                 if (!["template", "page"].includes(child.nodeName)) {
                     parent = parent.pages.length ? parent.pages[0] : parent.addPage();
-                } else {
-                    console.log("don't change parent");
                 }
             }
 
@@ -86,12 +84,12 @@ export default function createI2djsRenderer(layerInstance) {
             const elType = tag.split("-").slice(1).join("-");
             let found = validNodeTypes.indexOf(tag);
             let node = null;
-            let ctxType = layerInstance.ctx.type_;
+            let ctxType = layerInstance instanceof PDFCreator ? 'pdf' : 'canvas';
             if (found === -1) {
                 console.warn(`Unknown PDF-Frame tag: ${tag}`);
             }
 
-            if ((elType === "animate" || elType === "animatePath") && layerInstance instanceof PDFCreator) {
+            if ((elType === "animate" || elType === "animatePath") && ctxType === "pdf") {
                 return null;
             }
 
@@ -187,6 +185,9 @@ export default function createI2djsRenderer(layerInstance) {
     const normalizeKey = (key) => key.includes('-') ? key.replace(/-([a-z])/g, (_, char) => char.toUpperCase()) : key;
 
     const setAttribute = (key, el, value) => {
+        if (!el) {
+            return;
+        }
         switch (key) {
             case 'src':
                 if (!imgCache[value]) {

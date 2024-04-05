@@ -1,4 +1,4 @@
-import { canvasLayer, pdfLayer } from "i2djs";
+import { canvasLayer, pdfLayer, PDFCreator } from "i2djs";
 import createI2djsRenderer from "./runtime";
 import {
     defineComponent,
@@ -40,10 +40,15 @@ export const pdfFrame = defineComponent({
             required: false,
             default: () => {}
         },
-        onUpdate: {
+        needOnUpdated: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        setCtxClear: {
             type: Function,
             required: false,
-            default: () => {}
+            default: null
         },
         config: {
             type: Object,
@@ -70,7 +75,7 @@ export const pdfFrame = defineComponent({
         },
 
     },
-    emits: ['on-resize', 'on-ready', 'on-update'],
+    emits: ['on-resize', 'on-ready', 'on-updated'],
     setup(props, setupContext) {
         let vNode;
         let layerInstance = null;
@@ -90,7 +95,7 @@ export const pdfFrame = defineComponent({
                     }
                 }
 
-                if (layerInstance && layerInstance.onResize) {
+                if (layerInstance?.onResize) {
                     layerInstance.onResize(() => {
                         setupContext.emit("on-resize", {
                             height: layerInstance.height,
@@ -99,15 +104,19 @@ export const pdfFrame = defineComponent({
                     });
                 }
 
-                if (layerInstance && layerInstance.onChange) {
+                if (layerInstance?.onChange) {
                     layerInstance.onChange((url)=>{
-                        if (layerInstance && layerInstance.container && layerInstance.container.tagName === "IFRAME") {
+                        if (layerInstance instanceof PDFCreator && layerInstance?.container?.tagName === "IFRAME") {
                             layerInstance.container.setAttribute("src", url);
                         }
-                        if (props.onUpdate) {
-                            emitOnUpdate(url);
+                        if (props.needOnUpdated) {
+                            setupContext.emit("on-updated", url);
                         }
                     })
+                }
+
+                if (layerInstance?.setClear && typeof props.setCtxClear === 'function') {
+                    layerInstance.setClear(props.setCtxClear);
                 }
 
                 const i2dRenderer = createI2djsRenderer(layerInstance);
@@ -200,15 +209,7 @@ export const pdfFrame = defineComponent({
             };
             const pdfInstance = pdfLayer(el, config, {
                 autoUpdate: true,
-                autoPagination: props.autoPagination,
-                onUpdate: (url) => {
-                    if (el.tagName === "IFRAME") {
-                        el.setAttribute("src", url);
-                    }
-                    if (props.onUpdate) {
-                        emitOnUpdate(url);
-                    }
-                }
+                autoPagination: props.autoPagination
             });
             return pdfInstance;
         }
@@ -218,6 +219,7 @@ export const pdfFrame = defineComponent({
             const canvasInstance = canvasLayer(el, props.config, {
                 ...props.layerSetting
             });
+
             return canvasInstance;
         }
 
@@ -266,10 +268,6 @@ export const pdfFrame = defineComponent({
                     },
                 });
                 break;
-        }
-
-        function emitOnUpdate(data) {
-            setupContext.emit("on-update", data);
         }
 
         return () => {

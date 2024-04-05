@@ -1,46 +1,16 @@
 <template>
   <pdfFrame id="canvasContid" type="canvas" 
       @on-ready="onInstanceReady"
-      @on-resize="onInstanceResize">
-    <i-linearGradient
-        id="grad3"
-        :x1="0"
-        :y1="0"
-        :x2="100"
-        :y2="100"
-        :colorStops="[
-          {
-            color: '#023c73',
-            offset: 0,
-          },
-          {
-            color: '#5f0b9c',
-            offset: 50,
-          },
-          {
-            color: '#b814c4',
-            offset: 100,
-          },
-        ]"
-      />
-      <i-rect
-        :x="0"
-        :y="0"
-        :width="width"
-        :height="height"
-        rx=50
-        ry=50
-        :style="{ fillStyle: 'grad(grad3)' }"
-      />
+      @on-resize="onInstanceResize"
+      :setCtxClear="onClear">
     <i-g :transform="{ translate: [width * 0.5 - 50,50], scale: [2, 2] }">
-      <i-rect
+      <i-circle
         v-for="n in 30"
         v-bind:key="n"
         :bbox="false"
-        :x="Math.sin(n * 0.4 + t) * 50"
-        :y="n * 11"
-        :width="(Math.sin(n * 0.4 - 4.5 + t) + 1) * 3 + 4"
-        :height="(Math.sin(n * 0.4 - 4.5 + t) + 1) * 3 + 4"
+        :cx="Math.sin(n * 0.4 + t) * 50"
+        :cy="n * 11"
+        :r="((Math.sin(n * 0.4 - 4.5 + t) + 1) * 3 + 4) * 0.5"
         :style="{
           fillStyle: 'hsl(' + ((n * 5) % 360) + ',100%,50%)',
           opacity: Math.sin(n * 0.4 + t) + 1 + 0.1,
@@ -84,6 +54,7 @@ function step() {
 
 let width = ref(0);
   let height = ref(0);
+  let layerInstance;
 
   function onInstanceResize(data) {
     width.value = data.width;
@@ -91,10 +62,16 @@ let width = ref(0);
   }
 
   function onInstanceReady (layer) {
+    layerInstance = layer;
     width.value = layer.width;
     height.value = layer.height;
     i2dinstanceID = layer.vDomIndex;
     window.requestAnimationFrame(step);
+  }
+
+  function onClear(ctx) {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, layerInstance?.width ?? 0, layerInstance?.height ?? 0);
   }
 </script>
 

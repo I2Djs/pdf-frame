@@ -93,7 +93,6 @@ declare const pdfFrameVueComponent: import("vue").DefineComponent<{
 }>> & {
     "onOn-resize"?: ((...args: any[]) => any) | undefined;
     "onOn-ready"?: ((...args: any[]) => any) | undefined;
-    "onOn-update"?: ((...args: any[]) => any) | undefined;
 }, {
     type: string;
     id: string;
