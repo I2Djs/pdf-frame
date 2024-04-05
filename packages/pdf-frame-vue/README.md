@@ -10,7 +10,7 @@
 
 # pdf-frame-vue [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) [![License](https://img.shields.io/npm/l/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) [![Vue](https://img.shields.io/badge/Vue-18181B?logo=vue.js)](https://vuejs.org)
 
-PDF-Frame-Vue is a vue.js component designed for rendering PDF and Canvas graphics effortlessly on the web. This component provides an intuitive HTML Template-based syntax and semantics that simplifies the creation and management of graphical content. Powered by [i2djs](https://github.com/I2Djs/I2Djs) framework, PDF-Frame-Vue currently supports rendering outputs in PDF and Canvas formats.
+PDF-Frame-Vue is a vue 3 component designed for rendering PDF and Canvas graphics effortlessly on the web. This component provides an intuitive HTML Template-based syntax and semantics that simplifies the creation and management of graphical content. Powered by [i2djs](https://github.com/I2Djs/I2Djs) framework, PDF-Frame-Vue currently supports rendering outputs in PDF and Canvas formats.
 
 PDF-Frame-Vue implements Vue.js' custom renderer, taking advantage of framework capabilities like templating, the reactivity system, component architecture and many more.
 
