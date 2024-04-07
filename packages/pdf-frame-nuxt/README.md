@@ -8,9 +8,9 @@
    
 </h3>
 
-# pdf-frame-nuxt [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![License](https://img.shields.io/npm/l/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![Nuxt](https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js)](https://nuxt.com)
+# nuxt-pdf-frame [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![License](https://img.shields.io/npm/l/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![Nuxt](https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js)](https://nuxt.com)
 
-PDF-Frame-Nuxt is a Nuxt module, designed to enable the rendering of PDF and Canvas graphics within Nuxt applications. It provides a simple, template-based syntax and semantics to simplify the creation and management of graphical content. Leveraging the i2djs framework, PDF-Frame-Nuxt supports generating graphical outputs in both PDF and Canvas formats.
+Nuxt-PDF-Frame is a Nuxt module, designed to enable the rendering of PDF and Canvas graphics within Nuxt applications. It provides a simple, template-based syntax and semantics to simplify the creation and management of graphical content. Leveraging the i2djs framework, PDF-Frame-Nuxt supports generating graphical outputs in both PDF and Canvas formats.
 
 ## Features
 
@@ -23,7 +23,7 @@ PDF-Frame-Nuxt is a Nuxt module, designed to enable the rendering of PDF and Can
 * Nuxt 3 Compatible module.
 
 ## Documentation
-  * [PDF-frame-nuxt](https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue)
+  * [Nuxt-PDF-frame](https://github.com/I2Djs/pdf-frame/wiki/nuxt%E2%80%90pdf%E2%80%90frame)
   
 ## Playground
   * Try examples on [Stackblitz](https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase)
@@ -53,6 +53,18 @@ export default defineNuxtConfig({
 ```
 
 ### Usage
+
+#### Canvas Template
+```html
+<pdfFrame type="canvas" width="595" height="841">
+  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
+    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
+    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
+    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
+  </i-g>
+</pdfFrame>
+```
+
 
 #### PDF Basic Template
 ```html
@@ -87,17 +99,6 @@ export default defineNuxtConfig({
         <i-text :x="30" :y="60" :text="'Page 2 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
         <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
     </i-page> 
-</pdfFrame>
-```
-
-#### Canvas Template
-```html
-<pdfFrame type="canvas" width="595" height="841">
-  <i-g :transform="{ translate: [100, 200], scale: [2, 3], rotate: [ 45, 0, 0] }">
-    <i-text :x="30" :y="60" :text="'Page 1 Title'" :width="530" :style="{font: '25px Arial', align: 'center'}"></i-text>
-    <i-rect :x="30" :y="100" :width="535" :height="700" :style="{ fillStyle:'#f0f0f0' }"></i-rect>
-    <i-image src="src/assets/i2d-frame.svg" :width="200" :x="175" :y="100"></i-image>
-  </i-g>
 </pdfFrame>
 ```
 
