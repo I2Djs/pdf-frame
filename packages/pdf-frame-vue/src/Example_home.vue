@@ -5,7 +5,7 @@ import Canvas_path_animation from './examples/Canvas_path_animation.vue';
 import Canvas_pathanimation from './examples/Canvas_path_animation2.vue';
 import Pdf_example from './examples/Pdf_example_2.vue';
 import Pdf_custom_fonts from './examples/Pdf_custom_fonts.vue';
-import Canvas_Helix_animation from './examples/Canvas_helix_animation.vue';
+import Canvas_helix_animation from './examples/Canvas_helix_animation.vue';
 import Canvas_animation from './examples/Canvas_animate.vue';
 import PDf_table from './examples/Pdf_table_test.vue';
 import PDf_encrypt from './examples/Pdf_encrypt_blob.vue';
@@ -26,7 +26,7 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
     component: Canvas_pathanimation
   }, {
     title: 'Canvas Helix Animation',
-    component: Canvas_Helix_animation
+    component: Canvas_helix_animation
   }, {
     title: 'Canvas rect Animation',
     component: Canvas_animation
@@ -47,7 +47,7 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
     component: Canvas_tadpole_animation
   }]
 
-  let selectedExample = shallowRef(Pdf_example);
+  let selectedExample = shallowRef(Canvas_example);
 
 </script>
 
