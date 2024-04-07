@@ -106,5 +106,5 @@ export default defineNuxtConfig({
 This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
 
 ### Compatibility
-Pdf-Frame-Nuxt is Nuxt 3 client only module.
+Nuxt-Pdf-Frame is Nuxt 3 client only module.
 
