@@ -10,7 +10,7 @@
 
 # pdf-frame-nuxt [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![License](https://img.shields.io/npm/l/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![Nuxt](https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js)](https://nuxt.com)
 
-PDF-Frame-Nuxt is a module for Nuxt 3, designed to enable the rendering of PDF and Canvas graphics within Nuxt applications. It provides a simple, template-based syntax and semantics to simplify the creation and management of graphical content. Leveraging the i2djs framework, PDF-Frame-Nuxt supports generating graphical outputs in both PDF and Canvas formats, enhancing the capability to produce diverse graphical representations.
+PDF-Frame-Nuxt is a Nuxt 3 module, designed to enable the rendering of PDF and Canvas graphics within Nuxt applications. It provides a simple, template-based syntax and semantics to simplify the creation and management of graphical content. Leveraging the i2djs framework, PDF-Frame-Nuxt supports generating graphical outputs in both PDF and Canvas formats.
 
 ## Features
 
@@ -105,5 +105,5 @@ export default defineNuxtConfig({
 This project is licensed under the MIT License. See the [LICENSE](https://raw.githubusercontent.com/I2Djs/pdf-frame/main/LICENSE) file for more details.
 
 ### Compatibility
-This is Nuxt 3 client only module.
+Pdf-Frame-Nuxt is Nuxt 3 client only module.
 

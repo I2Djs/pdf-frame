@@ -1,7 +1,7 @@
 {
   "name": "@i2d/nuxt-pdf-frame",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.2.0",
   "description": "nuxt-pdf-frame is a nuxt 3 module for rendering PDF and Canvas graphics on web, using its declarative HTML syntax and semantics to outline graphical content. It leverages the I2Djs and PDFKit framework for graphics and pdf features.",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint  && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint  && npm run test && npm run prepack && npm publish && git push --follow-tags",
     "lint": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest watch",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.1",
-    "@i2d/pdf-frame-vue": "^2.x"
+    "@i2d/pdf-frame-vue": "^2.2.x"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
