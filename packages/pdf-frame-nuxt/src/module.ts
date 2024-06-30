@@ -8,7 +8,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'pdf-frame',
     configKey: 'PdfFrame',
     compatibility: {
-      nuxt: '^3.0.0'
+      nuxt: '>=3.0.0'
     }
   },
   hooks: {
