@@ -22,7 +22,7 @@
     "postversion": "git tag vue-$(node -p -e \"require('./package.json').version\") && git push origin vue-$(node -p -e \"require('./package.json').version\") && git tag -d v$(node -p -e \"require('./package.json').version\") && git push origin :refs/tags/v$(node -p -e \"require('./package.json').version\")"
   },
   "dependencies": {
-    "i2djs": "^5.1.2",
+    "i2djs": "^5.2.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {
