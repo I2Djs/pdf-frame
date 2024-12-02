@@ -5,6 +5,7 @@ import Canvas_path_animation from './examples/Canvas_path_animation.vue';
 import Canvas_pathanimation from './examples/Canvas_path_animation2.vue';
 import Pdf_example from './examples/Pdf_example_2.vue';
 import Pdf_custom_fonts from './examples/Pdf_custom_fonts.vue';
+import Pdf_text_decoration from './examples/Pdf_text_decoration.vue';
 import Canvas_helix_animation from './examples/Canvas_helix_animation.vue';
 import Canvas_animation from './examples/Canvas_animate.vue';
 import PDf_table from './examples/Pdf_table_test.vue';
@@ -45,6 +46,9 @@ import Canvas_tadpole_animation from './examples/Canvas_tadpole_animation.vue';
   }, {
     title: 'Canvas Tadpole Animation',
     component: Canvas_tadpole_animation
+  }, {
+    title: 'PDF Text decoration',
+    component: Pdf_text_decoration
   }]
 
   let selectedExample = shallowRef(Canvas_example);
