@@ -2,7 +2,7 @@
   "name": "pdf-frame",
   "configKey": "PdfFrame",
   "compatibility": {
-    "nuxt": "^3.0.0"
+    "nuxt": ">=3.0.0"
   },
-  "version": "0.2.1"
+  "version": "0.3.0"
 }
