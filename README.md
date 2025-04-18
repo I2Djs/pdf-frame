@@ -12,10 +12,11 @@
 
 | Package | version |
 | --- | --- |
-| [pdf-frame-vue](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
-| [pdf-frame-nuxt](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) |
+| [pdf-frame-vue](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-vue) | [![npm](https://img.shields.io/npm/v/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) [![Downloads](https://img.shields.io/npm/dm/@i2d/pdf-frame-vue.svg)](https://www.npmjs.com/package/@i2d/pdf-frame-vue) |
+| [pdf-frame-nuxt](https://github.com/I2Djs/pdf-frame/tree/main/packages/pdf-frame-nuxt) | [![npm](https://img.shields.io/npm/v/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) [![Downloads](https://img.shields.io/npm/dm/@i2d/nuxt-pdf-frame.svg)](https://www.npmjs.com/package/@i2d/nuxt-pdf-frame) |
 
 ## Introduction
+https://www.npmjs.com/package/@i2d/nuxt-pdf-frame
 
 Pdf-frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue, nuxt, and React(work in progress). Powered by [i2djs](https://github.com/I2Djs/I2Djs), PDF-frame presently supports rendering outputs as PDF and Canvas formats.
 
