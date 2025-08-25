@@ -1,5 +1,7 @@
 import { defineNuxtModule, addComponent, createResolver, isNuxt3 } from '@nuxt/kit'
 
+const { resolve } = createResolver(import.meta.url)
+
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
 
@@ -25,16 +27,10 @@ export default defineNuxtModule<ModuleOptions>({
     }
   },
   defaults: {},
-  async setup (options, nuxt) {
-    if (!isNuxt3(nuxt)) {
-      console.error("nuxt-pdf-frame compatible with Nuxt 3");
-      return;
-    }
-
-    const resolver = createResolver(import.meta.url)
+  async setup () {
     addComponent({
       name: 'pdfFrame',
-      filePath: resolver.resolve('./runtime/components/pdf-frame')
+      filePath: resolve('./runtime/components/pdf-frame')
     })
   }
 })
