@@ -1,5 +1,6 @@
-import { defineNuxtModule, isNuxt3, createResolver, addComponent } from '@nuxt/kit';
+import { createResolver, defineNuxtModule, addComponent } from '@nuxt/kit';
 
+const { resolve } = createResolver(import.meta.url);
 const module = defineNuxtModule({
   meta: {
     name: "pdf-frame",
@@ -21,15 +22,10 @@ const module = defineNuxtModule({
     }
   },
   defaults: {},
-  async setup(options, nuxt) {
-    if (!isNuxt3(nuxt)) {
-      console.error("nuxt-pdf-frame compatible with Nuxt 3");
-      return;
-    }
-    const resolver = createResolver(import.meta.url);
+  async setup() {
     addComponent({
       name: "pdfFrame",
-      filePath: resolver.resolve("./runtime/components/pdf-frame")
+      filePath: resolve("./runtime/components/pdf-frame")
     });
   }
 });
