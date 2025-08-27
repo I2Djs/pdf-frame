@@ -1,4 +1,4 @@
-import { defineNuxtModule, addComponent, createResolver, isNuxt3 } from '@nuxt/kit'
+import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
 
 const { resolve } = createResolver(import.meta.url)
 
